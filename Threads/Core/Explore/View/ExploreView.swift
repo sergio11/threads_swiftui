@@ -18,13 +18,10 @@ struct ExploreView: View {
                 LazyVStack {
                     ForEach(0 ... 1, id: \.self) { user in
                         VStack {
-                        UserCell()
-                        Divider()
-                    }
-                    .padding(.vertical, 4)
-                        
-                        
-                        
+                            UserCell()
+                            Divider()
+                        }
+                        .padding(.vertical, 4)
                     }
                     .navigationTitle("Seach")
                     .searchable(text: $searchText, prompt: "Search")
