@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D3BF3F12C4979BF0050BB92 /* ThreadsTextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BF3F02C4979BF0050BB92 /* ThreadsTextFieldModifier.swift */; };
 		3DF5D4CF2C46FA3E00103F4B /* ThreadsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5D4CE2C46FA3E00103F4B /* ThreadsApp.swift */; };
 		3DF5D4D12C46FA3E00103F4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5D4D02C46FA3E00103F4B /* ContentView.swift */; };
 		3DF5D4D32C46FA4000103F4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5D4D22C46FA4000103F4B /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D3BF3F02C4979BF0050BB92 /* ThreadsTextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTextFieldModifier.swift; sourceTree = "<group>"; };
 		3DF5D4CB2C46FA3E00103F4B /* Threads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Threads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DF5D4CE2C46FA3E00103F4B /* ThreadsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsApp.swift; sourceTree = "<group>"; };
 		3DF5D4D02C46FA3E00103F4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +38,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D3BF3EF2C4979A60050BB92 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				3D3BF3F02C4979BF0050BB92 /* ThreadsTextFieldModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		3DF5D4C22C46FA3E00103F4B = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +126,7 @@
 		3DF5D4E12C46FAC500103F4B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3D3BF3EF2C4979A60050BB92 /* ViewModifiers */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -217,6 +228,7 @@
 			files = (
 				3DF5D4E62C46FB0E00103F4B /* LoginView.swift in Sources */,
 				3DF5D4D12C46FA3E00103F4B /* ContentView.swift in Sources */,
+				3D3BF3F12C4979BF0050BB92 /* ThreadsTextFieldModifier.swift in Sources */,
 				3DF5D4CF2C46FA3E00103F4B /* ThreadsApp.swift in Sources */,
 				3DF5D4E82C4700C800103F4B /* RegistrationView.swift in Sources */,
 			);
