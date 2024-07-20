@@ -24,6 +24,7 @@ class AuthService {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
+            try await UserService.shared.fetchCurrentUser()
             print("DEBUG: Created used \(result.user.uid)")
         } catch let error {
             print("DEBUG: Failed to crear user with error \(error.localizedDescription)")
@@ -45,6 +46,7 @@ class AuthService {
     func signOut() {
         try? Auth.auth().signOut()
         self.userSession = nil
+        UserService.shared.reset()
     }
     
     private func uploadUserData(
@@ -59,5 +61,6 @@ class AuthService {
             .collection("users")
             .document(id)
             .setData(userData)
+        UserService.shared.currentUser = user
     }
 }
