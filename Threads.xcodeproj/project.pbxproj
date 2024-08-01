@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D312D502C5C0E54008F0B8D /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D4F2C5C0E54008F0B8D /* Thread.swift */; };
+		3D312D532C5C0F2A008F0B8D /* CreateThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D522C5C0F2A008F0B8D /* CreateThreadViewModel.swift */; };
+		3D312D552C5C0F46008F0B8D /* ThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D542C5C0F46008F0B8D /* ThreadService.swift */; };
 		3D3BF3F12C4979BF0050BB92 /* ThreadsTextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BF3F02C4979BF0050BB92 /* ThreadsTextFieldModifier.swift */; };
 		3D3BF3F42C497B640050BB92 /* ThreadsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BF3F32C497B640050BB92 /* ThreadsTabView.swift */; };
 		3D3BF3F82C497CE20050BB92 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BF3F72C497CE20050BB92 /* FeedView.swift */; };
@@ -48,6 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D312D4F2C5C0E54008F0B8D /* Thread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		3D312D522C5C0F2A008F0B8D /* CreateThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadViewModel.swift; sourceTree = "<group>"; };
+		3D312D542C5C0F46008F0B8D /* ThreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadService.swift; sourceTree = "<group>"; };
 		3D3BF3F02C4979BF0050BB92 /* ThreadsTextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTextFieldModifier.swift; sourceTree = "<group>"; };
 		3D3BF3F32C497B640050BB92 /* ThreadsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTabView.swift; sourceTree = "<group>"; };
 		3D3BF3F72C497CE20050BB92 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -100,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D312D512C5C0F13008F0B8D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3D312D522C5C0F2A008F0B8D /* CreateThreadViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3D3BF3EF2C4979A60050BB92 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +167,7 @@
 		3D3BF3FD2C497D000050BB92 /* ThreadCreation */ = {
 			isa = PBXGroup;
 			children = (
+				3D312D512C5C0F13008F0B8D /* ViewModel */,
 				3D3BF3FE2C497D070050BB92 /* View */,
 			);
 			path = ThreadCreation;
@@ -395,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				3D44132D2C4C344B00D71E39 /* User.swift */,
+				3D312D4F2C5C0E54008F0B8D /* Thread.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -404,6 +420,7 @@
 			children = (
 				3D44132F2C4C3AD200D71E39 /* UserService.swift */,
 				3D885E062C4CF9B400A3BE3A /* ImageUploader.swift */,
+				3D312D542C5C0F46008F0B8D /* ThreadService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -527,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D44133D2C4C457100D71E39 /* CurrentUserProfileView.swift in Sources */,
+				3D312D502C5C0E54008F0B8D /* Thread.swift in Sources */,
 				3D3BF40A2C497D5E0050BB92 /* CreateThreadView.swift in Sources */,
 				3D6512B02C4AD99800EC40EE /* RegistrationViewModel.swift in Sources */,
 				3D3BF3F82C497CE20050BB92 /* FeedView.swift in Sources */,
@@ -539,6 +557,7 @@
 				3D3BF40C2C497E8B0050BB92 /* ThreadCell.swift in Sources */,
 				3DF5D4D12C46FA3E00103F4B /* ContentView.swift in Sources */,
 				3D4413422C4C47A700D71E39 /* ProfileHeaderView.swift in Sources */,
+				3D312D532C5C0F2A008F0B8D /* CreateThreadViewModel.swift in Sources */,
 				3D44132C2C4C31C200D71E39 /* LoginViewModel.swift in Sources */,
 				3D3BF40F2C4983B90050BB92 /* CircularProfileImageView.swift in Sources */,
 				3D3BF4112C49842B0050BB92 /* UserCell.swift in Sources */,
@@ -556,6 +575,7 @@
 				3D3BF4082C497D410050BB92 /* ProfileView.swift in Sources */,
 				3DF5D4E82C4700C800103F4B /* RegistrationView.swift in Sources */,
 				3D44132E2C4C344B00D71E39 /* User.swift in Sources */,
+				3D312D552C5C0F46008F0B8D /* ThreadService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
