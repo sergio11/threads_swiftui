@@ -11,13 +11,6 @@ import Factory
 
 extension Container {
     
-    var userMapper: Factory<UserMapper> {
-        self { UserMapper() }.singleton
-    }
-}
-
-extension Container {
-    
     var storageDataSource: Factory<StorageFilesDataSource> {
         self { FirestoreStorageFilesDataSourceImpl() }.singleton
     }
@@ -25,8 +18,29 @@ extension Container {
 
 extension Container {
     
+    var threadMapper: Factory<ThreadMapper> {
+        self { ThreadMapper() }.singleton
+    }
+    
+    var createThreadMapper: Factory<CreateThreadMapper> {
+        self { CreateThreadMapper() }.singleton
+    }
+    
     var threadsDataSource: Factory<ThreadsDataSource> {
         self { FirestoreThreadsDataSourceImpl() }.singleton
+    }
+    
+    var threadsRepository: Factory<ThreadsRepository> {
+        self { ThreadsRepositoryImpl(
+            threadsDataSource: self.threadsDataSource(), threadMapper: self.threadMapper(), createThreadMapper: self.createThreadMapper()) }.singleton
+    }
+    
+    var fetchThreadsUseCase: Factory<FetchThreadsUseCase> {
+        self { FetchThreadsUseCase(threadsRepository: self.threadsRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var fetchOwnThreadsUseCase: Factory<FetchOwnThreadsUseCase> {
+        self { FetchOwnThreadsUseCase(threadsRepository: self.threadsRepository(), authRepository: self.authenticationRepository()) }
     }
 }
 
@@ -49,12 +63,21 @@ extension Container {
         self { VerifySessionUseCase(authRepository: self.authenticationRepository(), userProfileRepository: self.userProfileRepository()) }
     }
     
+    var signInUseCase: Factory<SignInUseCase> {
+        self { SignInUseCase(authRepository: self.authenticationRepository(), userProfileRepository: self.userProfileRepository()) }
+    }
+    
     var signUpUseCase: Factory<SignUpUseCase> {
         self { SignUpUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository()) }
     }
+    
 }
 
 extension Container {
+    
+    var userMapper: Factory<UserMapper> {
+        self { UserMapper() }.singleton
+    }
     
     var userDataSource: Factory<UserDataSource> {
         self { FirestoreUserDataSourceImpl() }.singleton
