@@ -9,7 +9,7 @@ import Foundation
 
 class UserContentListViewModel: ObservableObject {
     
-    @Published var threads = [Thread]()
+    @Published var threads = [ThreadBO]()
     
     let user: UserBO
     
