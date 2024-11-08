@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ProfileHeaderView: View {
     
-    var user: User?
+    var user: UserBO?
     
-    init(user: User?) {
+    init(user: UserBO?) {
         self.user = user
     }
     

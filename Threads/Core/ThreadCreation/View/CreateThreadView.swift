@@ -12,7 +12,7 @@ struct CreateThreadView: View {
     @StateObject var viewModel = CreateThreadViewModel()
     @Environment(\.dismiss) private var onDismiss
     
-    private var user: User? {
+    private var user: UserBO? {
         return UserService.shared.currentUser
     }
     

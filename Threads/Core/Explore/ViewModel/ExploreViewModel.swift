@@ -9,7 +9,7 @@ import Foundation
 
 class ExploreViewModel: ObservableObject {
     
-    @Published var users = [User]()
+    @Published var users = [UserBO]()
     
     init() {
         Task { try await fetchUsers() }

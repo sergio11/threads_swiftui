@@ -15,11 +15,12 @@ class EditProfileViewModel: ObservableObject {
             Task { await loadImage() }
         }
     }
+    
     @Published var profileImage: Image?
     private var uiImage: UIImage?
     
     func updateUserData() async throws {
-        print("DEBUG: Update user data here...")
+        print("DEBUG: Updating user data")
         try await updateProfileImage()
     }
     

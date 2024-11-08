@@ -18,7 +18,7 @@ struct UserContentListView: View {
         return UIScreen.main.bounds.width / count - 16
     }
     
-    init(user: User) {
+    init(user: UserBO) {
         self._viewModel = StateObject(wrappedValue: UserContentListViewModel(user: user))
     }
     

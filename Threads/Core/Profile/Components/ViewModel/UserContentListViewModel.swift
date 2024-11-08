@@ -11,9 +11,9 @@ class UserContentListViewModel: ObservableObject {
     
     @Published var threads = [Thread]()
     
-    let user: User
+    let user: UserBO
     
-    init(user: User) {
+    init(user: UserBO) {
         self.user = user
         Task { try await fetchUserThreads() }
     }

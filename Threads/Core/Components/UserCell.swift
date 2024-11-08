@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserCell: View {
     
-    let user: User
+    let user: UserBO
     
     var body: some View {
         HStack {

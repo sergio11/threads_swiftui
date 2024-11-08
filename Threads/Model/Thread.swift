@@ -19,5 +19,5 @@ struct Thread: Identifiable, Codable {
         return threadId ?? NSUUID().uuidString
     }
     
-    var user: User?
+    var user: UserBO?
 }
