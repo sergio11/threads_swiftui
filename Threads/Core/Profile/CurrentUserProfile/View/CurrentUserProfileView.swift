@@ -12,7 +12,7 @@ struct CurrentUserProfileView: View {
     @StateObject var viewModel = CurrentUserProfileViewModel()
     @State private var showEditProfile = false
     
-    private var currentUser: User? {
+    private var currentUser: UserBO? {
         return viewModel.currentUser
     }
     

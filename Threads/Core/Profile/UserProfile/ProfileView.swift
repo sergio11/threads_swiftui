@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    let user: User
+    let user: UserBO
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 20) {
-                
+            
                 ProfileHeaderView(user: user)
                 
                 Button {
