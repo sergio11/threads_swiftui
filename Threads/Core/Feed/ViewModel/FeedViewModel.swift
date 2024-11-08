@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 class FeedViewModel: ObservableObject {
-    @Published var threads = [Thread]()
+    @Published var threads = [ThreadBO]()
     
     init() {
         Task { try await fetchThreads() }

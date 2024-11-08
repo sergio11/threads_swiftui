@@ -23,6 +23,13 @@ extension Container {
     }
 }
 
+extension Container {
+    
+    var threadsDataSource: Factory<ThreadsDataSource> {
+        self { FirestoreThreadsDataSourceImpl() }.singleton
+    }
+}
+
 
 extension Container {
     

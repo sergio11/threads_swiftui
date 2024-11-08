@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ThreadCell: View {
-    let thread: Thread
+    let thread: ThreadBO
     
     var body: some View {
         VStack {
