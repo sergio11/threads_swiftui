@@ -10,7 +10,7 @@ import PhotosUI
 
 struct EditProfileView: View {
     
-    let user: User
+    let user: UserBO
     @State private var bio = ""
     @State private var link = ""
     @State private var isPrivateProfile = false

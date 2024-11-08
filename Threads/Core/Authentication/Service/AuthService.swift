@@ -55,7 +55,7 @@ class AuthService {
         username: String,
         id: String
     ) async throws {
-        let user = User(id: id, fullname: fullname, email: email, username: username)
+        let user = UserBO(id: id, fullname: fullname, email: email, username: username)
         guard let userData = try? Firestore.Encoder().encode(user) else { return }
         try await Firestore.firestore()
             .collection("users")

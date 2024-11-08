@@ -27,7 +27,7 @@ struct ExploreView: View {
                     }
                 }
             }
-            .navigationDestination(for: User.self, destination: { user in
+            .navigationDestination(for: UserBO.self, destination: { user in
                 ProfileView(user: user)
             })
             .navigationTitle("Seach")

@@ -30,7 +30,7 @@ enum ProfileImageSize {
 
 
 struct CircularProfileImageView: View {
-    var user: User?
+    var user: UserBO?
     let size: ProfileImageSize
 
     var body: some View {

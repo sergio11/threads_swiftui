@@ -10,7 +10,7 @@ import Combine
 
 class CurrentUserProfileViewModel: ObservableObject {
     
-    @Published var currentUser: User?
+    @Published var currentUser: UserBO?
     private var cancellables = Set<AnyCancellable>()
     
     init() {
