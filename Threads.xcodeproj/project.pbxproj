@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D312D502C5C0E54008F0B8D /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D4F2C5C0E54008F0B8D /* Thread.swift */; };
+		3D312D502C5C0E54008F0B8D /* ThreadBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D4F2C5C0E54008F0B8D /* ThreadBO.swift */; };
 		3D312D532C5C0F2A008F0B8D /* CreateThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D522C5C0F2A008F0B8D /* CreateThreadViewModel.swift */; };
 		3D312D552C5C0F46008F0B8D /* ThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D542C5C0F46008F0B8D /* ThreadService.swift */; };
 		3D312D582C5C1478008F0B8D /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D572C5C1478008F0B8D /* FeedViewModel.swift */; };
@@ -65,6 +65,11 @@
 		3D65726C2CDE94490064A206 /* GetSuggestionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65726B2CDE94490064A206 /* GetSuggestionsUseCase.swift */; };
 		3D65726E2CDE949E0064A206 /* UpdateUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65726D2CDE949E0064A206 /* UpdateUserUseCase.swift */; };
 		3D6572712CDE95310064A206 /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6572702CDE95310064A206 /* EventBus.swift */; };
+		3D6572732CDE9B960064A206 /* CreateThreadDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6572722CDE9B960064A206 /* CreateThreadDTO.swift */; };
+		3D6572752CDE9CD80064A206 /* ThreadDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6572742CDE9CD80064A206 /* ThreadDTO.swift */; };
+		3D6572772CDE9D2C0064A206 /* CreateThreadDTO+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6572762CDE9D2C0064A206 /* CreateThreadDTO+Dictionary.swift */; };
+		3D65727B2CDE9E0D0064A206 /* ThreadsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65727A2CDE9E0C0064A206 /* ThreadsDataSource.swift */; };
+		3D65727D2CDE9E360064A206 /* FirestoreThreadsDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65727C2CDE9E360064A206 /* FirestoreThreadsDataSourceImpl.swift */; };
 		3D7F54D42CDD5A7600D1CF50 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 3D7F54D32CDD5A7600D1CF50 /* Factory */; };
 		3D885E052C4CF83600A3BE3A /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D885E042C4CF83600A3BE3A /* EditProfileViewModel.swift */; };
 		3D885E072C4CF9B400A3BE3A /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D885E062C4CF9B400A3BE3A /* ImageUploader.swift */; };
@@ -80,7 +85,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D312D4F2C5C0E54008F0B8D /* Thread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		3D312D4F2C5C0E54008F0B8D /* ThreadBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadBO.swift; sourceTree = "<group>"; };
 		3D312D522C5C0F2A008F0B8D /* CreateThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadViewModel.swift; sourceTree = "<group>"; };
 		3D312D542C5C0F46008F0B8D /* ThreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadService.swift; sourceTree = "<group>"; };
 		3D312D572C5C1478008F0B8D /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
@@ -134,6 +139,11 @@
 		3D65726B2CDE94490064A206 /* GetSuggestionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSuggestionsUseCase.swift; sourceTree = "<group>"; };
 		3D65726D2CDE949E0064A206 /* UpdateUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserUseCase.swift; sourceTree = "<group>"; };
 		3D6572702CDE95310064A206 /* EventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBus.swift; sourceTree = "<group>"; };
+		3D6572722CDE9B960064A206 /* CreateThreadDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadDTO.swift; sourceTree = "<group>"; };
+		3D6572742CDE9CD80064A206 /* ThreadDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDTO.swift; sourceTree = "<group>"; };
+		3D6572762CDE9D2C0064A206 /* CreateThreadDTO+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateThreadDTO+Dictionary.swift"; sourceTree = "<group>"; };
+		3D65727A2CDE9E0C0064A206 /* ThreadsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsDataSource.swift; sourceTree = "<group>"; };
+		3D65727C2CDE9E360064A206 /* FirestoreThreadsDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreThreadsDataSourceImpl.swift; sourceTree = "<group>"; };
 		3D885E042C4CF83600A3BE3A /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		3D885E062C4CF9B400A3BE3A /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		3DB436942C62A5E200646502 /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
@@ -398,6 +408,7 @@
 			children = (
 				3D65723F2CDE878A0064A206 /* CreateUserDTO+Dictionary.swift */,
 				3D6572412CDE87E70064A206 /* UpdateUserDTO+Dictionary.swift */,
+				3D6572762CDE9D2C0064A206 /* CreateThreadDTO+Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -427,6 +438,7 @@
 				3D6572432CDE885F0064A206 /* UserDataSource.swift */,
 				3D6572452CDE88A00064A206 /* AuthenticationDataSource.swift */,
 				3D6572472CDE8C660064A206 /* StorageFilesDataSource.swift */,
+				3D65727A2CDE9E0C0064A206 /* ThreadsDataSource.swift */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -437,6 +449,8 @@
 				3D6572382CDE86D90064A206 /* CreateUserDTO.swift */,
 				3D65723A2CDE87180064A206 /* UpdateUserDTO.swift */,
 				3D65723C2CDE87560064A206 /* UserDTO.swift */,
+				3D6572722CDE9B960064A206 /* CreateThreadDTO.swift */,
+				3D6572742CDE9CD80064A206 /* ThreadDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -447,6 +461,7 @@
 				3D6572492CDE8CAF0064A206 /* FirestoreStorageFilesDataSourceImpl.swift */,
 				3D65724B2CDE8CF50064A206 /* FirebaseAuthenticationDataSourceImpl.swift */,
 				3D65724D2CDE8D150064A206 /* FirestoreUserDataSourceImpl.swift */,
+				3D65727C2CDE9E360064A206 /* FirestoreThreadsDataSourceImpl.swift */,
 			);
 			path = Impl;
 			sourceTree = "<group>";
@@ -632,7 +647,7 @@
 			isa = PBXGroup;
 			children = (
 				3D44132D2C4C344B00D71E39 /* UserBO.swift */,
-				3D312D4F2C5C0E54008F0B8D /* Thread.swift */,
+				3D312D4F2C5C0E54008F0B8D /* ThreadBO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -769,7 +784,7 @@
 			files = (
 				3D44133D2C4C457100D71E39 /* CurrentUserProfileView.swift in Sources */,
 				3D65724C2CDE8CF50064A206 /* FirebaseAuthenticationDataSourceImpl.swift in Sources */,
-				3D312D502C5C0E54008F0B8D /* Thread.swift in Sources */,
+				3D312D502C5C0E54008F0B8D /* ThreadBO.swift in Sources */,
 				3D3BF40A2C497D5E0050BB92 /* CreateThreadView.swift in Sources */,
 				3D6572542CDE8E4A0064A206 /* Mapper.swift in Sources */,
 				3D6512B02C4AD99800EC40EE /* RegistrationViewModel.swift in Sources */,
@@ -782,6 +797,7 @@
 				3D65724E2CDE8D150064A206 /* FirestoreUserDataSourceImpl.swift in Sources */,
 				3D885E052C4CF83600A3BE3A /* EditProfileViewModel.swift in Sources */,
 				3D4413382C4C417100D71E39 /* PreviewProvider.swift in Sources */,
+				3D6572752CDE9CD80064A206 /* ThreadDTO.swift in Sources */,
 				3D6572502CDE8D7C0064A206 /* Container.swift in Sources */,
 				3D3BF4182C498CDF0050BB92 /* EditProfileView.swift in Sources */,
 				3D6572442CDE885F0064A206 /* UserDataSource.swift in Sources */,
@@ -790,17 +806,21 @@
 				3D4413302C4C3AD200D71E39 /* UserService.swift in Sources */,
 				3D6572712CDE95310064A206 /* EventBus.swift in Sources */,
 				3D3BF40C2C497E8B0050BB92 /* ThreadCell.swift in Sources */,
+				3D6572732CDE9B960064A206 /* CreateThreadDTO.swift in Sources */,
 				3DF5D4D12C46FA3E00103F4B /* ContentView.swift in Sources */,
 				3D4413422C4C47A700D71E39 /* ProfileHeaderView.swift in Sources */,
+				3D65727B2CDE9E0D0064A206 /* ThreadsDataSource.swift in Sources */,
 				3DB436952C62A5E200646502 /* UserContentListViewModel.swift in Sources */,
 				3D65725C2CDE90B70064A206 /* UserProfileRepository.swift in Sources */,
 				3D65723D2CDE87560064A206 /* UserDTO.swift in Sources */,
+				3D6572772CDE9D2C0064A206 /* CreateThreadDTO+Dictionary.swift in Sources */,
 				3D312D532C5C0F2A008F0B8D /* CreateThreadViewModel.swift in Sources */,
 				3D6572622CDE92CA0064A206 /* AuthenticationRepositoryImpl.swift in Sources */,
 				3D6572402CDE878A0064A206 /* CreateUserDTO+Dictionary.swift in Sources */,
 				3D6572482CDE8C660064A206 /* StorageFilesDataSource.swift in Sources */,
 				3D6572462CDE88A00064A206 /* AuthenticationDataSource.swift in Sources */,
 				3D6572562CDE8E620064A206 /* UserMapper.swift in Sources */,
+				3D65727D2CDE9E360064A206 /* FirestoreThreadsDataSourceImpl.swift in Sources */,
 				3D44132C2C4C31C200D71E39 /* LoginViewModel.swift in Sources */,
 				3D3BF40F2C4983B90050BB92 /* CircularProfileImageView.swift in Sources */,
 				3D65726A2CDE94070064A206 /* GetCurrentUserUseCase.swift in Sources */,
