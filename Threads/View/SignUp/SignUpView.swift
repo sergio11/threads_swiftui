@@ -18,14 +18,24 @@ struct SignUpView: View {
                 Spacer()
                 SingUpContent()
                 Spacer()
-                SignUpForm()
-                SingUpButton()
+                SignUpForm(
+                    email: $viewModel.email,
+                    password: $viewModel.password,
+                    repeatPassword: $viewModel.repeatPassword,
+                    fullname: $viewModel.fullname,
+                    username: $viewModel.username
+                )
+                SingUpButton(onSignUp: {
+                    viewModel.signUp()
+                })
                 Spacer()
                 Divider()
                 SignInLinkButton()
                 DeveloperCreditView()
             }.padding()
-        }.statusBar(hidden: true)
+        }
+        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+        .environment(\.colorScheme, .light)
     }
 }
 
@@ -50,23 +60,27 @@ private struct SingUpContent: View {
 
 private struct SignUpForm: View {
     
-    @StateObject var viewModel = SignUpViewModel()
+    @Binding var email: String
+    @Binding var password: String
+    @Binding var repeatPassword: String
+    @Binding var fullname: String
+    @Binding var username: String
     
     var body: some View {
         VStack(spacing: 16) {
-            TextField("Enter your email", text: $viewModel.email)
+            TextField("Enter your email", text: $email)
                 .modifier(ThreadsTextFieldModifier())
             
-            SecureField("Enter your password", text: $viewModel.password)
+            SecureField("Enter your password", text: $password)
                 .modifier(ThreadsTextFieldModifier())
             
-            SecureField("Repeat your password", text: $viewModel.repeatPassword)
+            SecureField("Repeat your password", text: $repeatPassword)
                 .modifier(ThreadsTextFieldModifier())
             
-            TextField("Enter your full name", text: $viewModel.fullname)
+            TextField("Enter your full name", text: $fullname)
                 .modifier(ThreadsTextFieldModifier())
             
-            TextField("Enter your username", text: $viewModel.username)
+            TextField("Enter your username", text: $username)
                 .autocapitalization(.none)
                 .modifier(ThreadsTextFieldModifier())
         }
@@ -76,11 +90,11 @@ private struct SignUpForm: View {
 
 private struct SingUpButton: View {
     
-    @StateObject var viewModel = SignUpViewModel()
+    var onSignUp: () -> Void
     
     var body: some View {
         Button {
-            viewModel.signUp()
+            onSignUp()
         } label: {
             Text("Sign Up")
                 .font(.subheadline)
