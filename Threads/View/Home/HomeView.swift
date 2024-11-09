@@ -1,13 +1,13 @@
 //
-//  ThreadsTabView.swift
+//  HomeView.swift
 //  Threads
 //
-//  Created by Sergio Sánchez Sánchez on 18/7/24.
+//  Created by Sergio Sánchez Sánchez on 9/11/24.
 //
 
 import SwiftUI
 
-struct ThreadsTabView: View {
+struct HomeView: View {
     
     @State private var selectedTab = 0
     @State private var showCreateThreadView = false
@@ -67,8 +67,9 @@ struct ThreadsTabView: View {
     }
 }
 
-struct ThreadsTabView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ThreadsTabView()
+        HomeView()
     }
 }
+
