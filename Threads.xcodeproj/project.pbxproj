@@ -30,6 +30,7 @@
 		3D44133F2C4C45E500D71E39 /* CurrentUserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44133E2C4C45E500D71E39 /* CurrentUserProfileViewModel.swift */; };
 		3D4413422C4C47A700D71E39 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4413412C4C47A700D71E39 /* ProfileHeaderView.swift */; };
 		3D4413442C4C48D600D71E39 /* UserContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4413432C4C48D600D71E39 /* UserContentListView.swift */; };
+		3D60DCEF2CDF86AA009BCE1A /* DeveloperCreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D60DCEE2CDF86AA009BCE1A /* DeveloperCreditView.swift */; };
 		3D6512A32C4AD59E00EC40EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D6512A22C4AD59E00EC40EE /* GoogleService-Info.plist */; };
 		3D6512A62C4AD63100EC40EE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3D6512A52C4AD63100EC40EE /* FirebaseAuth */; };
 		3D6512A82C4AD63100EC40EE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D6512A72C4AD63100EC40EE /* FirebaseFirestore */; };
@@ -84,6 +85,7 @@
 		3D70E00D2CDF68E8009EE223 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70E00C2CDF68E8009EE223 /* SignInViewModel.swift */; };
 		3D70E00F2CDF68F3009EE223 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70E00E2CDF68F3009EE223 /* SignUpViewModel.swift */; };
 		3D70E0112CDF6CB2009EE223 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70E0102CDF6CB2009EE223 /* SignUpView.swift */; };
+		3D70E0132CDF6F70009EE223 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D70E0122CDF6F70009EE223 /* BackgroundImage.swift */; };
 		3D7F54D42CDD5A7600D1CF50 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 3D7F54D32CDD5A7600D1CF50 /* Factory */; };
 		3D885E052C4CF83600A3BE3A /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D885E042C4CF83600A3BE3A /* EditProfileViewModel.swift */; };
 		3D885E072C4CF9B400A3BE3A /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D885E062C4CF9B400A3BE3A /* ImageUploader.swift */; };
@@ -119,6 +121,7 @@
 		3D44133E2C4C45E500D71E39 /* CurrentUserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileViewModel.swift; sourceTree = "<group>"; };
 		3D4413412C4C47A700D71E39 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		3D4413432C4C48D600D71E39 /* UserContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListView.swift; sourceTree = "<group>"; };
+		3D60DCEE2CDF86AA009BCE1A /* DeveloperCreditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperCreditView.swift; sourceTree = "<group>"; };
 		3D6512A22C4AD59E00EC40EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D6512B12C4ADA2A00EC40EE /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3D6572382CDE86D90064A206 /* CreateUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserDTO.swift; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 		3D70E00C2CDF68E8009EE223 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		3D70E00E2CDF68F3009EE223 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		3D70E0102CDF6CB2009EE223 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		3D70E0122CDF6F70009EE223 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
 		3D885E042C4CF83600A3BE3A /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		3D885E062C4CF9B400A3BE3A /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		3DB436942C62A5E200646502 /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
@@ -562,6 +566,8 @@
 				3D3BF4102C49842B0050BB92 /* UserCell.swift */,
 				3D3BF40E2C4983B90050BB92 /* CircularProfileImageView.swift */,
 				3D3BF40B2C497E8B0050BB92 /* ThreadCell.swift */,
+				3D70E0122CDF6F70009EE223 /* BackgroundImage.swift */,
+				3D60DCEE2CDF86AA009BCE1A /* DeveloperCreditView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -801,6 +807,7 @@
 			files = (
 				3D44133D2C4C457100D71E39 /* CurrentUserProfileView.swift in Sources */,
 				3D65724C2CDE8CF50064A206 /* FirebaseAuthenticationDataSourceImpl.swift in Sources */,
+				3D60DCEF2CDF86AA009BCE1A /* DeveloperCreditView.swift in Sources */,
 				3D6572892CDEAA5C0064A206 /* FetchThreadsUseCase.swift in Sources */,
 				3D65727F2CDEA5F50064A206 /* ThreadsRepository.swift in Sources */,
 				3D70E00D2CDF68E8009EE223 /* SignInViewModel.swift in Sources */,
@@ -820,6 +827,7 @@
 				3D65724E2CDE8D150064A206 /* FirestoreUserDataSourceImpl.swift in Sources */,
 				3D885E052C4CF83600A3BE3A /* EditProfileViewModel.swift in Sources */,
 				3D4413382C4C417100D71E39 /* PreviewProvider.swift in Sources */,
+				3D70E0132CDF6F70009EE223 /* BackgroundImage.swift in Sources */,
 				3D6572752CDE9CD80064A206 /* ThreadDTO.swift in Sources */,
 				3D6572502CDE8D7C0064A206 /* Container.swift in Sources */,
 				3D6572872CDEA77D0064A206 /* CreateThreadMapper.swift in Sources */,
