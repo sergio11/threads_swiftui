@@ -10,8 +10,7 @@ import Foundation
 class BaseViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
-    @Published var errorMessage = ""
-    @Published var showAlert = false
+    @Published var errorMessage: String? = nil
     
     internal func onLoading() {
         updateUI { vm in
@@ -30,7 +29,6 @@ class BaseViewModel: ObservableObject {
         updateUI { vm in
             vm.isLoading = false
             vm.errorMessage = error.localizedDescription
-            vm.showAlert.toggle()
         }
     }
     

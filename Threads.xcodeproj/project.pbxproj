@@ -11,6 +11,8 @@
 		3D312D532C5C0F2A008F0B8D /* CreateThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D522C5C0F2A008F0B8D /* CreateThreadViewModel.swift */; };
 		3D312D552C5C0F46008F0B8D /* ThreadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D542C5C0F46008F0B8D /* ThreadService.swift */; };
 		3D312D582C5C1478008F0B8D /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D312D572C5C1478008F0B8D /* FeedViewModel.swift */; };
+		3D34786C2CDF937D00BC2782 /* SnackbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D34786B2CDF937D00BC2782 /* SnackbarView.swift */; };
+		3D34786E2CDFA01A00BC2782 /* LoadingAndErrorOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D34786D2CDFA01A00BC2782 /* LoadingAndErrorOverlayModifier.swift */; };
 		3D3BF3F12C4979BF0050BB92 /* ThreadsTextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BF3F02C4979BF0050BB92 /* ThreadsTextFieldModifier.swift */; };
 		3D3BF3F82C497CE20050BB92 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BF3F72C497CE20050BB92 /* FeedView.swift */; };
 		3D3BF3FC2C497CFD0050BB92 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BF3FB2C497CFD0050BB92 /* ExploreView.swift */; };
@@ -103,6 +105,8 @@
 		3D312D522C5C0F2A008F0B8D /* CreateThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadViewModel.swift; sourceTree = "<group>"; };
 		3D312D542C5C0F46008F0B8D /* ThreadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadService.swift; sourceTree = "<group>"; };
 		3D312D572C5C1478008F0B8D /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		3D34786B2CDF937D00BC2782 /* SnackbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarView.swift; sourceTree = "<group>"; };
+		3D34786D2CDFA01A00BC2782 /* LoadingAndErrorOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAndErrorOverlayModifier.swift; sourceTree = "<group>"; };
 		3D3BF3F02C4979BF0050BB92 /* ThreadsTextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTextFieldModifier.swift; sourceTree = "<group>"; };
 		3D3BF3F72C497CE20050BB92 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		3D3BF3FB2C497CFD0050BB92 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
@@ -218,10 +222,20 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		3D3BF3EF2C4979A60050BB92 /* ViewModifiers */ = {
+		3D34786F2CDFA25900BC2782 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3D3478702CDFA26400BC2782 /* ViewModifiers */,
+				3D7F54D02CDD59AB00D1CF50 /* Components */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3D3478702CDFA26400BC2782 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
 				3D3BF3F02C4979BF0050BB92 /* ThreadsTextFieldModifier.swift */,
+				3D34786D2CDFA01A00BC2782 /* LoadingAndErrorOverlayModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -416,14 +430,6 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		3D70E0002CDF671D009EE223 /* Loading */ = {
-			isa = PBXGroup;
-			children = (
-				3D70E0012CDF6729009EE223 /* LoadingView.swift */,
-			);
-			path = Loading;
-			sourceTree = "<group>";
-		};
 		3D70E0032CDF6793009EE223 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,12 +558,11 @@
 		3D7F54CF2CDD59A500D1CF50 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D34786F2CDFA25900BC2782 /* Core */,
 				3D70E0072CDF6861009EE223 /* SignUp */,
 				3D70E0062CDF685A009EE223 /* SignIn */,
 				3D70E0032CDF6793009EE223 /* Home */,
-				3D70E0002CDF671D009EE223 /* Loading */,
 				3D70DFFB2CDF668D009EE223 /* Main */,
-				3D7F54D02CDD59AB00D1CF50 /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -565,11 +570,13 @@
 		3D7F54D02CDD59AB00D1CF50 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				3D70E0012CDF6729009EE223 /* LoadingView.swift */,
 				3D3BF4102C49842B0050BB92 /* UserCell.swift */,
 				3D3BF40E2C4983B90050BB92 /* CircularProfileImageView.swift */,
 				3D3BF40B2C497E8B0050BB92 /* ThreadCell.swift */,
 				3D70E0122CDF6F70009EE223 /* BackgroundImage.swift */,
 				3D60DCEE2CDF86AA009BCE1A /* DeveloperCreditView.swift */,
+				3D34786B2CDF937D00BC2782 /* SnackbarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -637,7 +644,6 @@
 				3D7F54D12CDD59BA00D1CF50 /* ViewModel */,
 				3D7F54CF2CDD59A500D1CF50 /* View */,
 				3DF5D4DC2C46FA9300103F4B /* App */,
-				3DF5D4E12C46FAC500103F4B /* Utils */,
 				3DF5D4E02C46FABF00103F4B /* Services */,
 				3DF5D4DF2C46FAA800103F4B /* Model */,
 				3DF5D4DE2C46FAA000103F4B /* Extensions */,
@@ -706,14 +712,6 @@
 				3D312D542C5C0F46008F0B8D /* ThreadService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		3DF5D4E12C46FAC500103F4B /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				3D3BF3EF2C4979A60050BB92 /* ViewModifiers */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		3DF5D4E22C46FADA00103F4B /* Authentication */ = {
@@ -841,6 +839,7 @@
 				3D6572852CDEA64B0064A206 /* CreateThreadBO.swift in Sources */,
 				3D4413302C4C3AD200D71E39 /* UserService.swift in Sources */,
 				3D6572712CDE95310064A206 /* EventBus.swift in Sources */,
+				3D34786E2CDFA01A00BC2782 /* LoadingAndErrorOverlayModifier.swift in Sources */,
 				3D3BF40C2C497E8B0050BB92 /* ThreadCell.swift in Sources */,
 				3D70DFFD2CDF669F009EE223 /* MainView.swift in Sources */,
 				3D6572732CDE9B960064A206 /* CreateThreadDTO.swift in Sources */,
@@ -870,6 +869,7 @@
 				3D6572642CDE92FA0064A206 /* SignOutUseCase.swift in Sources */,
 				3D4413362C4C3FFE00D71E39 /* ExploreViewModel.swift in Sources */,
 				3D885E072C4CF9B400A3BE3A /* ImageUploader.swift in Sources */,
+				3D34786C2CDF937D00BC2782 /* SnackbarView.swift in Sources */,
 				3D44133F2C4C45E500D71E39 /* CurrentUserProfileViewModel.swift in Sources */,
 				3D70DFF82CDF6565009EE223 /* BaseViewModel.swift in Sources */,
 				3D65726E2CDE949E0064A206 /* UpdateUserUseCase.swift in Sources */,
