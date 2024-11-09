@@ -18,16 +18,22 @@ struct SignInView: View {
                 Spacer()
                 SingInContent()
                 Spacer()
-                SignInFormView()
+                SignInFormView(
+                    email: $viewModel.email,
+                    password: $viewModel.password
+                )
                 ForgotPasswordLinkView()
-                SignInButtonView()
+                SignInButtonView(onSignIn: {
+                    viewModel.signIn()
+                })
                 Spacer()
                 Divider()
                 SignUpLinkView()
                 DeveloperCreditView()
             }.padding()
         }
-        .statusBar(hidden: true)
+        .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+        .environment(\.colorScheme, .light)
     }
 }
 
@@ -57,15 +63,16 @@ private struct SingInContent: View {
 
 private struct SignInFormView: View {
     
-    @StateObject var viewModel = SignInViewModel()
+    @Binding var email: String
+    @Binding var password: String
     
     var body: some View {
         VStack(spacing: 16) {
-            TextField("Enter your email", text: $viewModel.email)
+            TextField("Enter your email", text: $email)
                 .autocapitalization(.none)
                 .modifier(ThreadsTextFieldModifier())
         
-            SecureField("Enter you password", text: $viewModel.password)
+            SecureField("Enter you password", text: $password)
                 .modifier(ThreadsTextFieldModifier())
         }
     }
@@ -90,11 +97,11 @@ private struct ForgotPasswordLinkView: View {
 
 private struct SignInButtonView: View {
     
-    @StateObject var viewModel = SignInViewModel()
+    var onSignIn: () -> Void
 
     var body: some View {
         Button {
-            viewModel.signIn()
+            onSignIn()
         } label: {
             Text("Login")
                 .font(.subheadline)
