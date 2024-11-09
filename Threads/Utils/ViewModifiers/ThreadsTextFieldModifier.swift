@@ -14,6 +14,7 @@ struct ThreadsTextFieldModifier: ViewModifier {
             .padding(12)
             .background(Color(.systemGray6))
             .cornerRadius(10)
+            .frame(maxWidth: .infinity)
             .padding(.horizontal, 24)
     }
 }
