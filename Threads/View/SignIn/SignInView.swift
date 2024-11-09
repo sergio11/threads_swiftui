@@ -12,65 +12,120 @@ struct SignInView: View {
     @StateObject var viewModel = SignInViewModel()
     
     var body: some View {
-        NavigationStack {
+        ZStack {
+            BackgroundImage(imageName: "main_background")
             VStack {
                 Spacer()
-                Image("threads-app-icon")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 120, height: 120)
-                    .padding()
-                
-                VStack {
-                    TextField("Enter your email", text: $viewModel.email)
-                        .autocapitalization(.none)
-                        .modifier(ThreadsTextFieldModifier())
-                
-                    SecureField("Enter you password", text: $viewModel.password)
-                        .modifier(ThreadsTextFieldModifier())
-                }
-                
-                NavigationLink {
-                    Text("Forgot password")
-                } label: {
-                    Text("Forgot Password?")
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                        .padding(.vertical)
-                        .padding(.trailing, 28)
-                        .foregroundColor(.black)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-                
-                Button {
-                    viewModel.signIn()
-                } label: {
-                    Text("Login")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
-                        .frame(width: 352, height: 44)
-                        .background(.black)
-                        .cornerRadius(8)
-                }
-                
+                SingInContent()
                 Spacer()
-                
+                SignInFormView()
+                ForgotPasswordLinkView()
+                SignInButtonView()
+                Spacer()
                 Divider()
-                
-                NavigationLink {
-                    SignUpView()
-                        .navigationBarBackButtonHidden(true)
-                } label: {
-                    HStack(spacing: 3) {
-                        Text("Don't have an account?")
-                        Text("Sign Up")
-                    }
-                    .foregroundColor(.black)
-                    .font(.footnote)
-                }.padding(.vertical, 16)
-            }
+                SignUpLinkView()
+                DeveloperCreditView()
+            }.padding()
         }
+        .statusBar(hidden: true)
+    }
+}
+
+private struct SingInContent: View {
+    var body: some View {
+        VStack {
+            Image("app_logo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: .infinity)
+                .edgesIgnoringSafeArea(.all)
+            Text("Welcome to Threads")
+                 .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+                .padding()
+            Text("Join the conversation. Share your thoughts and connect with friends in real time.")
+                .font(.title3)
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+        }
+        .padding(.horizontal, 30)
+        
+    }
+}
+
+private struct SignInFormView: View {
+    
+    @StateObject var viewModel = SignInViewModel()
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            TextField("Enter your email", text: $viewModel.email)
+                .autocapitalization(.none)
+                .modifier(ThreadsTextFieldModifier())
+        
+            SecureField("Enter you password", text: $viewModel.password)
+                .modifier(ThreadsTextFieldModifier())
+        }
+    }
+}
+
+private struct ForgotPasswordLinkView: View {
+
+    var body: some View {
+        NavigationLink {
+            Text("Forgot password")
+        } label: {
+            Text("Forgot Password?")
+                .font(.footnote)
+                .fontWeight(.semibold)
+                .padding(.vertical)
+                .padding(.trailing, 28)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+    }
+}
+
+private struct SignInButtonView: View {
+    
+    @StateObject var viewModel = SignInViewModel()
+
+    var body: some View {
+        Button {
+            viewModel.signIn()
+        } label: {
+            Text("Login")
+                .font(.subheadline)
+                .fontWeight(.semibold)
+                .foregroundColor(.white)
+                .frame(width: 352, height: 44)
+                .background(Color.black)
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.white, lineWidth: 2)
+                )
+        }
+    }
+}
+
+private struct SignUpLinkView: View {
+    
+    var body: some View {
+        NavigationLink {
+            SignUpView()
+                .navigationBarBackButtonHidden(true)
+        } label: {
+            HStack(spacing: 3) {
+                Text("Don't have an account?")
+                Text("Sign Up")
+            }
+            .foregroundColor(.white)
+            .fontWeight(.bold)
+            .font(.footnote)
+        }.padding(.vertical, 16)
     }
 }
 
