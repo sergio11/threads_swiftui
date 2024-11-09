@@ -1,23 +1,20 @@
 //
-//  RegistrationView.swift
+//  SignInView.swift
 //  Threads
 //
-//  Created by Sergio Sánchez Sánchez on 16/7/24.
+//  Created by Sergio Sánchez Sánchez on 9/11/24.
 //
 
 import SwiftUI
 
-struct RegistrationView: View {
+struct SignInView: View {
     
-    @StateObject var viewModel = RegistrationViewModel()
-    @Environment(\.dismiss) var dismiss
+    @StateObject var viewModel = SignInViewModel()
     
     var body: some View {
         NavigationStack {
             VStack {
-                
                 Spacer()
-                
                 Image("threads-app-icon")
                     .resizable()
                     .scaledToFit()
@@ -26,54 +23,59 @@ struct RegistrationView: View {
                 
                 VStack {
                     TextField("Enter your email", text: $viewModel.email)
-                        .modifier(ThreadsTextFieldModifier())
-                    
-                    SecureField("Enter you password", text: $viewModel.password)
-                        .modifier(ThreadsTextFieldModifier())
-                    
-                    TextField("Enter your full name", text: $viewModel.fullname)
-                        .modifier(ThreadsTextFieldModifier())
-                    
-                    TextField("Enter your username", text: $viewModel.username)
                         .autocapitalization(.none)
+                        .modifier(ThreadsTextFieldModifier())
+                
+                    SecureField("Enter you password", text: $viewModel.password)
                         .modifier(ThreadsTextFieldModifier())
                 }
                 
-                Button {
-                    Task { try await viewModel.createUser() }
+                NavigationLink {
+                    Text("Forgot password")
                 } label: {
-                    Text("Sign Up")
+                    Text("Forgot Password?")
+                        .font(.footnote)
+                        .fontWeight(.semibold)
+                        .padding(.vertical)
+                        .padding(.trailing, 28)
+                        .foregroundColor(.black)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                
+                Button {
+                    viewModel.signIn()
+                } label: {
+                    Text("Login")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(width: 352, height: 44)
                         .background(.black)
                         .cornerRadius(8)
-                }.padding(.vertical)
+                }
                 
                 Spacer()
                 
                 Divider()
                 
-                Button {
-                    dismiss()
+                NavigationLink {
+                    SignUpView()
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     HStack(spacing: 3) {
-                        Text("Already have an account?")
-                        Text("Sign In")
-                            .fontWeight(.semibold)
+                        Text("Don't have an account?")
+                        Text("Sign Up")
                     }
                     .foregroundColor(.black)
                     .font(.footnote)
-                }
-                .padding(.vertical, 16)
+                }.padding(.vertical, 16)
             }
         }
     }
 }
 
-struct RegistrationView_Previews: PreviewProvider {
+struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        SignInView()
     }
 }
