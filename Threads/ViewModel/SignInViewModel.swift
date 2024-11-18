@@ -19,7 +19,7 @@ class SignInViewModel: BaseViewModel {
     
     func signIn() {
         executeAsyncTask({
-            return try await self.signInUseCase.execute(params: SignInParams(email: self.email, password: self.email))
+            return try await self.signInUseCase.execute(params: SignInParams(email: self.email, password: self.password))
         }) { [weak self] (result: Result<UserBO, Error>) in
             guard let self = self else { return }
             switch result {
