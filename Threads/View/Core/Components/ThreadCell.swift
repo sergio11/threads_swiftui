@@ -13,7 +13,7 @@ struct ThreadCell: View {
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: 12) {
-                CircularProfileImageView(user: thread.user, size: .small)
+                CircularProfileImageView(profileImageUrl: thread.user?.profileImageUrl, size: .small)
                 VStack {
                     HStack {
                         Text(thread.user?.username ?? "")

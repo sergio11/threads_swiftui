@@ -19,6 +19,7 @@ struct ExploreView: View {
             .navigationDestination(for: UserBO.self) { user in
                 ProfileView(user: user)
             }
+            .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
     }
     
     /// Main content of the ExploreView

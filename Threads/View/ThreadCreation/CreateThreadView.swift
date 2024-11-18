@@ -12,20 +12,14 @@ struct CreateThreadView: View {
     @StateObject var viewModel = CreateThreadViewModel()
     @Environment(\.dismiss) private var onDismiss
     
-    private var user: UserBO? {
-        return UserService.shared.currentUser
-    }
-    
     var body: some View {
         NavigationStack {
             VStack {
                 HStack(alignment: .top) {
-                    CircularProfileImageView(user: user, size: .small)
-                    
+                    CircularProfileImageView(profileImageUrl: viewModel.authUserProfileImageUrl, size: .small)
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(user?.username ?? "")
+                        Text(viewModel.authUserUsername)
                             .fontWeight(.semibold)
-                        
                         TextField("Start a thread ...", text: $viewModel.caption, axis: .vertical)
                     }
                     .font(.footnote)
@@ -59,16 +53,19 @@ struct CreateThreadView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Post") {
-                        Task {
-                            try await viewModel.uploadThread()
-                            onDismiss()
-                        }
+                        viewModel.uploadThread()
+                        onDismiss()
                     }
                     .opacity(viewModel.caption.isEmpty ? 0.5 : 1.0)
                     .disabled(viewModel.caption.isEmpty)
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.black)
+                }
+            }
+            .onReceive(viewModel.$threadUploaded) { success in
+                if success {
+                    onDismiss()
                 }
             }
         }
@@ -80,3 +77,4 @@ struct CreateThreadView_Previews: PreviewProvider {
         CreateThreadView()
     }
 }
+
