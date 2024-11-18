@@ -13,6 +13,7 @@ internal extension CreateUserDTO {
             "userId": userId,
             "username": username,
             "email": email,
+            "fullname": fullname,
             "followers": [String](),
             "following": [String]()
         ]
