@@ -13,6 +13,7 @@ enum AuthenticationError: Error {
     case signInFailed(message: String)
     /// Error indicating failure in signing out.
     case signOutFailed(message: String)
+    case signUpFailed(message: String)
 }
 
 /// A protocol defining authentication operations.
@@ -24,6 +25,14 @@ protocol AuthenticationDataSource {
     ///   - password: The user's password.
     /// - Throws: An `AuthenticationError` if sign-in fails.
     func signIn(email: String, password: String) async throws
+    
+    /// Signs up a new user using email and password.
+    /// - Parameters:
+    ///   - email: The user's email address.
+    ///   - password: The user's password.
+    /// - Returns: The user ID (`uid`) of the newly created user.
+    /// - Throws: An `AuthenticationError` if sign-up fails.
+    func signUp(email: String, password: String) async throws -> String
     
     /// Signs out the current user.
     /// - Throws: An `AuthenticationError` in case of failure, including `signOutFailed` if sign-out fails.

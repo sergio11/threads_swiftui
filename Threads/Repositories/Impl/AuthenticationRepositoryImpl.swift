@@ -31,6 +31,25 @@ internal class AuthenticationRepositoryImpl: AuthenticationRepository {
             throw AuthenticationRepositoryError.signInFailed(message: "Sign-in failed: \(error.localizedDescription)")
         }
     }
+    
+    /// Registers a new user with the given email and password asynchronously.
+    /// - Parameters:
+    ///   - email: The user's email address.
+    ///   - password: The user's password.
+    /// - Returns: The user ID (`uid`) of the newly created user.
+    /// - Throws: An `AuthenticationRepositoryError` if the sign-up fails.
+    func signUp(email: String, password: String) async throws -> String {
+        do {
+            // Delegate the sign-up operation to the data source.
+            let userId = try await authenticationDataSource.signUp(email: email, password: password)
+            print("Successfully signed up user with ID: \(userId)")
+            return userId
+        } catch {
+            // Handle and rethrow the error with a custom message.
+            print("Sign-up failed: \(error.localizedDescription)")
+            throw AuthenticationRepositoryError.signUpFailed(message: "Sign-up failed: \(error.localizedDescription)")
+        }
+    }
 
     /// Signs out the current user asynchronously.
     /// - Throws: An `AuthenticationRepositoryError` in case of failure, including specific errors related to sign-out failure.
