@@ -36,6 +36,26 @@ internal class FirebaseAuthenticationDataSourceImpl: AuthenticationDataSource {
         }
     }
     
+    /// Signs up a new user using email and password.
+    /// - Parameters:
+    ///   - email: The user's email address.
+    ///   - password: The user's password.
+    /// - Returns: The user ID (`uid`) of the newly created user.
+    /// - Throws: An `AuthenticationError` if sign-up fails.
+    func signUp(email: String, password: String) async throws -> String {
+        do {
+            // Attempt to create a user with email and password.
+            let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
+            let userId = authResult.user.uid
+            print("Successfully signed up user with ID: \(userId)")
+            return userId
+        } catch {
+            // Handle and rethrow the error with a custom message.
+            print("Sign-up error: \(error.localizedDescription)")
+            throw AuthenticationError.signUpFailed(message: "Sign-up failed: \(error.localizedDescription)")
+        }
+    }
+    
     /// Signs out the current user.
         /// - Throws: An `AuthenticationError` in case of failure, including `signOutFailed` if sign-out fails.
     func signOut() async throws {
