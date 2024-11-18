@@ -46,6 +46,10 @@ extension Container {
     var createThreadUseCase: Factory<CreateThreadUseCase> {
         self { CreateThreadUseCase(authRepository: self.authenticationRepository(), threadsRepository: self.threadsRepository()) }
     }
+    
+    var fetchThreadsByUserUseCase: Factory<FetchThreadsByUserUseCase> {
+        self { FetchThreadsByUserUseCase(threadsRepository: self.threadsRepository()) }
+    }
 }
 
 

@@ -38,5 +38,4 @@ class CreateThreadViewModel: BaseUserViewModel {
     private func onCreateThreadFailed() {
         self.isLoading = false
     }
-    
 }

@@ -9,8 +9,7 @@ import SwiftUI
 
 struct UserContentListView: View {
     
-    @StateObject var viewModel: UserContentListViewModel
-    @State private var selectedFilter: ProfileThreadFilter = .threads
+    @StateObject var viewModel = UserContentListViewModel()
     @Namespace var animation
     
     private var filterBarWidth: CGFloat {
@@ -19,7 +18,7 @@ struct UserContentListView: View {
     }
     
     init(user: UserBO) {
-        self._viewModel = StateObject(wrappedValue: UserContentListViewModel(user: user))
+        viewModel.loadUser(user: user)
     }
     
     var body: some View {
@@ -29,9 +28,9 @@ struct UserContentListView: View {
                     VStack {
                         Text(filter.title)
                             .font(.subheadline)
-                            .fontWeight(selectedFilter == filter ? .bold : .regular)
+                            .fontWeight(viewModel.selectedFilter == filter ? .bold : .regular)
                             
-                        if selectedFilter == filter {
+                        if viewModel.selectedFilter == filter {
                             Rectangle()
                                 .foregroundColor(.black)
                                 .frame(width: filterBarWidth, height: 1)
@@ -44,7 +43,7 @@ struct UserContentListView: View {
                     }
                     .onTapGesture {
                         withAnimation(.spring()) {
-                            selectedFilter = filter
+                            viewModel.selectedFilter = filter
                         }
                     }
                 }
@@ -57,6 +56,9 @@ struct UserContentListView: View {
             }
         }
         .padding(.vertical, 8)
+        .onAppear {
+            viewModel.fetchUserThreads()
+        }
     }
 }
 
