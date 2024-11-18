@@ -259,23 +259,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		3D3BF3F92C497CE90050BB92 /* Explore */ = {
-			isa = PBXGroup;
-			children = (
-				3D4413342C4C3FEC00D71E39 /* ViewModel */,
-				3D3BF3FA2C497CF00050BB92 /* View */,
-			);
-			path = Explore;
-			sourceTree = "<group>";
-		};
-		3D3BF3FA2C497CF00050BB92 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				3D3BF3FB2C497CFD0050BB92 /* ExploreView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		3D3BF3FD2C497D000050BB92 /* ThreadCreation */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,14 +329,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		3D4413342C4C3FEC00D71E39 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				3D4413352C4C3FFE00D71E39 /* ExploreViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		3D4413392C4C455700D71E39 /* CurrentUserProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +397,14 @@
 				3D70DFF92CDF658C009EE223 /* BaseUserViewModel.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		3D66849E2CEBB2CF009B1627 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				3D3BF3FB2C497CFD0050BB92 /* ExploreView.swift */,
+			);
+			path = Explore;
 			sourceTree = "<group>";
 		};
 		3D70DFFB2CDF668D009EE223 /* Main */ = {
@@ -560,6 +543,7 @@
 		3D7F54CF2CDD59A500D1CF50 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D66849E2CEBB2CF009B1627 /* Explore */,
 				3D34786F2CDFA25900BC2782 /* Core */,
 				3D70E0072CDF6861009EE223 /* SignUp */,
 				3D70E0062CDF685A009EE223 /* SignIn */,
@@ -588,6 +572,7 @@
 			children = (
 				3D65726F2CDE95240064A206 /* Core */,
 				3D70DFFE2CDF66BE009EE223 /* MainViewModel.swift */,
+				3D4413352C4C3FFE00D71E39 /* ExploreViewModel.swift */,
 				3D70E00C2CDF68E8009EE223 /* SignInViewModel.swift */,
 				3D70E00E2CDF68F3009EE223 /* SignUpViewModel.swift */,
 				3D66849C2CEBA8D1009B1627 /* HomeViewModel.swift */,
@@ -644,13 +629,13 @@
 				3D7F54CA2CDD596C00D1CF50 /* Mapper */,
 				3D7F54CC2CDD598600D1CF50 /* Repositories */,
 				3D7F54CE2CDD599600D1CF50 /* UseCases */,
+				3DF5D4DD2C46FA9A00103F4B /* Core */,
 				3D7F54D12CDD59BA00D1CF50 /* ViewModel */,
 				3D7F54CF2CDD59A500D1CF50 /* View */,
 				3DF5D4DC2C46FA9300103F4B /* App */,
 				3DF5D4E02C46FABF00103F4B /* Services */,
 				3DF5D4DF2C46FAA800103F4B /* Model */,
 				3DF5D4DE2C46FAA000103F4B /* Extensions */,
-				3DF5D4DD2C46FA9A00103F4B /* Core */,
 				3DF5D4D22C46FA4000103F4B /* Assets.xcassets */,
 				3D60DCF02CDF8748009BCE1A /* Launch Screen.storyboard */,
 				3D6512A22C4AD59E00EC40EE /* GoogleService-Info.plist */,
@@ -681,7 +666,6 @@
 				3D3BF4022C497D220050BB92 /* Profile */,
 				3D3BF4012C497D1D0050BB92 /* Activity */,
 				3D3BF3FD2C497D000050BB92 /* ThreadCreation */,
-				3D3BF3F92C497CE90050BB92 /* Explore */,
 				3D3BF3F52C497CC00050BB92 /* Feed */,
 				3DF5D4E22C46FADA00103F4B /* Authentication */,
 			);
