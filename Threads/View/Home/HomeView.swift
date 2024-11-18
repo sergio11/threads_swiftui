@@ -65,7 +65,7 @@ struct HomeView: View {
     }
     
     private func profileTab() -> some View {
-        CurrentUserProfileView()
+        ProfileView(user: nil)
             .tabItem {
                 Image(systemName: viewModel.selectedTab == 4 ? "person.fill" : "person")
             }

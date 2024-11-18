@@ -35,9 +35,7 @@ struct ProfileHeaderView: View {
                     .font(.caption)
                     .foregroundColor(.gray)
             }
-            
             Spacer()
-            
             CircularProfileImageView(profileImageUrl: user?.profileImageUrl, size: .medium)
         }
     }
