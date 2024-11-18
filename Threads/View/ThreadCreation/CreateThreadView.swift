@@ -14,32 +14,11 @@ struct CreateThreadView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                HStack(alignment: .top) {
-                    CircularProfileImageView(profileImageUrl: viewModel.authUserProfileImageUrl, size: .small)
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(viewModel.authUserUsername)
-                            .fontWeight(.semibold)
-                        TextField("Start a thread ...", text: $viewModel.caption, axis: .vertical)
-                    }
-                    .font(.footnote)
-                    
-                    Spacer()
-                    
-                    if !viewModel.caption.isEmpty {
-                        Button {
-                            viewModel.caption = ""
-                        } label: {
-                            Image(systemName: "xmark")
-                                .resizable()
-                                .frame(width: 12, height: 12)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                }
-                
-                Spacer()
-            }
+            PostThreadView(
+                authUserProfileImageUrl: viewModel.authUserProfileImageUrl,
+                authUserUsername: viewModel.authUserUsername,
+                caption: $viewModel.caption
+            )
             .padding()
             .navigationTitle("New Thread")
             .navigationBarTitleDisplayMode(.inline)
@@ -67,9 +46,52 @@ struct CreateThreadView: View {
                 if success {
                     onDismiss()
                 }
+            }.onAppear {
+                onLoadCurrentUser()
             }
         }
     }
+    
+    private func onLoadCurrentUser() {
+        viewModel.loadCurrentUser()
+    }
+}
+
+private struct PostThreadView: View {
+    
+    var authUserProfileImageUrl: String
+    var authUserUsername: String
+    @Binding var caption: String
+    
+    var body: some View {
+        VStack {
+            HStack(alignment: .top) {
+                CircularProfileImageView(profileImageUrl: authUserProfileImageUrl, size: .small)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(authUserUsername)
+                        .fontWeight(.semibold)
+                    TextField("Start a thread ...", text: $caption, axis: .vertical)
+                }
+                .font(.footnote)
+                
+                Spacer()
+                
+                if !caption.isEmpty {
+                    Button {
+                        caption = ""
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 12, height: 12)
+                            .foregroundColor(.gray)
+                    }
+                }
+            }
+            
+            Spacer()
+        }
+    }
+    
 }
 
 struct CreateThreadView_Previews: PreviewProvider {
