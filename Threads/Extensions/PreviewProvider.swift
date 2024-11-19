@@ -21,5 +21,5 @@ class DeveloperPreview {
     
     let user = UserBO(id: NSUUID().uuidString, fullname: "Sergio Sánchez", email: "dreamsoftware92@gmail.com", username: "ssanchez")
     
-    let thread = ThreadBO(threadId: "123456567", ownerUid: "123", caption: "This is a test thread", timestamp: Date(), likes: 0)
+    let thread = ThreadBO(threadId: "123456567", ownerUid: "123", caption: "This is a test thread", timestamp: Date(), likes: 0, user: UserBO(id: NSUUID().uuidString, fullname: "Sergio Sánchez", email: "dreamsoftware92@gmail.com", username: "ssanchez"))
 }
