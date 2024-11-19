@@ -21,7 +21,7 @@ struct FeedView: View {
                 }
             }
             .refreshable {
-                Task { try await viewModel.fetchThreads() }
+                viewModel.fetchThreads()
             }
             .navigationTitle("Threads")
             .navigationBarTitleDisplayMode(.inline)
@@ -34,6 +34,8 @@ struct FeedView: View {
                         .foregroundColor(.black)
                 }
             }
+        }.onAppear {
+            viewModel.fetchThreads()
         }
     }
 }
