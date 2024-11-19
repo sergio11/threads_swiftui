@@ -9,67 +9,76 @@ import SwiftUI
 
 struct ThreadCell: View {
     let thread: ThreadBO
-    
+
     var body: some View {
-        VStack {
+        VStack(spacing: 12) {
             HStack(alignment: .top, spacing: 12) {
                 CircularProfileImageView(profileImageUrl: thread.user?.profileImageUrl, size: .small)
-                VStack {
+                    .shadow(radius: 1)
+
+                VStack(alignment: .leading, spacing: 6) {
                     HStack {
-                        Text(thread.user?.username ?? "")
-                            .font(.footnote)
+                        Text(thread.user?.username ?? "Unknown User")
+                            .font(.subheadline)
                             .fontWeight(.semibold)
+                            .foregroundColor(.primary)
+                        
                         Spacer()
-                        Text(thread.timestamp.timestampString())
+
+                        Text(thread.timestamp.timeAgoDisplay())
                             .font(.caption)
-                            .foregroundColor(Color(.systemGray3))
-                        Button {
-                            
-                        } label: {
-                           Image(systemName: "ellipsis")
-                                .foregroundColor(Color(.darkGray))
-                        }
+                            .foregroundColor(Color.gray)
                     }
                     
                     Text(thread.caption)
-                        .font(.footnote)
+                        .font(.body)
+                        .foregroundColor(.primary)
+                        .lineLimit(3)
                         .multilineTextAlignment(.leading)
-                    
-                    HStack(spacing: 16) {
-                        Button {
-                            
-                        } label: {
+                        .padding(.bottom, 8)
+
+                    HStack(spacing: 20) {
+                        Button(action: {}) {
                             Image(systemName: "heart")
+                                .foregroundColor(.black)
+                                .font(.body)
                         }
-                        
-                        Button {
-                            
-                        } label: {
+
+                        Button(action: {}) {
                             Image(systemName: "bubble.right")
+                                .foregroundColor(.black)
+                                .font(.body)
                         }
-                        
-                        Button {
-                            
-                        } label: {
+
+                        Button(action: {}) {
                             Image(systemName: "arrow.rectanglepath")
+                                .foregroundColor(.black)
+                                .font(.body)
                         }
-                        
-                        Button {
-                            
-                        } label: {
+
+                        Button(action: {}) {
                             Image(systemName: "paperplane")
+                                .foregroundColor(.black)
+                                .font(.body)
                         }
                     }
-                    .foregroundColor(.black)
-                    .padding(.vertical, 8)
+                    .padding(.top, 8)
+                    .foregroundColor(.primary)
+                    .font(.system(size: 20))
                 }
             }
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            .background(Color.white)
         }
+        .padding(.vertical, 8)
     }
 }
 
 struct ThreadCell_Previews: PreviewProvider {
     static var previews: some View {
         ThreadCell(thread: dev.thread)
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }
