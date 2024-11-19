@@ -17,8 +17,10 @@ struct UserContentListView: View {
         return UIScreen.main.bounds.width / count - 16
     }
     
+    let user: UserBO
+    
     init(user: UserBO) {
-        viewModel.loadUser(user: user)
+        self.user = user
     }
     
     var body: some View {
@@ -57,6 +59,7 @@ struct UserContentListView: View {
         }
         .padding(.vertical, 8)
         .onAppear {
+            viewModel.loadUser(user: user)
             viewModel.fetchUserThreads()
         }
     }
