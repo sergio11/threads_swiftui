@@ -13,13 +13,15 @@ struct ExploreView: View {
     @StateObject var viewModel = ExploreViewModel()
 
     var body: some View {
-        content
-            .navigationTitle("Search")
-            .searchable(text: $viewModel.searchText, prompt: "Search users")
-            .navigationDestination(for: UserBO.self) { user in
-                ProfileView(user: user)
-            }
-            .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+        NavigationStack {
+            content
+                .navigationTitle("Search")
+                .searchable(text: $viewModel.searchText, prompt: "Search users")
+                .navigationDestination(for: UserBO.self) { user in
+                    ProfileView(user: user)
+                }
+                .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+        }
     }
     
     /// Main content of the ExploreView

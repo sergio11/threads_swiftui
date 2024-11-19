@@ -18,12 +18,52 @@ struct ProfileView: View {
     }
     
     var body: some View {
+        NavigationStack {
+            ProfileViewContent(
+                user: viewModel.user,
+                isAuthUser: viewModel.isAuthUser,
+                showEditProfile: $viewModel.showEditProfile
+            )
+            .sheet(isPresented: $viewModel.showEditProfile, content: {
+                if let user = viewModel.user {
+                    EditProfileView(user: user)
+                }
+            })
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        viewModel.signOut()
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .padding(.horizontal)
+            .onAppear {
+                if let user = user {
+                    viewModel.loadUser(user: user)
+                } else {
+                    viewModel.loadCurrentUser()
+                }
+            }
+        }
+    }
+}
+
+private struct ProfileViewContent: View {
+    
+    var user: UserBO?
+    var isAuthUser: Bool
+    @Binding var showEditProfile: Bool
+    
+    var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 20) {
-                ProfileHeaderView(user: viewModel.user)
-                if viewModel.isAuthUser {
+                ProfileHeaderView(user: user)
+                if isAuthUser {
                     Button {
-                        viewModel.showEditProfile.toggle()
+                        showEditProfile.toggle()
                     } label: {
                         Text("Edit Profile")
                             .font(.subheadline)
@@ -41,7 +81,7 @@ struct ProfileView: View {
                     Button {
                         
                     } label: {
-                       Text("Follow")
+                        Text("Follow")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
@@ -50,33 +90,10 @@ struct ProfileView: View {
                             .cornerRadius(8)
                     }
                 }
-            
-                if let user = viewModel.user {
+                
+                if let user = user {
                     UserContentListView(user: user)
                 }
-            }
-        }
-        .sheet(isPresented: $viewModel.showEditProfile, content: {
-            if let user = viewModel.user {
-                EditProfileView(user: user)
-            }
-        })
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    viewModel.signOut()
-                } label: {
-                    Image(systemName: "line.3.horizontal")
-                }
-            }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .padding(.horizontal)
-        .onAppear {
-            if let user = user {
-                viewModel.loadUser(user: user)
-            } else {
-                viewModel.loadCurrentUser()
             }
         }
     }

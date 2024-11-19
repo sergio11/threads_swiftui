@@ -13,29 +13,40 @@ struct FeedView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView(showsIndicators: false) {
-                LazyVStack {
-                    ForEach(viewModel.threads) { thread in
-                        ThreadCell(thread: thread)
-                    }
-                }
-            }
+            FeedViewContent(threads: viewModel.threads)
             .refreshable {
                 viewModel.fetchThreads()
             }
             .navigationTitle("Threads")
             .navigationBarTitleDisplayMode(.inline)
-        }.toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    
-                } label: {
-                    Image(systemName: "arrow.counterclockwise")
-                        .foregroundColor(.black)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "arrow.counterclockwise")
+                            .foregroundColor(.black)
+                    }
+                }
+            }.onAppear {
+                viewModel.fetchThreads()
+            }
+            .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+        }
+    }
+}
+
+private struct FeedViewContent: View {
+    
+    var threads: [ThreadBO]
+    
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            LazyVStack {
+                ForEach(threads) { thread in
+                    ThreadCell(thread: thread)
                 }
             }
-        }.onAppear {
-            viewModel.fetchThreads()
         }
     }
 }

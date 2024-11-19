@@ -19,7 +19,7 @@ extension Container {
 extension Container {
     
     var threadMapper: Factory<ThreadMapper> {
-        self { ThreadMapper() }.singleton
+        self { ThreadMapper(userMapper: self.userMapper()) }.singleton
     }
     
     var createThreadMapper: Factory<CreateThreadMapper> {
@@ -32,7 +32,7 @@ extension Container {
     
     var threadsRepository: Factory<ThreadsRepository> {
         self { ThreadsRepositoryImpl(
-            threadsDataSource: self.threadsDataSource(), threadMapper: self.threadMapper(), createThreadMapper: self.createThreadMapper()) }.singleton
+            threadsDataSource: self.threadsDataSource(), threadMapper: self.threadMapper(), createThreadMapper: self.createThreadMapper(), userDataSource: self.userDataSource()) }.singleton
     }
     
     var fetchThreadsUseCase: Factory<FetchThreadsUseCase> {
