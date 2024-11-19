@@ -9,26 +9,21 @@ import Foundation
 
 /// A repository for user profile-related operations.
 protocol UserProfileRepository {
-    /// Updates the user's profile information asynchronously.
-    /// - Parameters:
-    ///   - userId: The ID of the user whose profile is being updated.
-    ///   - fullname: The full name of the user.
-    ///   - username: The username of the user.
-    ///   - bio: The bio of the user, if provided.
-    ///   - selectedImage: The selected profile image data, if provided.
-    /// - Returns: A `User` object representing the updated user profile.
-    /// - Throws: An error if the profile update fails.
-    func updateUser(userId: String, fullname: String, username: String, bio: String?, selectedImage: Data?) async throws -> UserBO
+    
+    /// Updates an existing user's profile with the provided details.
+    ///
+    /// - Parameter data: An `UpdateUserBO` object containing the updated user information.
+    /// - Returns: The updated `UserBO` object representing the user.
+    /// - Throws: Any error encountered during the profile update process.
+    func updateUser(data: UpdateUserBO) async throws -> UserBO
 
-    /// Creates a new user asynchronously.
-    /// - Parameters:
-    ///   - userId: The ID of the new user.
-    ///   - fullname: The full name of the user.
-    ///   - username: The username of the new user.
-    ///   - email: The email address of the new user.
-    /// - Returns: A `User` object representing the newly created user.
-    /// - Throws: An error if user creation fails.
-    func createUser(userId: String, fullname: String, username: String, email: String) async throws -> UserBO
+       
+    /// Creates a new user profile with the provided details.
+    ///
+    /// - Parameter data: A `CreateUserBO` object containing the new user's information.
+    /// - Returns: The newly created `UserBO` object representing the user.
+    /// - Throws: Any error encountered during the user creation process.
+    func createUser(data: CreateUserBO) async throws -> UserBO
 
     /// Retrieves user information asynchronously.
     /// - Parameter userId: The ID of the user to retrieve.

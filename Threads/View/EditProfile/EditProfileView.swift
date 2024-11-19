@@ -10,12 +10,8 @@ import PhotosUI
 
 struct EditProfileView: View {
     
-    let user: UserBO
-    @State private var bio = ""
-    @State private var link = ""
-    @State private var isPrivateProfile = false
+    @StateObject var viewModel = EditProfileViewModel()
     @Environment(\.dismiss) private var onDimiss
-    @StateObject var viewModel: EditProfileViewModel = EditProfileViewModel()
     
     var body: some View {
         NavigationStack {
@@ -28,8 +24,7 @@ struct EditProfileView: View {
                         VStack(alignment: .leading) {
                             Text("Name")
                                 .fontWeight(.semibold)
-                            
-                            Text(user.fullname)
+                            TextField("Enter your fullname ...", text: $viewModel.authUserFullName, axis: .vertical)
                         }
                         .font(.footnote)
                         
@@ -43,7 +38,7 @@ struct EditProfileView: View {
                                     .frame(width: 40, height: 40)
                                     .clipShape(Circle())
                             } else {
-                                CircularProfileImageView(profileImageUrl: user.profileImageUrl, size: .small)
+                                CircularProfileImageView(profileImageUrl: viewModel.authUserProfileImageUrl, size: .small)
                             }
                         }
                         
@@ -55,7 +50,7 @@ struct EditProfileView: View {
                         Text("Bio")
                             .fontWeight(.semibold)
                         
-                        TextField("Enter your bio ...", text: $bio, axis: .vertical)
+                        TextField("Enter your bio ...", text: $viewModel.bio, axis: .vertical)
                     }
                     .font(.footnote)
                     
@@ -65,13 +60,13 @@ struct EditProfileView: View {
                         Text("Link")
                             .fontWeight(.semibold)
                         
-                        TextField("Add link ...", text: $link)
+                        TextField("Add link ...", text: $viewModel.link)
                     }
                     .font(.footnote)
                     
                     Divider()
                     
-                    Toggle("Private Profile", isOn: $isPrivateProfile)
+                    Toggle("Private Profile", isOn: $viewModel.isPrivateProfile)
                 }
                 .font(.footnote)
                 .padding()
@@ -96,15 +91,21 @@ struct EditProfileView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        Task {
-                            try await viewModel.updateUserData()
-                            onDimiss()
-                        }
+                        viewModel.onUpdateProfile()
                     }
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.black)
                 }
+            }
+            .onReceive(viewModel.$userProfileUpdated) { success in
+                if success {
+                    onDimiss()
+                }
+            }
+            .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+            .onAppear {
+                viewModel.loadCurrentUser()
             }
         }
     }
@@ -112,6 +113,6 @@ struct EditProfileView: View {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfileView(user: dev.user)
+        EditProfileView()
     }
 }

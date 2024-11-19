@@ -32,6 +32,7 @@ class ProfileViewModel: BaseUserViewModel {
     
     override func onCurrentUserLoaded(user: UserBO) {
         super.onCurrentUserLoaded(user: user)
+        print("onCurrentUserLoaded CALLED!")
         self.user = user
         self.isAuthUser = true
     }

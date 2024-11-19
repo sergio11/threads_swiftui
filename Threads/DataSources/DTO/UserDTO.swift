@@ -13,7 +13,9 @@ internal struct UserDTO: Decodable {
     var fullname: String
     var username: String
     var bio: String?
+    var link: String?
     var profileImageUrl: String?
     var followers: [String]
     var following: [String]
+    var isPrivateProfile: Bool
 }

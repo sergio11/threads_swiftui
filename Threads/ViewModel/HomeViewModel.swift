@@ -9,6 +9,7 @@ import Foundation
 import Factory
 import Combine
 
+@MainActor
 class HomeViewModel: BaseViewModel {
     
     @Published var selectedTab = 0

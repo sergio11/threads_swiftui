@@ -7,31 +7,47 @@
 
 import Foundation
 
+/// Error types that may occur during the user update process.
 enum UpdateUserError: Error {
     case updateFailed
 }
 
+/// Parameters required to update a user's profile.
 struct UpdateUserParams {
-    var fullname: String
-    var username: String
-    var bio: String?
-    let selectedImage: Data?
+    let fullname: String        // The full name of the user.
+    let bio: String?            // The bio of the user (optional).
+    let link: String?           // The user's link (optional).
+    let selectedImage: Data?    // The image data for the user's profile picture (optional).
+    let isPrivateProfile: Bool  // Whether the user's profile is private or not.
 }
 
-/// An entity responsible for updating user information.
+/// Use case for updating a user's profile information.
 struct UpdateUserUseCase {
-    let userRepository: UserProfileRepository
-    let authRepository: AuthenticationRepository
+    let userRepository: UserProfileRepository  // Repository for user profile operations.
+    let authRepository: AuthenticationRepository  // Repository for authentication-related operations.
     
-    /// Executes the user information update asynchronously.
-        /// - Parameters:
-        ///   - params: Parameters containing the updated user information.
-        /// - Returns: The updated user object.
-        /// - Throws: An error if the update fails or if the current user session is invalid.
+    /// Executes the user update process.
+    ///
+    /// This method checks if the current user is authenticated, then updates their profile
+    /// with the provided information.
+    ///
+    /// - Parameter params: The `UpdateUserParams` object containing the user's updated details.
+    /// - Returns: The updated `UserBO` object representing the user's profile.
+    /// - Throws: `UpdateUserError.updateFailed` if the user is not authenticated or the update fails.
     func execute(params: UpdateUserParams) async throws -> UserBO {
+        // Retrieve the current authenticated user's ID.
         if let userId = try await authRepository.getCurrentUserId() {
-            return try await userRepository.updateUser(userId: userId, fullname: params.fullname, username: params.username, bio: params.bio, selectedImage: params.selectedImage)
+            // Update the user's profile using the repository.
+            return try await userRepository.updateUser(data: UpdateUserBO(
+                userId: userId,
+                fullname: params.fullname,
+                bio: params.bio,
+                link: params.link,
+                selectedImage: params.selectedImage,
+                isPrivateProfile: params.isPrivateProfile
+            ))
         } else {
+            // If no authenticated user is found, throw an error.
             throw UpdateUserError.updateFailed
         }
     }

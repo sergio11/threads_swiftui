@@ -25,44 +25,71 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
         self.userMapper = userMapper
     }
     
-    /// Updates the user profile asynchronously.
-        /// - Parameters:
-        ///   - userId: The ID of the user to be updated.
-        ///   - fullname: The new full name of the user.
-        ///   - username: The new username of the user.
-        ///   - bio: The new bio of the user.
-        ///   - selectedImage: The new profile image of the user as `Data`.
-        /// - Returns: The updated `User` object.
-        /// - Throws: An error if the operation fails.
-    func updateUser(userId: String, fullname: String, username: String, bio: String?, selectedImage: Data?) async throws -> UserBO {
+    /// Updates the user profile with the provided information.
+    ///
+    /// This method performs the following tasks:
+    /// 1. If a profile image is provided, it uploads the image to a storage service and gets the URL for the image.
+    /// 2. It then calls the data source to update the user data using the provided information, including the new profile image URL (if any).
+    /// 3. The updated user data is mapped from the DTO (Data Transfer Object) to the business object (UserBO) using the userMapper.
+    ///
+    /// - Parameter data: An `UpdateUserBO` object containing the updated user information such as fullname, bio, and profile image data.
+    /// - Returns: A `UserBO` object representing the updated user profile.
+    /// - Throws:
+    ///   - Throws any error encountered during the image upload or user data update process.
+    func updateUser(data: UpdateUserBO) async throws -> UserBO {
         do {
+            // Step 1: Upload profile image if available
             var profileImageUrl: String? = nil
-            if let selectedImage = selectedImage {
+            if let selectedImage = data.selectedImage {
                 profileImageUrl = try await storageFilesDataSource.uploadImage(imageData: selectedImage, type: .profile)
             }
-            let userData = try await userDataSource.updateUser(data: UpdateUserDTO(userId: userId, fullname: fullname, username: username, bio: bio, profileImageUrl: profileImageUrl))
+            
+            // Step 2: Update user data using the provided parameters
+            let userData = try await userDataSource.updateUser(data: UpdateUserDTO(
+                userId: data.userId,
+                fullname: data.fullname,
+                link: data.link,
+                isPrivateProfile: data.isPrivateProfile,
+                bio: data.bio,
+                profileImageUrl: profileImageUrl
+            ))
+            
+            // Step 3: Map the updated user data to UserBO
             return userMapper.map(userData)
         } catch {
+            // Handle and print error
             print(error.localizedDescription)
-            throw error
+            throw error  // Re-throw the error
         }
     }
     
-    /// Creates a new user account asynchronously.
-        /// - Parameters:
-        ///   - userId: The ID of the new user account.
-        ///   - fullname: The full name of the user.
-        ///   - username: The username of the new user account.
-        ///   - email: The email address of the new user.
-        /// - Returns: The created `User` object.
-        /// - Throws: An error if the operation fails.
-    func createUser(userId: String, fullname: String, username: String, email: String) async throws -> UserBO {
+
+    /// Creates a new user in the system with the provided information.
+    ///
+    /// This method performs the following tasks:
+    /// 1. It creates a new user in the system using the provided user information, such as user ID, email, fullname, and username.
+    /// 2. The user data is then mapped from the DTO (Data Transfer Object) to the business object (UserBO) using the userMapper.
+    ///
+    /// - Parameter data: A `CreateUserBO` object containing the required information to create a new user, including user ID, email, fullname, and username.
+    /// - Returns: A `UserBO` object representing the newly created user.
+    /// - Throws:
+    ///   - Throws any error encountered during the user creation process.
+    func createUser(data: CreateUserBO) async throws -> UserBO {
         do {
-            let userData = try await userDataSource.createUser(data: CreateUserDTO(userId: userId, email: email, fullname: fullname, username: username))
+            // Step 1: Create a new user with the provided data
+            let userData = try await userDataSource.createUser(data: CreateUserDTO(
+                userId: data.userId,
+                email: data.email,
+                fullname: data.fullname,
+                username: data.username
+            ))
+            
+            // Step 2: Map the created user data to UserBO
             return userMapper.map(userData)
         } catch {
+            // Handle and print error
             print(error.localizedDescription)
-            throw error
+            throw error  // Re-throw the error
         }
     }
     

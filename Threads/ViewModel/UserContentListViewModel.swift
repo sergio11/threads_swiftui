@@ -9,6 +9,7 @@ import Foundation
 import Factory
 import Combine
 
+@MainActor
 class UserContentListViewModel: BaseViewModel {
     
     @Injected(\.fetchThreadsByUserUseCase) private var fetchThreadsByUserUseCase: FetchThreadsByUserUseCase
@@ -23,9 +24,7 @@ class UserContentListViewModel: BaseViewModel {
     }
     
     func fetchUserThreads() {
-        print("fetchUserThreads")
         if let userId = user?.id {
-            print("fetchUserThreads - userId: \(userId)")
             executeAsyncTask({
                 return try await self.fetchThreadsByUserUseCase.execute(params: FetchThreadsByUserParams(userId: userId))
             }) { [weak self] (result: Result<[ThreadBO], Error>) in
@@ -42,7 +41,6 @@ class UserContentListViewModel: BaseViewModel {
     
     private func onFetchThreadsByUserCompleted(threads: [ThreadBO]) {
         self.isLoading = false
-        print("onFetchThreadsByUserCompleted - threads: \(threads.count)")
         self.threads = threads
     }
     

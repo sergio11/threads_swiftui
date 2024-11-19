@@ -24,10 +24,13 @@ struct ProfileView: View {
                 isAuthUser: viewModel.isAuthUser,
                 showEditProfile: $viewModel.showEditProfile
             )
-            .sheet(isPresented: $viewModel.showEditProfile, content: {
-                if let user = viewModel.user {
-                    EditProfileView(user: user)
-                }
+            .refreshable {
+                loadData()
+            }
+            .sheet(isPresented: $viewModel.showEditProfile, onDismiss: {
+                loadData()
+            }, content: {
+                EditProfileView()
             })
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -40,13 +43,18 @@ struct ProfileView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .padding(.horizontal)
+            .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
             .onAppear {
-                if let user = user {
-                    viewModel.loadUser(user: user)
-                } else {
-                    viewModel.loadCurrentUser()
-                }
+                loadData()
             }
+        }
+    }
+    
+    private func loadData() {
+        if let user = user {
+            viewModel.loadUser(user: user)
+        } else {
+            viewModel.loadCurrentUser()
         }
     }
 }

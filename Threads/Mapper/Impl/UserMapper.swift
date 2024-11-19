@@ -19,8 +19,10 @@ class UserMapper: Mapper {
             username: input.username,
             profileImageUrl: input.profileImageUrl,
             bio: input.bio,
+            link: input.link,
             followers: input.followers.count,
-            following: input.following.count
+            following: input.following.count,
+            isPrivateProfile: input.isPrivateProfile
         )
     }
 }

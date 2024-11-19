@@ -11,15 +11,18 @@ internal extension UpdateUserDTO {
     func asDictionary() -> [String: Any] {
         var dictionary: [String: Any] = [
             "userId": userId,
-            "fullname": fullname
+            "fullname": fullname,
+            "isPrivateProfile": isPrivateProfile
         ]
         if let bio = bio {
             dictionary["bio"] = bio
         }
+        if let link = link {
+            dictionary["link"] = link
+        }
         if let profileImageUrl = profileImageUrl {
             dictionary["profileImageUrl"] = profileImageUrl
         }
-
         return dictionary
     }
 }
