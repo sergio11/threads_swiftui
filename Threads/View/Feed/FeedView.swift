@@ -22,7 +22,7 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        viewModel.fetchThreads()
                     } label: {
                         Image(systemName: "arrow.counterclockwise")
                             .foregroundColor(.black)

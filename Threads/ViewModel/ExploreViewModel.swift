@@ -9,6 +9,7 @@ import Foundation
 import Factory
 import Combine
 
+@MainActor
 class ExploreViewModel: BaseViewModel {
     
     @Injected(\.getSuggestionsUseCase) private var getSuggestionsUseCase: GetSuggestionsUseCase

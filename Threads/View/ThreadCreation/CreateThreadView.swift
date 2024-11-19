@@ -46,7 +46,9 @@ struct CreateThreadView: View {
                 if success {
                     onDismiss()
                 }
-            }.onAppear {
+            }
+            .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+            .onAppear {
                 onLoadCurrentUser()
             }
         }

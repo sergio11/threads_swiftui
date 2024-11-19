@@ -9,6 +9,7 @@ import Factory
 import Foundation
 import Combine
 
+@MainActor
 class CreateThreadViewModel: BaseUserViewModel {
     
     @Injected(\.createThreadUseCase) private var createThreadUseCase: CreateThreadUseCase
