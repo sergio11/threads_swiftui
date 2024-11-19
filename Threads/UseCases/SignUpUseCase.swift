@@ -64,12 +64,12 @@ struct SignUpUseCase {
 
             // 4. Create the user profile in the UserProfileRepository.
             print("SignUpUseCase: Creating user profile with ID: \(userId)")
-            let userBO = try await userRepository.createUser(
+            let userBO = try await userRepository.createUser(data: CreateUserBO(
                 userId: userId,
                 fullname: params.fullname,
                 username: params.username,
                 email: params.email
-            )
+            ))
             print("SignUpUseCase: User profile created successfully. UserBO: \(userBO)")
             return userBO
         } catch {

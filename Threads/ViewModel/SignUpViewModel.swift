@@ -9,6 +9,7 @@ import Foundation
 import Factory
 import Combine
 
+@MainActor
 class SignUpViewModel: BaseViewModel {
     
     @Injected(\.signUpUseCase) private var signUpUseCase: SignUpUseCase

@@ -10,7 +10,8 @@ import Foundation
 internal struct UpdateUserDTO: Decodable {
     var userId: String
     var fullname: String
-    var username: String
+    var link: String?
+    var isPrivateProfile: Bool
     var bio: String?
     var profileImageUrl: String?
 }
