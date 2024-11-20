@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ThreadCell: View {
     let thread: ThreadBO
+    var onLikeTapped: (() -> Void)?
+    var onCommentTapped: (() -> Void)?
+    var onShareTapped: (() -> Void)?
+    var onRepostTapped: (() -> Void)?
 
     var body: some View {
         VStack(spacing: 12) {
@@ -38,25 +42,33 @@ struct ThreadCell: View {
                         .padding(.bottom, 8)
 
                     HStack(spacing: 20) {
-                        Button(action: {}) {
+                        Button(action: {
+                            onLikeTapped?()
+                        }) {
                             Image(systemName: "heart")
                                 .foregroundColor(.black)
                                 .font(.body)
                         }
 
-                        Button(action: {}) {
+                        Button(action: {
+                            onCommentTapped?()
+                        }) {
                             Image(systemName: "bubble.right")
                                 .foregroundColor(.black)
                                 .font(.body)
                         }
 
-                        Button(action: {}) {
+                        Button(action: {
+                            onRepostTapped?()
+                        }) {
                             Image(systemName: "arrow.rectanglepath")
                                 .foregroundColor(.black)
                                 .font(.body)
                         }
 
-                        Button(action: {}) {
+                        Button(action: {
+                            onShareTapped?()
+                        }) {
                             Image(systemName: "paperplane")
                                 .foregroundColor(.black)
                                 .font(.body)
