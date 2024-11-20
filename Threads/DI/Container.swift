@@ -79,6 +79,9 @@ extension Container {
         self { SignUpUseCase(authRepository: self.authenticationRepository(), userRepository: self.userProfileRepository()) }
     }
     
+    var forgotPasswordUseCase: Factory<ForgotPasswordUseCase> {
+        self { ForgotPasswordUseCase(authRepository: self.authenticationRepository()) }
+    }
 }
 
 extension Container {

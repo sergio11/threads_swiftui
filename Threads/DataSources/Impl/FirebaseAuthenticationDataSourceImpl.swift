@@ -76,4 +76,19 @@ internal class FirebaseAuthenticationDataSourceImpl: AuthenticationDataSource {
         }
         return userSession.uid
     }
+    
+    /// Sends a password reset email to the user's email address.
+    /// - Parameter email: The user's email address to which the reset link will be sent.
+    /// - Throws: An `AuthenticationError` if the request fails.
+    func forgotPassword(email: String) async throws {
+        do {
+            // Attempt to send a password reset email.
+            try await Auth.auth().sendPasswordReset(withEmail: email)
+            print("Password reset email sent to: \(email)")
+        } catch {
+            // Handle and rethrow the error with a custom message.
+            print("Password reset error: \(error.localizedDescription)")
+            throw AuthenticationError.passwordResetFailed(message: "Password reset failed: \(error.localizedDescription)")
+        }
+    }
 }
