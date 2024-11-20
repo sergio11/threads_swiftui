@@ -15,7 +15,7 @@ struct UserBO: Identifiable, Codable, Hashable {
     var profileImageUrl: String?
     var bio: String?
     var link: String?
-    var followers: Int = 0
-    var following: Int = 0
+    var followers: [String] = []
+    var following: [String] = []
     var isPrivateProfile: Bool
 }

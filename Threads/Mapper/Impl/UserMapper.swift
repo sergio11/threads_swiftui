@@ -20,8 +20,8 @@ class UserMapper: Mapper {
             profileImageUrl: input.profileImageUrl,
             bio: input.bio,
             link: input.link,
-            followers: input.followers.count,
-            following: input.following.count,
+            followers: input.followers,
+            following: input.following,
             isPrivateProfile: input.isPrivateProfile
         )
     }
