@@ -1,43 +1,51 @@
 //
-//  SignInView.swift
+//  ForgotPasswordView.swift
 //  Threads
 //
-//  Created by Sergio Sánchez Sánchez on 9/11/24.
+//  Created by Sergio Sánchez Sánchez on 20/11/24.
 //
 
 import SwiftUI
 
-struct SignInView: View {
+struct ForgotPasswordView: View {
     
-    @StateObject var viewModel = SignInViewModel()
+    @StateObject var viewModel = ForgotPasswordViewModel()
+    
+    @Environment(\.dismiss) private var onDismiss
     
     var body: some View {
         ZStack {
             BackgroundImage(imageName: "main_background")
             VStack {
                 Spacer()
-                SingInContent()
+                ForgotPasswordContent()
                 Spacer()
-                SignInFormView(
-                    email: $viewModel.email,
-                    password: $viewModel.password
-                )
-                ForgotPasswordLinkView()
-                SignInButtonView(onSignIn: {
-                    viewModel.signIn()
+                ForgotPasswordFormView(email: $viewModel.email)
+                Spacer()
+                SendResetLinkButtonView(onSendLink: {
+                    viewModel.sendResetLink()
                 })
                 Spacer()
                 Divider()
-                SignUpLinkView()
+                SignInLinkView()
                 DeveloperCreditView()
             }.padding()
         }
         .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+        .alert(isPresented: $viewModel.resetLinkSent) {
+            Alert(
+                title: Text("Success"),
+                message: Text("We have sent a password reset link to your email."),
+                dismissButton: .default(Text("OK"), action: {
+                    onDismiss()
+                })
+            )
+        }
         .environment(\.colorScheme, .light)
     }
 }
 
-private struct SingInContent: View {
+private struct ForgotPasswordContent: View {
     var body: some View {
         VStack {
             Image("app_logo")
@@ -45,66 +53,43 @@ private struct SingInContent: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.all)
-            Text("Welcome to Threads")
-                 .font(.title)
+            Text("Forgot Password?")
+                .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
                 .padding()
-            Text("Join the conversation. Share your thoughts and connect with friends in real time.")
+            Text("Enter your email address, and we’ll send you a link to reset your password.")
                 .font(.title3)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
         }
         .padding(.horizontal, 30)
-        
     }
 }
 
-private struct SignInFormView: View {
+private struct ForgotPasswordFormView: View {
     
     @Binding var email: String
-    @Binding var password: String
     
     var body: some View {
         VStack(spacing: 16) {
             TextField("Enter your email", text: $email)
                 .autocapitalization(.none)
                 .modifier(ThreadsTextFieldModifier())
-        
-            SecureField("Enter you password", text: $password)
-                .modifier(ThreadsTextFieldModifier())
         }
     }
 }
 
-private struct ForgotPasswordLinkView: View {
-
-    var body: some View {
-        NavigationLink {
-            ForgotPasswordView()
-                .navigationBarBackButtonHidden(true)
-        } label: {
-            Text("Forgot Password?")
-                .font(.footnote)
-                .fontWeight(.semibold)
-                .padding(.vertical)
-                .padding(.trailing, 28)
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-        }
-    }
-}
-
-private struct SignInButtonView: View {
+private struct SendResetLinkButtonView: View {
     
-    var onSignIn: () -> Void
+    var onSendLink: () -> Void
 
     var body: some View {
         Button {
-            onSignIn()
+            onSendLink()
         } label: {
-            Text("Login")
+            Text("Send Reset Link")
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
@@ -119,16 +104,16 @@ private struct SignInButtonView: View {
     }
 }
 
-private struct SignUpLinkView: View {
+private struct SignInLinkView: View {
     
     var body: some View {
         NavigationLink {
-            SignUpView()
+            SignInView()
                 .navigationBarBackButtonHidden(true)
         } label: {
             HStack(spacing: 3) {
-                Text("Don't have an account?")
-                Text("Sign Up")
+                Text("Remember your password?")
+                Text("Sign In")
             }
             .foregroundColor(.white)
             .fontWeight(.bold)
@@ -137,8 +122,8 @@ private struct SignUpLinkView: View {
     }
 }
 
-struct SignInView_Previews: PreviewProvider {
+struct ForgotPasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        ForgotPasswordView()
     }
 }

@@ -73,4 +73,17 @@ internal class AuthenticationRepositoryImpl: AuthenticationRepository {
             throw AuthenticationRepositoryError.currentUserFetchFailed
         }
     }
+    
+    /// Sends a password reset email to the user's email address.
+    /// - Parameter email: The user's email address to which the reset link will be sent.
+    /// - Throws: An `AuthenticationRepositoryError` if the request fails.
+    func forgotPassword(email: String) async throws {
+        do {
+            return try await authenticationDataSource.forgotPassword(email: email)
+        } catch {
+            print(error.localizedDescription)
+            throw AuthenticationRepositoryError.passwordResetFailed(message: error.localizedDescription)
+        }
+    }
+    
 }

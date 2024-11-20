@@ -13,7 +13,10 @@ enum AuthenticationError: Error {
     case signInFailed(message: String)
     /// Error indicating failure in signing out.
     case signOutFailed(message: String)
+    /// Error indicating failure in signing up.
     case signUpFailed(message: String)
+    /// Error indicating failure in sending the password reset email.
+    case passwordResetFailed(message: String)
 }
 
 /// A protocol defining authentication operations.
@@ -42,4 +45,9 @@ protocol AuthenticationDataSource {
     /// - Returns: The user ID if the user is logged in, otherwise `nil`.
     /// - Throws: An `AuthenticationError` in case of failure.
     func getCurrentUserId() async throws -> String?
+    
+    /// Sends a password reset email to the user's email address.
+    /// - Parameter email: The user's email address to which the reset link will be sent.
+    /// - Throws: An `AuthenticationError` if the request fails.
+    func forgotPassword(email: String) async throws
 }
