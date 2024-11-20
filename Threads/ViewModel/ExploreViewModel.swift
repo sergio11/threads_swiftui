@@ -10,14 +10,20 @@ import Factory
 import Combine
 
 @MainActor
-class ExploreViewModel: BaseViewModel {
+class ExploreViewModel: BaseUserViewModel {
     
     @Injected(\.getSuggestionsUseCase) private var getSuggestionsUseCase: GetSuggestionsUseCase
     
-    @Published var searchText = ""
+    @Published var searchText = "" {
+        didSet {
+            if(!searchText.isEmpty) {
+                search()
+            }
+        }
+    }
     @Published var users = [UserBO]()
     
-    func signIn() {
+    func search() {
         executeAsyncTask({
             return try await self.getSuggestionsUseCase.execute()
         }) { [weak self] (result: Result<[UserBO], Error>) in
@@ -29,6 +35,10 @@ class ExploreViewModel: BaseViewModel {
                 self.onGetSuggestionsFailed()
             }
         }
+    }
+    
+    func isUserFollowing(user: UserBO) -> Bool {
+        return user.followers.contains(authUserId)
     }
     
     private func onGetSuggestionsCompleted(users: [UserBO]) {

@@ -26,6 +26,7 @@ struct FeedView: View {
                     } label: {
                         Image(systemName: "arrow.counterclockwise")
                             .foregroundColor(.black)
+                            .imageScale(.small)
                     }
                 }
             }.onAppear {

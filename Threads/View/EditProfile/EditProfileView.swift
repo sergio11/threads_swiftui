@@ -43,13 +43,12 @@ struct EditProfileView: View {
                         }
                         
                     }
-                    
+            
                     Divider()
                     
                     VStack(alignment: .leading) {
                         Text("Bio")
                             .fontWeight(.semibold)
-                        
                         TextField("Enter your bio ...", text: $viewModel.bio, axis: .vertical)
                     }
                     .font(.footnote)
@@ -59,7 +58,6 @@ struct EditProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Link")
                             .fontWeight(.semibold)
-                        
                         TextField("Add link ...", text: $viewModel.link)
                     }
                     .font(.footnote)
