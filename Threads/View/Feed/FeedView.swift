@@ -45,7 +45,9 @@ private struct FeedViewContent: View {
         ScrollView(showsIndicators: false) {
             LazyVStack {
                 ForEach(threads) { thread in
-                    ThreadCell(thread: thread)
+                    NavigationLink(destination: ProfileView(user: thread.user)) {
+                        ThreadCell(thread: thread)
+                    }
                 }
             }
         }
