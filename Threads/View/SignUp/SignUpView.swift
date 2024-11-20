@@ -47,7 +47,7 @@ private struct SingUpContent: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.all)
-            Text("onnect with others, share your moments, and be part of a real-time community.")
+            Text("Connect with others, share your moments, and be part of a real-time community.")
                 .font(.title3)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)

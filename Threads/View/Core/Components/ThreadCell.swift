@@ -31,7 +31,7 @@ struct ThreadCell: View {
                     }
                     
                     Text(thread.caption)
-                        .font(.body)
+                        .font(.subheadline)
                         .foregroundColor(.primary)
                         .lineLimit(4)
                         .multilineTextAlignment(.leading)
