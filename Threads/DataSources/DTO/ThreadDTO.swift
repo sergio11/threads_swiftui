@@ -13,5 +13,6 @@ internal struct ThreadDTO: Decodable {
     let ownerUid: String
     let caption: String
     let timestamp: Date
+    let likedBy: [String]
     let likes: Int
 }

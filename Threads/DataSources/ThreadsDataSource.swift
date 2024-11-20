@@ -19,6 +19,8 @@ enum ThreadsDataSourceError: Error {
     case fetchThreadsFailed
     /// Error indicating that fetching user threads failed.
     case fetchUserThreadsFailed
+    /// Error indicating that the like operation failed (e.g., user already liked the thread).
+    case likeFailed
 }
 
 /// Protocol defining data source operations for threads.
@@ -40,4 +42,12 @@ protocol ThreadsDataSource {
     /// - Returns: An array of `ThreadDTO` objects.
     /// - Throws: An error if fetching fails.
     func fetchUserThreads(uid: String) async throws -> [ThreadDTO]
+    
+    /// Likes or dislikes a thread by the user.
+    /// - Parameters:
+    ///   - threadId: The ID of the thread to like/dislike.
+    ///   - userId: The ID of the user performing the action.
+    /// - Throws: An error if the operation fails.
+    /// - Returns: A boolean indicating if the operation was successful.
+    func likeThread(threadId: String, userId: String) async throws -> Bool
 }
