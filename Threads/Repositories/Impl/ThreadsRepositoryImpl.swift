@@ -82,6 +82,24 @@ internal class ThreadsRepositoryImpl: ThreadsRepository {
         }
     }
     
+    
+    /// Likes or unlikes a thread by the specified user.
+    /// - Parameter threadId: The ID of the thread to like or unlike.
+    /// - Parameter userId: The ID of the user performing the like/unlike.
+    /// - Returns: A boolean indicating if the operation succeeded.
+    /// - Throws: An error if the like operation fails.
+    func likeThread(threadId: String, userId: String) async throws -> Bool {
+        do {
+            // Perform the like/unlike operation and return its result
+            let success = try await threadsDataSource.likeThread(threadId: threadId, userId: userId)
+            return success
+        } catch {
+            // Catch any error from the data source and throw a custom error
+            print("Error liking thread: \(error.localizedDescription)")
+            throw ThreadsRepositoryError.likeOperationFailed(message: "Failed to like/unlike thread with ID \(threadId) for user \(userId): \(error.localizedDescription)")
+        }
+    }
+    
     /// Loads the user profiles for a list of threads, ensuring each user profile is fetched only once within this operation.
     /// - Parameter threadsDTO: An array of `ThreadDTO` objects.
     /// - Parameter cache: A reference to a dictionary that will store user profiles during the operation.

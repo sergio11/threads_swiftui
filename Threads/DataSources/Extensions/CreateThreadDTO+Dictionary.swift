@@ -15,7 +15,8 @@ internal extension CreateThreadDTO {
             "ownerUid": ownerUid,
             "caption": caption,
             "timestamp": Timestamp(date: Date()),
-            "likes": 0
+            "likes": 0,
+            "likedBy": [String]()
         ]
     }
 }
