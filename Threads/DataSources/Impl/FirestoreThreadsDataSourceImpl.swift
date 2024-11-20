@@ -104,4 +104,51 @@ struct FirestoreThreadsDataSourceImpl: ThreadsDataSource {
             throw ThreadsDataSourceError.invalidThreadId(message: "Invalid thread ID: \(threadId)")  // Custom error if invalid thread ID
         }
     }
+    
+    /// Like or dislike a thread.
+    /// - Parameters:
+    ///   - threadId: The ID of the thread to like/dislike.
+    ///   - userId: The ID of the user performing the action.
+    /// - Returns: A boolean indicating whether the action was successful or not.
+    func likeThread(threadId: String, userId: String) async throws -> Bool {
+        let threadRef = db.collection(threadsCollection).document(threadId)
+
+        do {
+            // Get the current thread data
+            let threadSnapshot = try await threadRef.getDocument()
+                
+            guard var thread = try? threadSnapshot.data(as: ThreadDTO.self) else {
+                print("Thread not found")
+                throw ThreadsDataSourceError.threadNotFound
+            }
+
+            // Check if the user has already liked the thread
+            if thread.likedBy.contains(userId) {
+                // User has already liked, so we remove the like (dislike)
+                let newLikedBy = thread.likedBy.filter { $0 != userId }
+                let newLikesCount = thread.likes - 1
+
+                // Update the thread document in Firestore
+                try await threadRef.updateData([
+                    "likedBy": newLikedBy,
+                    "likes": newLikesCount
+                ])
+            } else {
+                // User has not liked, so we add the like
+                let newLikedBy = thread.likedBy + [userId]
+                let newLikesCount = thread.likes + 1
+
+                // Update the thread document in Firestore
+                try await threadRef.updateData([
+                    "likedBy": newLikedBy,
+                    "likes": newLikesCount
+                ])
+            }
+
+            return true
+        } catch {
+            print("Error liking thread: \(error.localizedDescription)")
+            throw ThreadsDataSourceError.likeFailed
+        }
+    }
 }

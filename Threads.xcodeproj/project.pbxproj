@@ -92,6 +92,7 @@
 		3D83F66E2CEE6350000C30AC /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D83F66D2CEE6350000C30AC /* ForgotPasswordView.swift */; };
 		3D83F6702CEE6366000C30AC /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D83F66F2CEE6366000C30AC /* ForgotPasswordViewModel.swift */; };
 		3D83F6722CEE65C3000C30AC /* ForgotPasswordUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D83F6712CEE65C3000C30AC /* ForgotPasswordUseCase.swift */; };
+		3D83F6742CEE7719000C30AC /* LikeThreadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D83F6732CEE7719000C30AC /* LikeThreadUseCase.swift */; };
 		3D885E052C4CF83600A3BE3A /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D885E042C4CF83600A3BE3A /* EditProfileViewModel.swift */; };
 		3D885E0A2C4D017700A3BE3A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3D885E092C4D017700A3BE3A /* Kingfisher */; };
 		3D8BFBC92CED1AE5000A386F /* CreateUserBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BFBC82CED1AE5000A386F /* CreateUserBO.swift */; };
@@ -184,6 +185,7 @@
 		3D83F66D2CEE6350000C30AC /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		3D83F66F2CEE6366000C30AC /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		3D83F6712CEE65C3000C30AC /* ForgotPasswordUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordUseCase.swift; sourceTree = "<group>"; };
+		3D83F6732CEE7719000C30AC /* LikeThreadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeThreadUseCase.swift; sourceTree = "<group>"; };
 		3D885E042C4CF83600A3BE3A /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		3D8BFBC82CED1AE5000A386F /* CreateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserBO.swift; sourceTree = "<group>"; };
 		3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserBO.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				3D6684A02CEBB6D5009B1627 /* CreateThreadUseCase.swift */,
 				3D151F922CEBD70F009FD4A0 /* FetchThreadsByUserUseCase.swift */,
 				3D83F6712CEE65C3000C30AC /* ForgotPasswordUseCase.swift */,
+				3D83F6732CEE7719000C30AC /* LikeThreadUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				3D70E0052CDF679E009EE223 /* HomeView.swift in Sources */,
 				3DB436972C62A86A00646502 /* Timestamp.swift in Sources */,
 				3D65724E2CDE8D150064A206 /* FirestoreUserDataSourceImpl.swift in Sources */,
+				3D83F6742CEE7719000C30AC /* LikeThreadUseCase.swift in Sources */,
 				3D885E052C4CF83600A3BE3A /* EditProfileViewModel.swift in Sources */,
 				3D4413382C4C417100D71E39 /* PreviewProvider.swift in Sources */,
 				3D70E0132CDF6F70009EE223 /* BackgroundImage.swift in Sources */,

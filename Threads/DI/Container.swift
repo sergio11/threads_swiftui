@@ -50,6 +50,10 @@ extension Container {
     var fetchThreadsByUserUseCase: Factory<FetchThreadsByUserUseCase> {
         self { FetchThreadsByUserUseCase(threadsRepository: self.threadsRepository()) }
     }
+    
+    var likeThreadUseCase: Factory<LikeThreadUseCase> {
+        self { LikeThreadUseCase(authRepository: self.authenticationRepository(), threadRepository: self.threadsRepository()) }
+    }
 }
 
 
