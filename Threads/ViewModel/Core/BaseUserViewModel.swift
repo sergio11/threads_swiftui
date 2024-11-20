@@ -12,6 +12,7 @@ class BaseUserViewModel: BaseViewModel {
     
     @Injected(\.getCurrentUserUseCase) private var getCurrentUserUseCase: GetCurrentUserUseCase
     
+    @Published var authUserId: String = ""
     @Published var authUserFullName: String = ""
     @Published var authUserUsername: String = ""
     @Published var authUserProfileImageUrl: String = ""
@@ -28,6 +29,7 @@ class BaseUserViewModel: BaseViewModel {
     }
 
     internal func onCurrentUserLoaded(user: UserBO) {
+        self.authUserId = user.id
         self.authUserFullName = user.fullname
         self.authUserUsername = user.username
         self.authUserProfileImageUrl = user.profileImageUrl ?? ""
