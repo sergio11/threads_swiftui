@@ -35,9 +35,11 @@ struct ProfileView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewModel.signOut()
+                        viewModel.showSignOutAlert.toggle()
                     } label: {
-                        Image(systemName: "line.3.horizontal")
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                            .foregroundColor(.black)
+                            .imageScale(.small)
                     }
                 }
             }
@@ -46,6 +48,16 @@ struct ProfileView: View {
             .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
             .onAppear {
                 loadData()
+            }
+            .alert(isPresented: $viewModel.showSignOutAlert) {
+                Alert(
+                    title: Text("Are you sure?"),
+                    message: Text("Do you really want to sign out?"),
+                    primaryButton: .destructive(Text("Sign Out")) {
+                        viewModel.signOut()
+                    },
+                    secondaryButton: .cancel()
+                )
             }
         }
     }
