@@ -13,7 +13,12 @@ struct FeedView: View {
     
     var body: some View {
         NavigationStack {
-            FeedViewContent(threads: viewModel.threads)
+            FeedViewContent(
+                threads: viewModel.threads,
+                onLikeTapped: {
+                    viewModel.likeThread(threadId: $0)
+                }
+            )
             .refreshable {
                 viewModel.fetchThreads()
             }
@@ -40,14 +45,17 @@ struct FeedView: View {
 private struct FeedViewContent: View {
     
     var threads: [ThreadBO]
+    var onLikeTapped: ((String) -> Void)
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVStack {
                 ForEach(threads) { thread in
-                    NavigationLink(destination: ProfileView(user: thread.user)) {
-                        ThreadCell(thread: thread)
-                    }
+                    ThreadCell(thread: thread, onProfileImageTapped: {
+                        AnyView(ProfileView(user: thread.user))
+                    }, onLikeTapped: {
+                        onLikeTapped(thread.id)
+                    })
                 }
             }
         }
