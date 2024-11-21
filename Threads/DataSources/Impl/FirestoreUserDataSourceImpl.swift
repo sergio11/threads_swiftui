@@ -131,4 +131,64 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             .getDocuments()
         return querySnapshot.isEmpty
     }
+    
+    /// Allows a user to follow or unfollow another user asynchronously.
+    /// - Parameters:
+    ///   - authUserId: The ID of the user performing the follow/unfollow action.
+    ///   - targetUserId: The ID of the user to be followed or unfollowed.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
+    func followUser(authUserId: String, targetUserId: String) async throws {
+        let firestore = Firestore.firestore()
+        
+        // Fetch the user and target user documents from Firestore
+        let authUserRef = firestore.collection(usersCollection).document(authUserId)
+        let targetUserRef = firestore.collection(usersCollection).document(targetUserId)
+        
+        do {
+            // Fetch current user data
+            let authUserSnapshot = try await authUserRef.getDocument()
+            guard var authUser = try? authUserSnapshot.data(as: UserDTO.self) else {
+                throw UserDataSourceError.userNotFound
+            }
+            
+            // Fetch target user data
+            let targetUserSnapshot = try await targetUserRef.getDocument()
+            guard var targetUser = try? targetUserSnapshot.data(as: UserDTO.self) else {
+                throw UserDataSourceError.userNotFound
+            }
+            
+            // Check if the user is already following the target user
+            let isCurrentlyFollowing = authUser.following.contains(targetUserId)
+            
+            if isCurrentlyFollowing {
+                // Unfollow the user
+                authUser.following.removeAll { $0 == targetUserId }
+                targetUser.followers.removeAll { $0 == authUserId }
+                authUser.followingCount -= 1
+                targetUser.followersCount -= 1
+            } else {
+                // Follow the user
+                authUser.following.append(targetUserId)
+                targetUser.followers.append(authUserId)
+                authUser.followingCount += 1
+                targetUser.followersCount += 1
+            }
+            
+            
+            // Update the thread document in Firestore
+            try await authUserRef.updateData([
+                "following": authUser.following,
+                "followingCount": authUser.followingCount
+            ])
+            
+            try await targetUserRef.updateData([
+                "followers": targetUser.followers,
+                "followersCount": targetUser.followersCount
+            ])
+            
+        } catch {
+            print("Error following/unfollowing user: \(error.localizedDescription)")
+            throw UserDataSourceError.saveFailed
+        }
+    }
 }
