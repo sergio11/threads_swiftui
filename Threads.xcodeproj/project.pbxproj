@@ -98,6 +98,7 @@
 		3D8BFBC92CED1AE5000A386F /* CreateUserBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BFBC82CED1AE5000A386F /* CreateUserBO.swift */; };
 		3D8BFBCB2CED1AF3000A386F /* UpdateUserBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */; };
 		3DA3D8472CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */; };
+		3DA3D84B2CEFB5C800E00176 /* ShareActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D84A2CEFB5C800E00176 /* ShareActivityView.swift */; };
 		3DB436952C62A5E200646502 /* UserContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB436942C62A5E200646502 /* UserContentListViewModel.swift */; };
 		3DB436972C62A86A00646502 /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB436962C62A86A00646502 /* Timestamp.swift */; };
 		3DF5D4CF2C46FA3E00103F4B /* ThreadsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5D4CE2C46FA3E00103F4B /* ThreadsApp.swift */; };
@@ -191,6 +192,7 @@
 		3D8BFBC82CED1AE5000A386F /* CreateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserBO.swift; sourceTree = "<group>"; };
 		3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserBO.swift; sourceTree = "<group>"; };
 		3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseThreadsActionsViewModel.swift; sourceTree = "<group>"; };
+		3DA3D84A2CEFB5C800E00176 /* ShareActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareActivityView.swift; sourceTree = "<group>"; };
 		3DB436942C62A5E200646502 /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
 		3DB436962C62A86A00646502 /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		3DF5D4CB2C46FA3E00103F4B /* Threads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Threads.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -471,6 +473,7 @@
 				3D70E0122CDF6F70009EE223 /* BackgroundImage.swift */,
 				3D60DCEE2CDF86AA009BCE1A /* DeveloperCreditView.swift */,
 				3D34786B2CDF937D00BC2782 /* SnackbarView.swift */,
+				3DA3D84A2CEFB5C800E00176 /* ShareActivityView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				3D8BFBCB2CED1AF3000A386F /* UpdateUserBO.swift in Sources */,
 				3D83F66E2CEE6350000C30AC /* ForgotPasswordView.swift in Sources */,
 				3D3BF4112C49842B0050BB92 /* UserCell.swift in Sources */,
+				3DA3D84B2CEFB5C800E00176 /* ShareActivityView.swift in Sources */,
 				3D312D582C5C1478008F0B8D /* FeedViewModel.swift in Sources */,
 				3D6572642CDE92FA0064A206 /* SignOutUseCase.swift in Sources */,
 				3D4413362C4C3FFE00D71E39 /* ExploreViewModel.swift in Sources */,
