@@ -17,6 +17,9 @@ struct FeedView: View {
                 threads: viewModel.threads,
                 onLikeTapped: {
                     viewModel.likeThread(threadId: $0)
+                },
+                onSharedTapped: {
+                    viewModel.onShareTapped(thread: $0)
                 }
             )
             .refreshable {
@@ -38,6 +41,11 @@ struct FeedView: View {
                 viewModel.fetchThreads()
             }
             .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+            // Show the share sheet as a modal when the user taps the share button
+            .sheet(isPresented: $viewModel.showShareSheet) {
+                // Display the share sheet with the content to share
+                ShareActivityView(activityItems: [viewModel.shareContent])
+            }
         }
     }
 }
@@ -46,6 +54,7 @@ private struct FeedViewContent: View {
     
     var threads: [ThreadBO]
     var onLikeTapped: ((String) -> Void)
+    var onSharedTapped: ((ThreadBO) -> Void)
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -55,6 +64,8 @@ private struct FeedViewContent: View {
                         AnyView(ProfileView(user: thread.user))
                     }, onLikeTapped: {
                         onLikeTapped(thread.id)
+                    }, onShareTapped: {
+                        onSharedTapped(thread)
                     })
                 }
             }

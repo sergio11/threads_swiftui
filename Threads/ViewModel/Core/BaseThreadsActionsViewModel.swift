@@ -14,6 +14,13 @@ class BaseThreadsActionsViewModel: BaseViewModel {
     @Injected(\.likeThreadUseCase) private var likeThreadUseCase: LikeThreadUseCase
     
     @Published var threads = [ThreadBO]()
+    @Published var showShareSheet: Bool = false
+    @Published var shareContent: String = ""
+    
+    func onShareTapped(thread: ThreadBO) {
+        self.shareContent = "Check out this thread: \(thread.caption)"
+        self.showShareSheet.toggle()
+    }
     
     func likeThread(threadId: String) {
         executeAsyncTask({
