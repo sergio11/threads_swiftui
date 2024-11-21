@@ -67,6 +67,8 @@ struct UserContentListView: View {
                     ForEach(viewModel.threads) { thread in
                         ThreadCell(thread: thread, onLikeTapped: {
                             viewModel.likeThread(threadId: thread.threadId)
+                        }, onShareTapped: {
+                            viewModel.onShareTapped(thread: thread)
                         })
                     }
                 }
@@ -76,6 +78,11 @@ struct UserContentListView: View {
         .onAppear {
             viewModel.loadUser(user: user)
             viewModel.fetchUserThreads()
+        }
+        // Show the share sheet as a modal when the user taps the share button
+        .sheet(isPresented: $viewModel.showShareSheet) {
+            // Display the share sheet with the content to share
+            ShareActivityView(activityItems: [viewModel.shareContent])
         }
     }
     
