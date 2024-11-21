@@ -113,6 +113,10 @@ extension Container {
     var getSuggestionsUseCase: Factory<GetSuggestionsUseCase> {
         self { GetSuggestionsUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
     }
+    
+    var followUserUseCase: Factory<FollowUserUseCase> {
+        self { FollowUserUseCase(authRepository: self.authenticationRepository(), userProfileRepository: self.userProfileRepository()) }
+    }
 }
 
 extension Container {

@@ -7,6 +7,35 @@
 
 import Foundation
 
+/// Enum defining the possible errors that can occur within the UserProfileRepository.
+enum UserProfileRepositoryError: Error {
+    
+    /// Error when an operation related to storage (e.g., file upload) fails.
+    case storageError(message: String)
+    
+    /// Error when the user profile update fails.
+    case updateProfileFailed(message: String)
+    
+    /// Error when the user creation fails.
+    case createUserFailed(message: String)
+    
+    /// Error when following or unfollowing a user fails.
+    case followUserFailed(message: String)
+    
+    /// Error when retrieving user data fails.
+    case getUserFailed(message: String)
+    
+    /// Error when fetching user suggestions fails.
+    case getSuggestionsFailed(message: String)
+    
+    /// Error when checking username availability fails.
+    case checkUsernameAvailabilityFailed(message: String)
+    
+    /// Error when there is a failure in user-related operations that doesn't fit other categories.
+    case generic(message: String)
+}
+
+
 /// A repository for user profile-related operations.
 protocol UserProfileRepository {
     
@@ -42,4 +71,11 @@ protocol UserProfileRepository {
     /// - Returns: An array of `User` objects representing user suggestions.
     /// - Throws: An error if suggestion retrieval fails.
     func getSuggestions(authUserId: String) async throws -> [UserBO]
+    
+    /// Allows a user to follow or unfollow another user asynchronously.
+    /// - Parameters:
+    ///   - authUserId: The ID of the user performing the follow/unfollow action.
+    ///   - targetUserId: The ID of the user to be followed or unfollowed.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
+    func followUser(authUserId: String, targetUserId: String) async throws
 }

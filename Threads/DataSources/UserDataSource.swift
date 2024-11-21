@@ -54,4 +54,11 @@ protocol UserDataSource {
     /// - Returns: A Boolean value indicating whether the username is available.
     /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func checkUsernameAvailability(username: String) async throws -> Bool
+    
+    /// Allows a user to follow or unfollow another user asynchronously.
+    /// - Parameters:
+    ///   - authUserId: The ID of the user performing the follow/unfollow action.
+    ///   - targetUserId: The ID of the user to be followed or unfollowed.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
+    func followUser(authUserId: String, targetUserId: String) async throws
 }
