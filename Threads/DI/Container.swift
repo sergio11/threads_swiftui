@@ -32,7 +32,7 @@ extension Container {
     
     var threadsRepository: Factory<ThreadsRepository> {
         self { ThreadsRepositoryImpl(
-            threadsDataSource: self.threadsDataSource(), threadMapper: self.threadMapper(), createThreadMapper: self.createThreadMapper(), userDataSource: self.userDataSource()) }.singleton
+            threadsDataSource: self.threadsDataSource(), threadMapper: self.threadMapper(), createThreadMapper: self.createThreadMapper(), userDataSource: self.userDataSource(), authenticationRepository: self.authenticationRepository()) }.singleton
     }
     
     var fetchThreadsUseCase: Factory<FetchThreadsUseCase> {
