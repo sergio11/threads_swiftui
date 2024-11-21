@@ -15,5 +15,6 @@ struct ThreadBO: Identifiable, Codable {
     let caption: String
     let timestamp: Date
     var likes: Int
+    var isLikedByAuthUser: Bool = false
     let user: UserBO?
 }

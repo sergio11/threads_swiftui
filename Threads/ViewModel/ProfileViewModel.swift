@@ -12,7 +12,7 @@ import Combine
 class ProfileViewModel: BaseUserViewModel {
     
     @Injected(\.signOutUseCase) private var signOutUseCase: SignOutUseCase
-    @Injected(\.eventBus) internal var appEventBus: EventBus<AppEvent>
+    @Injected(\.eventBus) private var appEventBus: EventBus<AppEvent>
     
     @Published var showEditProfile = false
     @Published var isAuthUser = false
@@ -31,6 +31,8 @@ class ProfileViewModel: BaseUserViewModel {
             self.onSignOutCompleted()
         }
     }
+    
+    
     
     override func onCurrentUserLoaded(user: UserBO) {
         super.onCurrentUserLoaded(user: user)

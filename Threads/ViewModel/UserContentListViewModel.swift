@@ -10,11 +10,10 @@ import Factory
 import Combine
 
 @MainActor
-class UserContentListViewModel: BaseViewModel {
+class UserContentListViewModel: BaseThreadsActionsViewModel {
     
     @Injected(\.fetchThreadsByUserUseCase) private var fetchThreadsByUserUseCase: FetchThreadsByUserUseCase
     
-    @Published var threads = [ThreadBO]()
     @Published var selectedFilter: ProfileThreadFilter = .threads
     
     private var user: UserBO? = nil

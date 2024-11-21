@@ -97,6 +97,7 @@
 		3D885E0A2C4D017700A3BE3A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3D885E092C4D017700A3BE3A /* Kingfisher */; };
 		3D8BFBC92CED1AE5000A386F /* CreateUserBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BFBC82CED1AE5000A386F /* CreateUserBO.swift */; };
 		3D8BFBCB2CED1AF3000A386F /* UpdateUserBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */; };
+		3DA3D8472CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */; };
 		3DB436952C62A5E200646502 /* UserContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB436942C62A5E200646502 /* UserContentListViewModel.swift */; };
 		3DB436972C62A86A00646502 /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB436962C62A86A00646502 /* Timestamp.swift */; };
 		3DF5D4CF2C46FA3E00103F4B /* ThreadsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5D4CE2C46FA3E00103F4B /* ThreadsApp.swift */; };
@@ -189,6 +190,7 @@
 		3D885E042C4CF83600A3BE3A /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		3D8BFBC82CED1AE5000A386F /* CreateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserBO.swift; sourceTree = "<group>"; };
 		3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserBO.swift; sourceTree = "<group>"; };
+		3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseThreadsActionsViewModel.swift; sourceTree = "<group>"; };
 		3DB436942C62A5E200646502 /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
 		3DB436962C62A86A00646502 /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		3DF5D4CB2C46FA3E00103F4B /* Threads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Threads.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +285,7 @@
 				3D6572702CDE95310064A206 /* EventBus.swift */,
 				3D70DFF72CDF6565009EE223 /* BaseViewModel.swift */,
 				3D70DFF92CDF658C009EE223 /* BaseUserViewModel.swift */,
+				3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 				3D6572872CDEA77D0064A206 /* CreateThreadMapper.swift in Sources */,
 				3D3BF4182C498CDF0050BB92 /* EditProfileView.swift in Sources */,
 				3D6572442CDE885F0064A206 /* UserDataSource.swift in Sources */,
+				3DA3D8472CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift in Sources */,
 				3D65723B2CDE87180064A206 /* UpdateUserDTO.swift in Sources */,
 				3D6572852CDEA64B0064A206 /* CreateThreadBO.swift in Sources */,
 				3D6572712CDE95310064A206 /* EventBus.swift in Sources */,

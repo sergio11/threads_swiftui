@@ -10,11 +10,9 @@ import Combine
 import Factory
 
 @MainActor
-class FeedViewModel: BaseViewModel {
+class FeedViewModel: BaseThreadsActionsViewModel {
     
     @Injected(\.fetchThreadsUseCase) private var fetchThreadsUseCase: FetchThreadsUseCase
-    
-    @Published var threads = [ThreadBO]()
     
     func fetchThreads() {
         executeAsyncTask({

@@ -65,7 +65,9 @@ struct UserContentListView: View {
             } else {
                 LazyVStack {
                     ForEach(viewModel.threads) { thread in
-                        ThreadCell(thread: thread)
+                        ThreadCell(thread: thread, onLikeTapped: {
+                            viewModel.likeThread(threadId: thread.threadId)
+                        })
                     }
                 }
             }

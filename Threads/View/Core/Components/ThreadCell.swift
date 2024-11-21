@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ThreadCell: View {
     let thread: ThreadBO
+    var onProfileImageTapped: (() -> AnyView)?
     var onLikeTapped: (() -> Void)?
     var onCommentTapped: (() -> Void)?
     var onShareTapped: (() -> Void)?
@@ -17,11 +18,21 @@ struct ThreadCell: View {
     var body: some View {
         VStack(spacing: 12) {
             HStack(alignment: .top, spacing: 12) {
-                CircularProfileImageView(profileImageUrl: thread.user?.profileImageUrl, size: .small)
-                    .shadow(radius: 1)
-
+            
+                if let destination = onProfileImageTapped {
+                    NavigationLink(destination: destination()) {
+                        // Profile image and user details
+                        CircularProfileImageView(profileImageUrl: thread.user?.profileImageUrl, size: .small)
+                            .shadow(radius: 1)
+                    }
+                } else {
+                    CircularProfileImageView(profileImageUrl: thread.user?.profileImageUrl, size: .small)
+                        .shadow(radius: 1)
+                }
+                
                 VStack(alignment: .leading, spacing: 6) {
                     HStack {
+                        // Username and timestamp
                         Text(thread.user?.username ?? "Unknown User")
                             .font(.subheadline)
                             .fontWeight(.semibold)
@@ -34,6 +45,7 @@ struct ThreadCell: View {
                             .foregroundColor(Color.gray)
                     }
                     
+                    // Thread caption
                     Text(thread.caption)
                         .font(.subheadline)
                         .foregroundColor(.primary)
@@ -41,15 +53,26 @@ struct ThreadCell: View {
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 8)
 
+                    // Actions (like, comment, repost, share)
                     HStack(spacing: 20) {
                         Button(action: {
                             onLikeTapped?()
                         }) {
-                            Image(systemName: "heart")
-                                .foregroundColor(.black)
-                                .font(.body)
+                            HStack {
+                                Image(systemName: thread.isLikedByAuthUser ? "heart.fill" : "heart")
+                                    .foregroundColor(.red)
+                                    .font(.body)
+                                
+                                // Display number of likes
+                                if thread.likes > 0 {
+                                    Text("\(thread.likes)")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+                            }
                         }
 
+                        // Comment button
                         Button(action: {
                             onCommentTapped?()
                         }) {
@@ -58,6 +81,7 @@ struct ThreadCell: View {
                                 .font(.body)
                         }
 
+                        // Repost button
                         Button(action: {
                             onRepostTapped?()
                         }) {
@@ -66,6 +90,7 @@ struct ThreadCell: View {
                                 .font(.body)
                         }
 
+                        // Share button
                         Button(action: {
                             onShareTapped?()
                         }) {
