@@ -99,6 +99,7 @@
 		3D8BFBCB2CED1AF3000A386F /* UpdateUserBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */; };
 		3DA3D8472CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */; };
 		3DA3D84B2CEFB5C800E00176 /* ShareActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D84A2CEFB5C800E00176 /* ShareActivityView.swift */; };
+		3DA3D84D2CEFCDC900E00176 /* FollowUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D84C2CEFCDC900E00176 /* FollowUserUseCase.swift */; };
 		3DB436952C62A5E200646502 /* UserContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB436942C62A5E200646502 /* UserContentListViewModel.swift */; };
 		3DB436972C62A86A00646502 /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB436962C62A86A00646502 /* Timestamp.swift */; };
 		3DF5D4CF2C46FA3E00103F4B /* ThreadsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5D4CE2C46FA3E00103F4B /* ThreadsApp.swift */; };
@@ -193,6 +194,7 @@
 		3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserBO.swift; sourceTree = "<group>"; };
 		3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseThreadsActionsViewModel.swift; sourceTree = "<group>"; };
 		3DA3D84A2CEFB5C800E00176 /* ShareActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareActivityView.swift; sourceTree = "<group>"; };
+		3DA3D84C2CEFCDC900E00176 /* FollowUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUserUseCase.swift; sourceTree = "<group>"; };
 		3DB436942C62A5E200646502 /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
 		3DB436962C62A86A00646502 /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		3DF5D4CB2C46FA3E00103F4B /* Threads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Threads.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -441,6 +443,7 @@
 				3D151F922CEBD70F009FD4A0 /* FetchThreadsByUserUseCase.swift */,
 				3D83F6712CEE65C3000C30AC /* ForgotPasswordUseCase.swift */,
 				3D83F6732CEE7719000C30AC /* LikeThreadUseCase.swift */,
+				3DA3D84C2CEFCDC900E00176 /* FollowUserUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				3D34786C2CDF937D00BC2782 /* SnackbarView.swift in Sources */,
 				3D151F932CEBD70F009FD4A0 /* FetchThreadsByUserUseCase.swift in Sources */,
 				3D66849D2CEBA8D1009B1627 /* HomeViewModel.swift in Sources */,
+				3DA3D84D2CEFCDC900E00176 /* FollowUserUseCase.swift in Sources */,
 				3D83F6702CEE6366000C30AC /* ForgotPasswordViewModel.swift in Sources */,
 				3D83F6722CEE65C3000C30AC /* ForgotPasswordUseCase.swift in Sources */,
 				3D70DFF82CDF6565009EE223 /* BaseViewModel.swift in Sources */,

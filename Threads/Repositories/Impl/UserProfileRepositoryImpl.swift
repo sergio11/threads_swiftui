@@ -57,9 +57,8 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             // Step 3: Map the updated user data to UserBO
             return userMapper.map(userData)
         } catch {
-            // Handle and print error
-            print(error.localizedDescription)
-            throw error  // Re-throw the error
+            print("Error in updateUser: \(error.localizedDescription)")
+            throw UserProfileRepositoryError.updateProfileFailed(message: error.localizedDescription)
         }
     }
     
@@ -87,9 +86,8 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             // Step 2: Map the created user data to UserBO
             return userMapper.map(userData)
         } catch {
-            // Handle and print error
-            print(error.localizedDescription)
-            throw error  // Re-throw the error
+            print("Error in createUser: \(error.localizedDescription)")
+            throw UserProfileRepositoryError.createUserFailed(message: error.localizedDescription)
         }
     }
     
@@ -102,8 +100,8 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             let userData = try await userDataSource.getUserById(userId: userId)
             return userMapper.map(userData)
         } catch {
-            print(error.localizedDescription)
-            throw error
+            print("Error in getUser: \(error.localizedDescription)")
+            throw UserProfileRepositoryError.getUserFailed(message: error.localizedDescription)
         }
     }
     
@@ -117,8 +115,8 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             let users = userData.map { userMapper.map($0) }
             return users
         } catch {
-            print(error.localizedDescription)
-            throw error
+            print("Error in getSuggestions: \(error.localizedDescription)")
+            throw UserProfileRepositoryError.getSuggestionsFailed(message: error.localizedDescription)
         }
     }
     
@@ -130,8 +128,23 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
         do {
             return try await userDataSource.checkUsernameAvailability(username: username)
         } catch {
-            print(error.localizedDescription)
-            throw error
+            print("Error in checkUsernameAvailability: \(error.localizedDescription)")
+            throw UserProfileRepositoryError.checkUsernameAvailabilityFailed(message: error.localizedDescription)
+        }
+    }
+    
+    /// Allows a user to follow or unfollow another user asynchronously.
+    /// - Parameters:
+    ///   - authUserId: The ID of the user performing the follow/unfollow action.
+    ///   - targetUserId: The ID of the user to be followed or unfollowed.
+    /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
+    func followUser(authUserId: String, targetUserId: String) async throws {
+        do {
+            try await userDataSource.followUser(authUserId: authUserId, targetUserId: targetUserId)
+        } catch {
+            print("Error in followUser: \(error.localizedDescription)")
+            throw UserProfileRepositoryError.followUserFailed(message: error.localizedDescription)
         }
     }
 }
+
