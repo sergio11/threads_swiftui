@@ -12,28 +12,22 @@ import Combine
 @MainActor
 class ExploreViewModel: BaseUserViewModel {
     
+    @Injected(\.searchUsersUseCase) private var searchUsersUseCase: SearchUsersUseCase
     @Injected(\.getSuggestionsUseCase) private var getSuggestionsUseCase: GetSuggestionsUseCase
     
     @Published var searchText = "" {
         didSet {
-            if(!searchText.isEmpty) {
-                search()
-            }
+            fetchData()
         }
     }
     @Published var users = [UserBO]()
     
-    func search() {
-        executeAsyncTask({
-            return try await self.getSuggestionsUseCase.execute()
-        }) { [weak self] (result: Result<[UserBO], Error>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let users):
-                self.onGetSuggestionsCompleted(users: users)
-            case .failure:
-                self.onGetSuggestionsFailed()
-            }
+    
+    func fetchData() {
+        if(!searchText.isEmpty) {
+            searchUsers()
+        } else {
+            fetchSuggestions()
         }
     }
     
@@ -41,12 +35,40 @@ class ExploreViewModel: BaseUserViewModel {
         return user.followers.contains(authUserId)
     }
     
-    private func onGetSuggestionsCompleted(users: [UserBO]) {
+    private func fetchSuggestions() {
+        executeAsyncTask({
+            return try await self.getSuggestionsUseCase.execute()
+        }) { [weak self] (result: Result<[UserBO], Error>) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let users):
+                self.onFetchDataCompleted(users: users)
+            case .failure:
+                self.onFetchDataFailed()
+            }
+        }
+    }
+    
+    private func searchUsers() {
+        executeAsyncTask({
+            return try await self.searchUsersUseCase.execute(params: SearchUsersParams(term: self.searchText))
+        }) { [weak self] (result: Result<[UserBO], Error>) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let users):
+                self.onFetchDataCompleted(users: users)
+            case .failure:
+                self.onFetchDataFailed()
+            }
+        }
+    }
+    
+    private func onFetchDataCompleted(users: [UserBO]) {
         self.isLoading = false
         self.users = users
     }
 
-    private func onGetSuggestionsFailed() {
+    private func onFetchDataFailed() {
         self.isLoading = false
     }
 }

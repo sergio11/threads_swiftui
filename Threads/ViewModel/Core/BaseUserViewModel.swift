@@ -10,6 +10,7 @@ import Factory
 
 class BaseUserViewModel: BaseViewModel {
     
+    @Injected(\.followUserUseCase) private var followUserUseCase: FollowUserUseCase
     @Injected(\.getCurrentUserUseCase) private var getCurrentUserUseCase: GetCurrentUserUseCase
     
     @Published var authUserId: String = ""
