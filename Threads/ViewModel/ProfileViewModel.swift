@@ -11,7 +11,7 @@ import Combine
 
 class ProfileViewModel: BaseUserViewModel {
     
-    
+    @Injected(\.followUserUseCase) private var followUserUseCase: FollowUserUseCase
     @Injected(\.signOutUseCase) private var signOutUseCase: SignOutUseCase
     @Injected(\.eventBus) private var appEventBus: EventBus<AppEvent>
     
@@ -33,6 +33,19 @@ class ProfileViewModel: BaseUserViewModel {
         }
     }
     
+    func followUser() {
+        if let userId = user?.id {
+            executeAsyncTask {
+                return try await self.followUserUseCase.execute(params: FollowUserParams(userId: userId))
+            } completion: { [weak self] result in
+                guard let self = self else { return }
+                if case .success(_) = result {
+                    self.onFollowUserCompleted()
+                }
+            }
+        }
+    }
+    
     override func onCurrentUserLoaded(user: UserBO) {
         super.onCurrentUserLoaded(user: user)
         self.user = user
@@ -42,6 +55,19 @@ class ProfileViewModel: BaseUserViewModel {
     private func onSignOutCompleted() {
         self.isLoading = false
         self.appEventBus.publish(event: .loggedOut)
+    }
+    
+    private func onFollowUserCompleted() {
+        if var user = user {
+            if user.isFollowedByAuthUser {
+                user.isFollowedByAuthUser = false
+                user.followers.removeAll(where: { $0 == authUserId })
+            } else {
+                user.isFollowedByAuthUser = true
+                user.followers.append(authUserId)
+            }
+            self.user = user
+        }
     }
 }
 
