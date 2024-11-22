@@ -70,8 +70,9 @@ struct ExploreView: View {
         // User cell that shows user info and follow status
         UserCell(
             user: user,
-            isFollowing: viewModel.isUserFollowing(user: user),
-            onFollowTapped: {},
+            onFollowTapped: {
+                viewModel.followUser(userId: user.id)
+            },
             onProfileImageTapped: {
                 AnyView(ProfileView(user: user))
             }
