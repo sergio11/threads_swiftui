@@ -10,7 +10,6 @@ import SwiftUI
 struct UserCell: View {
     
     let user: UserBO
-    let isFollowing: Bool
     var onFollowTapped: (() -> Void)?
     var onProfileImageTapped: (() -> AnyView)?
     
@@ -44,17 +43,17 @@ struct UserCell: View {
             Button(action: {
                 onFollowTapped?()
             }) {
-                Text(isFollowing ? "Following" : "Follow")
+                Text(user.isFollowedByAuthUser ? "Following" : "Follow")
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(isFollowing ? .white : .blue)
+                    .foregroundColor(user.isFollowedByAuthUser ? .white : .blue)
                     .padding(.vertical, 8)
                     .frame(width: 80)
-                    .background(isFollowing ? Color.blue : Color.white)
+                    .background(user.isFollowedByAuthUser ? Color.blue : Color.white)
                     .cornerRadius(8)
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(isFollowing ? Color.blue : Color(.systemGray4), lineWidth: 1)
+                            .stroke(user.isFollowedByAuthUser ? Color.blue : Color(.systemGray4), lineWidth: 1)
                     }
             }
             .padding(.trailing)
@@ -77,7 +76,7 @@ private struct ProfileImageView: View {
 
 struct UserCell_Previews: PreviewProvider {
     static var previews: some View {
-        UserCell(user: dev.user, isFollowing: false)
+        UserCell(user: dev.user)
             .previewLayout(.sizeThatFits)
             .padding()
     }

@@ -22,7 +22,10 @@ struct ProfileView: View {
             ProfileViewContent(
                 user: viewModel.user,
                 isAuthUser: viewModel.isAuthUser,
-                showEditProfile: $viewModel.showEditProfile
+                showEditProfile: $viewModel.showEditProfile,
+                onFollowUserTapped: {
+                    viewModel.followUser()
+                }
             )
             .refreshable {
                 loadData()
@@ -77,6 +80,8 @@ private struct ProfileViewContent: View {
     var isAuthUser: Bool
     @Binding var showEditProfile: Bool
     
+    var onFollowUserTapped: (() -> Void)?
+    
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 20) {
@@ -99,9 +104,9 @@ private struct ProfileViewContent: View {
                     }
                 } else {
                     Button {
-                        
+                        onFollowUserTapped?()
                     } label: {
-                        Text("Follow")
+                        Text(user?.isFollowedByAuthUser ?? false ? "Following": "Follow")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
