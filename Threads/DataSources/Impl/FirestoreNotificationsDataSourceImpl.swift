@@ -15,31 +15,6 @@ struct FirestoreNotificationsDataSourceImpl: NotificationsDataSource {
     private let notificationsCollection = "threads_notifications"
     private let db = Firestore.firestore()
 
-    /// Fetches all notifications from Firestore.
-    /// - Returns: An array of `NotificationDTO` objects.
-    func fetchNotifications() async throws -> [NotificationDTO] {
-        do {
-            let snapshot = try await db
-                .collection(notificationsCollection)
-                .order(by: "timestamp", descending: true)
-                .getDocuments()
-            
-            // Map Firestore documents to `NotificationDTO`
-            let notifications = snapshot.documents.compactMap { document in
-                try? document.data(as: NotificationDTO.self)
-            }
-            
-            if notifications.isEmpty {
-                throw NotificationsDataSourceError.fetchNotificationsFailed
-            }
-            
-            return notifications
-        } catch {
-            print("Error fetching notifications: \(error.localizedDescription)")
-            throw NotificationsDataSourceError.fetchNotificationsFailed
-        }
-    }
-
     /// Fetches notifications for a specific user.
     /// - Parameter uid: The user ID whose notifications are to be fetched.
     /// - Returns: An array of `NotificationDTO` objects, sorted by timestamp.

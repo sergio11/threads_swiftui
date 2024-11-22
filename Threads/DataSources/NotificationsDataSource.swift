@@ -11,8 +11,6 @@ import Foundation
 enum NotificationsDataSourceError: Error {
     /// Error indicating that the notification was not found.
     case notificationNotFound
-    /// Error indicating that fetching notifications failed.
-    case fetchNotificationsFailed
     /// Error indicating that fetching notifications for a specific user failed.
     case fetchUserNotificationsFailed
     /// Error indicating that the notification mark-as-read operation failed.
@@ -23,12 +21,6 @@ enum NotificationsDataSourceError: Error {
 
 // Protocol defining data source operations for notifications.
 protocol NotificationsDataSource {
-    
-    
-    /// Fetches all notifications from the database.
-    /// - Returns: An array of `NotificationDTO` objects.
-    /// - Throws: An error if fetching fails.
-    func fetchNotifications() async throws -> [NotificationDTO]
     
     /// Fetches notifications for a specific user.
     /// - Parameter uid: The user ID whose notifications are to be fetched.
