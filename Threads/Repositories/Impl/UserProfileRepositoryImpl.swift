@@ -8,21 +8,40 @@
 import Foundation
 
 /// Class responsible for managing user profile-related operations.
+///
+/// The `UserProfileRepositoryImpl` class implements the `UserProfileRepository` protocol, providing methods
+/// to handle operations such as updating user profiles, creating new users, retrieving user information,
+/// checking username availability, fetching user suggestions, and managing follow/unfollow actions.
+///
+/// This implementation uses multiple dependencies:
+/// - `UserDataSource`: Handles interaction with the user data storage system (e.g., Firestore).
+/// - `StorageFilesDataSource`: Manages file storage operations such as uploading profile pictures.
+/// - `UserMapper`: Converts between data transfer objects (DTO) and business objects (BO) for users.
+/// - `AuthenticationRepository`: Handles authentication-related operations.
 internal class UserProfileRepositoryImpl: UserProfileRepository {
     
     private let userDataSource: UserDataSource
     private let storageFilesDataSource: StorageFilesDataSource
     private let userMapper: UserMapper
+    private let authenticationRepository: AuthenticationRepository
     
     /// Initializes an instance of `UserProfileRepositoryImpl`.
+        ///
         /// - Parameters:
         ///   - userDataSource: The data source for user-related operations.
         ///   - storageFilesDataSource: The data source for file storage operations.
         ///   - userMapper: The mapper used to map user-related data objects.
-    init(userDataSource: UserDataSource, storageFilesDataSource: StorageFilesDataSource, userMapper: UserMapper) {
+        ///   - authenticationRepository: The repository for handling authentication operations.
+    init(
+        userDataSource: UserDataSource,
+        storageFilesDataSource: StorageFilesDataSource,
+        userMapper: UserMapper,
+        authenticationRepository: AuthenticationRepository
+    ) {
         self.userDataSource = userDataSource
         self.storageFilesDataSource = storageFilesDataSource
         self.userMapper = userMapper
+        self.authenticationRepository = authenticationRepository
     }
     
     /// Updates the user profile with the provided information.
@@ -55,7 +74,7 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             ))
             
             // Step 3: Map the updated user data to UserBO
-            return userMapper.map(userData)
+            return userMapper.map(UserDataMapper(userDTO: userData, authUserId: data.userId))
         } catch {
             print("Error in updateUser: \(error.localizedDescription)")
             throw UserProfileRepositoryError.updateProfileFailed(message: error.localizedDescription)
@@ -84,7 +103,7 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             ))
             
             // Step 2: Map the created user data to UserBO
-            return userMapper.map(userData)
+            return userMapper.map(UserDataMapper(userDTO: userData, authUserId: data.userId))
         } catch {
             print("Error in createUser: \(error.localizedDescription)")
             throw UserProfileRepositoryError.createUserFailed(message: error.localizedDescription)
@@ -97,8 +116,11 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
     /// - Throws: An error if the user data cannot be retrieved.
     func getUser(userId: String) async throws -> UserBO {
         do {
+            guard let authUserId = try await authenticationRepository.getCurrentUserId() else {
+                throw UserProfileRepositoryError.generic(message: "Auth user id not found")
+            }
             let userData = try await userDataSource.getUserById(userId: userId)
-            return userMapper.map(userData)
+            return userMapper.map(UserDataMapper(userDTO: userData, authUserId: authUserId))
         } catch {
             print("Error in getUser: \(error.localizedDescription)")
             throw UserProfileRepositoryError.getUserFailed(message: error.localizedDescription)
@@ -112,7 +134,7 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
     func getSuggestions(authUserId: String) async throws -> [UserBO] {
         do {
             let userData = try await userDataSource.getSuggestions(authUserId: authUserId)
-            let users = userData.map { userMapper.map($0) }
+            let users = userData.map { userMapper.map(UserDataMapper(userDTO: $0, authUserId: authUserId)) }
             return users
         } catch {
             print("Error in getSuggestions: \(error.localizedDescription)")
@@ -144,6 +166,24 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
         } catch {
             print("Error in followUser: \(error.localizedDescription)")
             throw UserProfileRepositoryError.followUserFailed(message: error.localizedDescription)
+        }
+    }
+    
+    /// Searches for users based on a provided search term asynchronously.
+    ///
+    /// - Parameter searchTerm: A string representing the term to search for (e.g., username, fullname).
+    /// - Returns: An array of `UserBO` objects that match the search criteria.
+    /// - Throws: An error if the search operation fails.
+    func searchUsers(searchTerm: String) async throws -> [UserBO] {
+        do {
+            guard let authUserId = try await authenticationRepository.getCurrentUserId() else {
+                throw UserProfileRepositoryError.generic(message: "Auth user id not found")
+            }
+            let result = try await userDataSource.searchUsers(searchTerm: searchTerm)
+            let users = result.map { userMapper.map(UserDataMapper(userDTO: $0, authUserId: authUserId)) }
+            return users
+        } catch {
+            throw UserProfileRepositoryError.searchUsersFailed(message: error.localizedDescription)
         }
     }
 }

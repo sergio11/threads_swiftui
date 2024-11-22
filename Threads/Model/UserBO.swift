@@ -18,4 +18,5 @@ struct UserBO: Identifiable, Codable, Hashable {
     var followers: [String] = []
     var following: [String] = []
     var isPrivateProfile: Bool
+    var isFollowedByAuthUser: Bool
 }
