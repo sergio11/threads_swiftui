@@ -31,6 +31,9 @@ enum UserProfileRepositoryError: Error {
     /// Error when checking username availability fails.
     case checkUsernameAvailabilityFailed(message: String)
     
+    /// Error when searching for users fails.
+    case searchUsersFailed(message: String)
+    
     /// Error when there is a failure in user-related operations that doesn't fit other categories.
     case generic(message: String)
 }
@@ -78,4 +81,11 @@ protocol UserProfileRepository {
     ///   - targetUserId: The ID of the user to be followed or unfollowed.
     /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func followUser(authUserId: String, targetUserId: String) async throws
+    
+    /// Searches for users based on a provided search term asynchronously.
+    ///
+    /// - Parameter searchTerm: A string representing the term to search for (e.g., username, fullname).
+    /// - Returns: An array of `UserBO` objects that match the search criteria.
+    /// - Throws: An error if the search operation fails.
+    func searchUsers(searchTerm: String) async throws -> [UserBO]
 }

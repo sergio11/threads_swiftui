@@ -191,4 +191,43 @@ internal class FirestoreUserDataSourceImpl: UserDataSource {
             throw UserDataSourceError.saveFailed
         }
     }
+    
+    /// Searches for users based on a provided search term in their username or fullname asynchronously.
+    /// - Parameter searchTerm: A string representing the term to search for (e.g., username, fullname).
+    /// - Returns: An array of `UserDTO` objects that match the search criteria.
+    /// - Throws: An error if the search operation fails, including errors specified in `UserDataSourceError`.
+    func searchUsers(searchTerm: String) async throws -> [UserDTO] {
+        let firestore = Firestore.firestore()
+        
+        do {
+            // Query for users where the username matches the search term
+            let usernameQuery = firestore
+                .collection(usersCollection)
+                .whereField("username", isGreaterThanOrEqualTo: searchTerm)
+                .whereField("username", isLessThanOrEqualTo: searchTerm + "\u{f8ff}")
+            
+            // Query for users where the fullname matches the search term
+            let fullnameQuery = firestore
+                .collection(usersCollection)
+                .whereField("fullname", isGreaterThanOrEqualTo: searchTerm)
+                .whereField("fullname", isLessThanOrEqualTo: searchTerm + "\u{f8ff}")
+            
+            // Execute both queries concurrently
+            async let usernameSnapshot = usernameQuery.getDocuments()
+            async let fullnameSnapshot = fullnameQuery.getDocuments()
+            
+            // Decode documents into UserDTO objects
+            let usernameResults = try await usernameSnapshot.documents.compactMap { try? $0.data(as: UserDTO.self) }
+            let fullnameResults = try await fullnameSnapshot.documents.compactMap { try? $0.data(as: UserDTO.self) }
+            
+            // Combine and remove duplicates
+            let combinedResults = Array(Set(usernameResults + fullnameResults))
+            
+            // Return the unique list of users
+            return combinedResults
+        } catch {
+            print("Error searching for users: \(error.localizedDescription)")
+            throw UserDataSourceError.searchFailed(message: "Failed to search for users")
+        }
+    }
 }

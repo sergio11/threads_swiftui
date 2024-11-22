@@ -99,7 +99,7 @@ extension Container {
     }
     
     var userProfileRepository: Factory<UserProfileRepository> {
-        self { UserProfileRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMapper: self.userMapper()) }.singleton
+        self { UserProfileRepositoryImpl(userDataSource: self.userDataSource(), storageFilesDataSource: self.storageDataSource(), userMapper: self.userMapper(), authenticationRepository: self.authenticationRepository()) }.singleton
     }
     
     var updateUserUseCase: Factory<UpdateUserUseCase> {
@@ -116,6 +116,10 @@ extension Container {
     
     var followUserUseCase: Factory<FollowUserUseCase> {
         self { FollowUserUseCase(authRepository: self.authenticationRepository(), userProfileRepository: self.userProfileRepository()) }
+    }
+    
+    var searchUsersUseCase: Factory<SearchUsersUseCase> {
+        self { SearchUsersUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
     }
 }
 

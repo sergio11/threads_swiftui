@@ -15,6 +15,8 @@ enum UserDataSourceError: Error {
     case userNotFound
     /// Error indicating that the provided user ID is invalid.
     case invalidUserId(message: String)
+    /// Error indicating that the search operation failed.
+    case searchFailed(message: String)
 }
 
 /// Protocol defining operations for managing user data.
@@ -61,4 +63,11 @@ protocol UserDataSource {
     ///   - targetUserId: The ID of the user to be followed or unfollowed.
     /// - Throws: An error if the operation fails, including errors specified in `UserDataSourceError`.
     func followUser(authUserId: String, targetUserId: String) async throws
+    
+    /// Searches for users based on a provided search term asynchronously.
+    ///
+    /// - Parameter searchTerm: A string representing the term to search for (e.g., username, fullname).
+    /// - Returns: An array of `UserDTO` objects that match the search criteria.
+    /// - Throws: An error if the search operation fails, including errors specified in `UserDataSourceError`.
+    func searchUsers(searchTerm: String) async throws -> [UserDTO]
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct UserDTO: Decodable {
+internal struct UserDTO: Decodable, Hashable {
     var userId: String
     var email: String
     var fullname: String

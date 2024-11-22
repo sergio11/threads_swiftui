@@ -22,14 +22,15 @@ struct ExploreView: View {
                 .onAppear {
                     // Load current user data when the view appears
                     viewModel.loadCurrentUser()
+                    viewModel.fetchData()
                 }
         }
     }
     
     private var content: some View {
         VStack {
-            // Show empty state when there is no search text or no users found
-            if viewModel.searchText.isEmpty || viewModel.users.isEmpty {
+            // Show empty state when there is no users found
+            if viewModel.users.isEmpty {
                 emptyStateView
             } else {
                 // Show the list of users when there are search results

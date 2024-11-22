@@ -65,7 +65,7 @@ class ThreadMapper: Mapper {
             timestamp: data.threadDTO.timestamp,
             likes: data.threadDTO.likes,
             isLikedByAuthUser: data.threadDTO.likedBy.contains(data.authUserId),
-            user: userMapper.map(data.userDTO)
+            user: userMapper.map(UserDataMapper(userDTO: data.userDTO, authUserId: data.authUserId))
         )
     }
 }
