@@ -124,10 +124,27 @@ extension Container {
 }
 
 extension Container {
+    
+    var notificationMapper: Factory<NotificationMapper> {
+        self { NotificationMapper() }.singleton
+    }
 
     var notificationsDataSource: Factory<NotificationsDataSource> {
         self { FirestoreNotificationsDataSourceImpl() }.singleton
     }
+    
+    var notificationsRepository: Factory<NotificationsRepository> {
+        self { NotificationsRepositoryImpl(notificationsDataSource: self.notificationsDataSource(), notificationMapper: self.notificationMapper()) }.singleton
+    }
+    
+    var fetchNotificationsUseCase: Factory<FetchNotificationsUseCase> {
+        self { FetchNotificationsUseCase(notificationsRepository: self.notificationsRepository(), authRepository: self.authenticationRepository()) }
+    }
+    
+    var deleteNotificationUseCase: Factory<DeleteNotificationUseCase> {
+        self { DeleteNotificationUseCase(notificationsRepository: self.notificationsRepository()) }
+    }
+    
 }
 
 extension Container {

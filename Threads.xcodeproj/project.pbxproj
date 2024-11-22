@@ -101,6 +101,12 @@
 		3D9CE4972CF11ABF0033D094 /* NotificationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4962CF11ABF0033D094 /* NotificationsDataSource.swift */; };
 		3D9CE4992CF11AE70033D094 /* NotificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4982CF11AE70033D094 /* NotificationDTO.swift */; };
 		3D9CE49B2CF11B3C0033D094 /* FirestoreNotificationsDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE49A2CF11B3C0033D094 /* FirestoreNotificationsDataSourceImpl.swift */; };
+		3D9CE49D2CF11D570033D094 /* NotificationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE49C2CF11D570033D094 /* NotificationsRepository.swift */; };
+		3D9CE49F2CF11DA20033D094 /* NotificationBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE49E2CF11DA20033D094 /* NotificationBO.swift */; };
+		3D9CE4A12CF11E080033D094 /* NotificationRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4A02CF11E080033D094 /* NotificationRepositoryImpl.swift */; };
+		3D9CE4A32CF11E400033D094 /* NotificationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4A22CF11E400033D094 /* NotificationMapper.swift */; };
+		3D9CE4A52CF11FFF0033D094 /* FetchNotificationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4A42CF11FFF0033D094 /* FetchNotificationsUseCase.swift */; };
+		3D9CE4A72CF120130033D094 /* DeleteNotificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4A62CF120130033D094 /* DeleteNotificationUseCase.swift */; };
 		3DA3D8472CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */; };
 		3DA3D84B2CEFB5C800E00176 /* ShareActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D84A2CEFB5C800E00176 /* ShareActivityView.swift */; };
 		3DA3D84D2CEFCDC900E00176 /* FollowUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D84C2CEFCDC900E00176 /* FollowUserUseCase.swift */; };
@@ -200,6 +206,12 @@
 		3D9CE4962CF11ABF0033D094 /* NotificationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDataSource.swift; sourceTree = "<group>"; };
 		3D9CE4982CF11AE70033D094 /* NotificationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDTO.swift; sourceTree = "<group>"; };
 		3D9CE49A2CF11B3C0033D094 /* FirestoreNotificationsDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreNotificationsDataSourceImpl.swift; sourceTree = "<group>"; };
+		3D9CE49C2CF11D570033D094 /* NotificationsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRepository.swift; sourceTree = "<group>"; };
+		3D9CE49E2CF11DA20033D094 /* NotificationBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBO.swift; sourceTree = "<group>"; };
+		3D9CE4A02CF11E080033D094 /* NotificationRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRepositoryImpl.swift; sourceTree = "<group>"; };
+		3D9CE4A22CF11E400033D094 /* NotificationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMapper.swift; sourceTree = "<group>"; };
+		3D9CE4A42CF11FFF0033D094 /* FetchNotificationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchNotificationsUseCase.swift; sourceTree = "<group>"; };
+		3D9CE4A62CF120130033D094 /* DeleteNotificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteNotificationUseCase.swift; sourceTree = "<group>"; };
 		3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseThreadsActionsViewModel.swift; sourceTree = "<group>"; };
 		3DA3D84A2CEFB5C800E00176 /* ShareActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareActivityView.swift; sourceTree = "<group>"; };
 		3DA3D84C2CEFCDC900E00176 /* FollowUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUserUseCase.swift; sourceTree = "<group>"; };
@@ -413,6 +425,7 @@
 				3D6572552CDE8E620064A206 /* UserMapper.swift */,
 				3D6572822CDEA6250064A206 /* ThreadMapper.swift */,
 				3D6572862CDEA77D0064A206 /* CreateThreadMapper.swift */,
+				3D9CE4A22CF11E400033D094 /* NotificationMapper.swift */,
 			);
 			path = Impl;
 			sourceTree = "<group>";
@@ -424,6 +437,7 @@
 				3D65725B2CDE90B70064A206 /* UserProfileRepository.swift */,
 				3D65725F2CDE92A70064A206 /* AuthenticationRepository.swift */,
 				3D65727E2CDEA5F50064A206 /* ThreadsRepository.swift */,
+				3D9CE49C2CF11D570033D094 /* NotificationsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -434,6 +448,7 @@
 				3D65725D2CDE912E0064A206 /* UserProfileRepositoryImpl.swift */,
 				3D6572612CDE92CA0064A206 /* AuthenticationRepositoryImpl.swift */,
 				3D6572802CDEA60C0064A206 /* ThreadsRepositoryImpl.swift */,
+				3D9CE4A02CF11E080033D094 /* NotificationRepositoryImpl.swift */,
 			);
 			path = Impl;
 			sourceTree = "<group>";
@@ -456,6 +471,8 @@
 				3D83F6732CEE7719000C30AC /* LikeThreadUseCase.swift */,
 				3DA3D84C2CEFCDC900E00176 /* FollowUserUseCase.swift */,
 				3D9CE4942CF10D670033D094 /* SearchUsersUseCase.swift */,
+				3D9CE4A42CF11FFF0033D094 /* FetchNotificationsUseCase.swift */,
+				3D9CE4A62CF120130033D094 /* DeleteNotificationUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -615,6 +632,7 @@
 				3D6572842CDEA64B0064A206 /* CreateThreadBO.swift */,
 				3D8BFBC82CED1AE5000A386F /* CreateUserBO.swift */,
 				3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */,
+				3D9CE49E2CF11DA20033D094 /* NotificationBO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -709,6 +727,7 @@
 				3D6572892CDEAA5C0064A206 /* FetchThreadsUseCase.swift in Sources */,
 				3D65727F2CDEA5F50064A206 /* ThreadsRepository.swift in Sources */,
 				3D70E00D2CDF68E8009EE223 /* SignInViewModel.swift in Sources */,
+				3D9CE4A72CF120130033D094 /* DeleteNotificationUseCase.swift in Sources */,
 				3D151F912CEBD0FA009FD4A0 /* ProfileViewModel.swift in Sources */,
 				3D312D502C5C0E54008F0B8D /* ThreadBO.swift in Sources */,
 				3D9CE4952CF10D670033D094 /* SearchUsersUseCase.swift in Sources */,
@@ -730,12 +749,15 @@
 				3D4413382C4C417100D71E39 /* PreviewProvider.swift in Sources */,
 				3D70E0132CDF6F70009EE223 /* BackgroundImage.swift in Sources */,
 				3D6572752CDE9CD80064A206 /* ThreadDTO.swift in Sources */,
+				3D9CE4A52CF11FFF0033D094 /* FetchNotificationsUseCase.swift in Sources */,
 				3D6572502CDE8D7C0064A206 /* Container.swift in Sources */,
 				3D6572872CDEA77D0064A206 /* CreateThreadMapper.swift in Sources */,
 				3D3BF4182C498CDF0050BB92 /* EditProfileView.swift in Sources */,
 				3D6572442CDE885F0064A206 /* UserDataSource.swift in Sources */,
 				3DA3D8472CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift in Sources */,
+				3D9CE4A32CF11E400033D094 /* NotificationMapper.swift in Sources */,
 				3D65723B2CDE87180064A206 /* UpdateUserDTO.swift in Sources */,
+				3D9CE4A12CF11E080033D094 /* NotificationRepositoryImpl.swift in Sources */,
 				3D6572852CDEA64B0064A206 /* CreateThreadBO.swift in Sources */,
 				3D6572712CDE95310064A206 /* EventBus.swift in Sources */,
 				3D34786E2CDFA01A00BC2782 /* LoadingAndErrorOverlayModifier.swift in Sources */,
@@ -751,6 +773,7 @@
 				3D65725C2CDE90B70064A206 /* UserProfileRepository.swift in Sources */,
 				3D70E00F2CDF68F3009EE223 /* SignUpViewModel.swift in Sources */,
 				3D65723D2CDE87560064A206 /* UserDTO.swift in Sources */,
+				3D9CE49F2CF11DA20033D094 /* NotificationBO.swift in Sources */,
 				3D6572772CDE9D2C0064A206 /* CreateThreadDTO+Dictionary.swift in Sources */,
 				3D312D532C5C0F2A008F0B8D /* CreateThreadViewModel.swift in Sources */,
 				3D6572622CDE92CA0064A206 /* AuthenticationRepositoryImpl.swift in Sources */,
@@ -780,6 +803,7 @@
 				3DA3D84D2CEFCDC900E00176 /* FollowUserUseCase.swift in Sources */,
 				3D83F6702CEE6366000C30AC /* ForgotPasswordViewModel.swift in Sources */,
 				3D83F6722CEE65C3000C30AC /* ForgotPasswordUseCase.swift in Sources */,
+				3D9CE49D2CF11D570033D094 /* NotificationsRepository.swift in Sources */,
 				3D70DFF82CDF6565009EE223 /* BaseViewModel.swift in Sources */,
 				3D65726E2CDE949E0064A206 /* UpdateUserUseCase.swift in Sources */,
 				3D6572602CDE92A70064A206 /* AuthenticationRepository.swift in Sources */,
