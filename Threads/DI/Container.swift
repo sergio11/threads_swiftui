@@ -124,6 +124,13 @@ extension Container {
 }
 
 extension Container {
+
+    var notificationsDataSource: Factory<NotificationsDataSource> {
+        self { FirestoreNotificationsDataSourceImpl() }.singleton
+    }
+}
+
+extension Container {
     
     var eventBus: Factory<EventBus<AppEvent>> {
         self { EventBus<AppEvent>() }.singleton
