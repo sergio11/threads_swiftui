@@ -11,12 +11,20 @@ struct UserCell: View {
     
     let user: UserBO
     let isFollowing: Bool
+    var onFollowTapped: (() -> Void)?
+    var onProfileImageTapped: (() -> AnyView)?
     
     var body: some View {
         HStack(spacing: 16) {
-            CircularProfileImageView(profileImageUrl: user.profileImageUrl, size: .medium)
-                .frame(width: 50, height: 50)
             
+            if let destination = onProfileImageTapped {
+                NavigationLink(destination: destination()) {
+                    // Profile image and user details
+                    ProfileImageView(profileImageUrl: user.profileImageUrl)
+                }
+            } else {
+                ProfileImageView(profileImageUrl: user.profileImageUrl)
+            }
             // User Info (Username, Fullname)
             VStack(alignment: .leading, spacing: 4) {
                 Text(user.username)
@@ -34,14 +42,14 @@ struct UserCell: View {
             
             // Follow/Unfollow Button
             Button(action: {
-                
+                onFollowTapped?()
             }) {
                 Text(isFollowing ? "Following" : "Follow")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(isFollowing ? .white : .blue)
                     .padding(.vertical, 8)
-                    .frame(width: 100)
+                    .frame(width: 80)
                     .background(isFollowing ? Color.blue : Color.white)
                     .cornerRadius(8)
                     .overlay {
@@ -51,8 +59,19 @@ struct UserCell: View {
             }
             .padding(.trailing)
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 4)
         .background(Color.white)
+    }
+}
+
+private struct ProfileImageView: View {
+    
+    var profileImageUrl: String?
+    
+    var body: some View {
+        CircularProfileImageView(profileImageUrl: profileImageUrl, size: .medium)
+            .frame(width: 50, height: 50)
+            .shadow(radius: 1)
     }
 }
 
