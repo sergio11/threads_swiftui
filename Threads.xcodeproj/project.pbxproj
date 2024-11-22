@@ -98,6 +98,9 @@
 		3D8BFBC92CED1AE5000A386F /* CreateUserBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BFBC82CED1AE5000A386F /* CreateUserBO.swift */; };
 		3D8BFBCB2CED1AF3000A386F /* UpdateUserBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */; };
 		3D9CE4952CF10D670033D094 /* SearchUsersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4942CF10D670033D094 /* SearchUsersUseCase.swift */; };
+		3D9CE4972CF11ABF0033D094 /* NotificationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4962CF11ABF0033D094 /* NotificationsDataSource.swift */; };
+		3D9CE4992CF11AE70033D094 /* NotificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4982CF11AE70033D094 /* NotificationDTO.swift */; };
+		3D9CE49B2CF11B3C0033D094 /* FirestoreNotificationsDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE49A2CF11B3C0033D094 /* FirestoreNotificationsDataSourceImpl.swift */; };
 		3DA3D8472CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */; };
 		3DA3D84B2CEFB5C800E00176 /* ShareActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D84A2CEFB5C800E00176 /* ShareActivityView.swift */; };
 		3DA3D84D2CEFCDC900E00176 /* FollowUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3D84C2CEFCDC900E00176 /* FollowUserUseCase.swift */; };
@@ -194,6 +197,9 @@
 		3D8BFBC82CED1AE5000A386F /* CreateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserBO.swift; sourceTree = "<group>"; };
 		3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserBO.swift; sourceTree = "<group>"; };
 		3D9CE4942CF10D670033D094 /* SearchUsersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersUseCase.swift; sourceTree = "<group>"; };
+		3D9CE4962CF11ABF0033D094 /* NotificationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDataSource.swift; sourceTree = "<group>"; };
+		3D9CE4982CF11AE70033D094 /* NotificationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDTO.swift; sourceTree = "<group>"; };
+		3D9CE49A2CF11B3C0033D094 /* FirestoreNotificationsDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreNotificationsDataSourceImpl.swift; sourceTree = "<group>"; };
 		3DA3D8462CEFB03B00E00176 /* BaseThreadsActionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseThreadsActionsViewModel.swift; sourceTree = "<group>"; };
 		3DA3D84A2CEFB5C800E00176 /* ShareActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareActivityView.swift; sourceTree = "<group>"; };
 		3DA3D84C2CEFCDC900E00176 /* FollowUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUserUseCase.swift; sourceTree = "<group>"; };
@@ -362,6 +368,7 @@
 				3D6572452CDE88A00064A206 /* AuthenticationDataSource.swift */,
 				3D6572472CDE8C660064A206 /* StorageFilesDataSource.swift */,
 				3D65727A2CDE9E0C0064A206 /* ThreadsDataSource.swift */,
+				3D9CE4962CF11ABF0033D094 /* NotificationsDataSource.swift */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -374,6 +381,7 @@
 				3D65723C2CDE87560064A206 /* UserDTO.swift */,
 				3D6572722CDE9B960064A206 /* CreateThreadDTO.swift */,
 				3D6572742CDE9CD80064A206 /* ThreadDTO.swift */,
+				3D9CE4982CF11AE70033D094 /* NotificationDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -385,6 +393,7 @@
 				3D65724B2CDE8CF50064A206 /* FirebaseAuthenticationDataSourceImpl.swift */,
 				3D65724D2CDE8D150064A206 /* FirestoreUserDataSourceImpl.swift */,
 				3D65727C2CDE9E360064A206 /* FirestoreThreadsDataSourceImpl.swift */,
+				3D9CE49A2CF11B3C0033D094 /* FirestoreNotificationsDataSourceImpl.swift */,
 			);
 			path = Impl;
 			sourceTree = "<group>";
@@ -746,6 +755,7 @@
 				3D312D532C5C0F2A008F0B8D /* CreateThreadViewModel.swift in Sources */,
 				3D6572622CDE92CA0064A206 /* AuthenticationRepositoryImpl.swift in Sources */,
 				3D70DFFA2CDF658C009EE223 /* BaseUserViewModel.swift in Sources */,
+				3D9CE4972CF11ABF0033D094 /* NotificationsDataSource.swift in Sources */,
 				3D6572402CDE878A0064A206 /* CreateUserDTO+Dictionary.swift in Sources */,
 				3D65728D2CDEABA30064A206 /* SignInUseCase.swift in Sources */,
 				3D6572482CDE8C660064A206 /* StorageFilesDataSource.swift in Sources */,
@@ -756,6 +766,8 @@
 				3D65726A2CDE94070064A206 /* GetCurrentUserUseCase.swift in Sources */,
 				3D65725E2CDE912E0064A206 /* UserProfileRepositoryImpl.swift in Sources */,
 				3D8BFBCB2CED1AF3000A386F /* UpdateUserBO.swift in Sources */,
+				3D9CE4992CF11AE70033D094 /* NotificationDTO.swift in Sources */,
+				3D9CE49B2CF11B3C0033D094 /* FirestoreNotificationsDataSourceImpl.swift in Sources */,
 				3D83F66E2CEE6350000C30AC /* ForgotPasswordView.swift in Sources */,
 				3D3BF4112C49842B0050BB92 /* UserCell.swift in Sources */,
 				3DA3D84B2CEFB5C800E00176 /* ShareActivityView.swift in Sources */,
