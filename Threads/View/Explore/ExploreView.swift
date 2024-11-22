@@ -67,13 +67,17 @@ struct ExploreView: View {
 
     @ViewBuilder
     private func userNavigationLink(for user: UserBO) -> some View {
-        // Navigation link to user profile view
-        NavigationLink(destination: ProfileView(user: user)) {
-            // User cell that shows user info and follow status
-            UserCell(user: user, isFollowing: viewModel.isUserFollowing(user: user))
-                .padding(.vertical, 4)
-                .background(Divider(), alignment: .bottom)
-        }
+        // User cell that shows user info and follow status
+        UserCell(
+            user: user,
+            isFollowing: viewModel.isUserFollowing(user: user),
+            onFollowTapped: {},
+            onProfileImageTapped: {
+                AnyView(ProfileView(user: user))
+            }
+        )
+        .padding(.vertical, 4)
+        .background(Divider(), alignment: .bottom)
     }
 }
 
