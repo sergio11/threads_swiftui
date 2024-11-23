@@ -66,17 +66,30 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" align="left" src="doc/screenshots/picture_16.png" />
 <img width="260px" src="doc/screenshots/picture_17.png" />
 
-## 📦 Installation
+## Contributing 🤝
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/threads-swiftui.git
+Contributions are welcome! If you'd like to contribute to ThreadsSwiftUI, please fork the repository and create a pull request with your changes.
 
-Navigate to the project directory
+## Support 💬
 
-:cd threads-swiftuiOpen the project in Xcode:open ThreadsSwiftUI.xcodeprojInstall dependencies using Swift Package Manager (SPM).
-Configure Firebase by adding your GoogleService-Info.plist file to the project.
+For support, bug reports, or feature requests, please open an issue on the GitHub repository.
 
-💬 Feedback and ContributionsWe welcome feedback and contributions! Feel free to open issues or submit pull requests.
+## License 📄
 
-📝 LicenseThis project is licensed under the MIT License - see the LICENSE file for details.
+ThreadsSwiftUI is available under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Acknowledgements 🙏
+
+ThreadsSwiftUI is inspired by the functionality and design of Threads from Meta.
+
+We express our deep appreciation to [Freepik](https://www.freepik.es/) for generously providing the resources used in this project.
+
+ ## Visitors Count
+
+
+## Please Share & Star the repository to keep me motivated.
+<a href = "https://github.com/sergio11/threads_swiftui/stargazers">
+   <img src = "https://img.shields.io/github/stars/sergio11/threads_swiftui" />
+</a>
+
+Template mockup from https://previewed.app/template/AFC0B4CB
