@@ -126,7 +126,7 @@ extension Container {
 extension Container {
     
     var notificationMapper: Factory<NotificationMapper> {
-        self { NotificationMapper() }.singleton
+        self { NotificationMapper(userMapper: self.userMapper()) }.singleton
     }
 
     var notificationsDataSource: Factory<NotificationsDataSource> {
@@ -134,7 +134,7 @@ extension Container {
     }
     
     var notificationsRepository: Factory<NotificationsRepository> {
-        self { NotificationsRepositoryImpl(notificationsDataSource: self.notificationsDataSource(), notificationMapper: self.notificationMapper()) }.singleton
+        self { NotificationsRepositoryImpl(notificationsDataSource: self.notificationsDataSource(), notificationMapper: self.notificationMapper(), userDataSource: self.userDataSource(), authenticationRepository: self.authenticationRepository()) }.singleton
     }
     
     var fetchNotificationsUseCase: Factory<FetchNotificationsUseCase> {

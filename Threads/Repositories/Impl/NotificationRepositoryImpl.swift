@@ -7,56 +7,113 @@
 
 import Foundation
 
-/// Class responsible for managing notification-related operations.
+
+/// A concrete implementation of the `NotificationsRepository` protocol.
+/// Responsible for handling operations related to fetching, marking, and deleting user notifications.
 ///
-/// `NotificationsRepositoryImpl` implements the `NotificationsRepository` protocol, providing methods for
-/// uploading, fetching, marking notifications as read, and deleting notifications. It interacts with the
-/// `NotificationsDataSource` to retrieve raw data, and uses a `NotificationMapper` to map data transfer objects
-/// (DTOs) to business objects (BOs) that can be used by the application.
+/// This class interacts with data sources and repositories to fetch user notifications,
+/// mark them as read, and delete them. It utilizes local caching for user data to improve performance
+/// by reducing unnecessary fetch calls for user information. It also uses a notification mapper to convert
+/// the data transfer objects (DTOs) into business objects (BOs) for further processing.
 internal class NotificationsRepositoryImpl: NotificationsRepository {
+    
+    // MARK: - Dependencies
     
     private let notificationsDataSource: NotificationsDataSource
     private let notificationMapper: NotificationMapper
+    private let userDataSource: UserDataSource
+    private let authenticationRepository: AuthenticationRepository
     
     /// Initializes an instance of `NotificationsRepositoryImpl`.
-    ///
     /// - Parameters:
-    ///   - notificationsDataSource: The data source used to fetch and manipulate notifications in the raw data layer.
-    ///   - notificationMapper: The mapper used to convert `NotificationDTO` objects into `NotificationBO` objects.
+    ///   - notificationsDataSource: The data source used to fetch notifications from the backend.
+    ///   - notificationMapper: The mapper used to convert `NotificationDTO` to `NotificationBO`.
+    ///   - userDataSource: The data source used to fetch user details.
+    ///   - authenticationRepository: The repository used to fetch the current authenticated user ID.
     init(
         notificationsDataSource: NotificationsDataSource,
-        notificationMapper: NotificationMapper
+        notificationMapper: NotificationMapper,
+        userDataSource: UserDataSource,
+        authenticationRepository: AuthenticationRepository
     ) {
         self.notificationsDataSource = notificationsDataSource
         self.notificationMapper = notificationMapper
+        self.userDataSource = userDataSource
+        self.authenticationRepository = authenticationRepository
     }
-        
-    /// Fetches notifications for a specific user asynchronously.
+    
+    // MARK: - Public Methods
+    
+    /// Fetches a list of notifications for a specific user.
     ///
-    /// This method fetches the notifications associated with a specific user, identified by their `userId`.
-    /// The method maps each notification from a `NotificationDTO` to a `NotificationBO` using the `notificationMapper`.
-    ///
-    /// - Parameter userId: The ID of the user whose notifications are to be fetched.
-    /// - Returns: An array of `NotificationBO` objects representing the user's notifications.
-    /// - Throws: An error if the fetch operation fails, or if the mapping process encounters an issue.
+    /// - Parameters:
+    ///   - userId: The user ID for which to fetch notifications.
+    /// - Returns: An array of `NotificationBO` representing the user's notifications.
+    /// - Throws: `NotificationsRepositoryError.userNotificationsFetchFailed` if fetching the notifications fails.
     func fetchUserNotifications(userId: String) async throws -> [NotificationBO] {
         do {
-            // Fetch the user's notifications from the data source
+            guard let authUserId = try await self.authenticationRepository.getCurrentUserId() else {
+                throw NotificationsRepositoryError.unknown(message: "Invalid auth user id")
+            }
+            
+            // Fetch notifications from the data source
             let notificationsDTO = try await notificationsDataSource.fetchUserNotifications(uid: userId)
-            return notificationsDTO.map { notificationMapper.map($0) }
+            
+            // Local cache for user data to avoid duplicate fetches
+            var userCache: [String: UserDTO] = [:]
+            var notificationsBO = [NotificationBO]()
+            
+            for notificationDTO in notificationsDTO {
+                do {
+                    // Fetch the user who generated the notification, or use the cache if available
+                    let ownerUserDTO: UserDTO
+                    if let cachedOwnerUser = userCache[notificationDTO.byUserId] {
+                        ownerUserDTO = cachedOwnerUser
+                    } else {
+                        ownerUserDTO = try await userDataSource.getUserById(userId: notificationDTO.byUserId)
+                        userCache[notificationDTO.byUserId] = ownerUserDTO
+                    }
+                    
+                    // Fetch the user who owns the notification, or use the cache if available
+                    let userDTO: UserDTO
+                    if let cachedUser = userCache[notificationDTO.ownerUserId] {
+                        userDTO = cachedUser
+                    } else {
+                        userDTO = try await userDataSource.getUserById(userId: notificationDTO.ownerUserId)
+                        userCache[notificationDTO.ownerUserId] = userDTO
+                    }
+                    
+                    // Map the notification and append to the result list
+                    notificationsBO.append(
+                        notificationMapper.map(
+                            NotificationDataMapper(
+                                notificationDTO: notificationDTO,
+                                notificationUserDTO: userDTO,
+                                notificationOwnerUserDTO: ownerUserDTO,
+                                authUserId: authUserId
+                            )
+                        )
+                    )
+                } catch {
+                    print("Error fetching user for notification \(notificationDTO.id): \(error.localizedDescription)")
+                }
+            }
+            
+            return notificationsBO
         } catch {
             print(error.localizedDescription)
-            throw NotificationsRepositoryError.userNotificationsFetchFailed(message: "Failed to fetch notifications for userId \(userId): \(error.localizedDescription)")
+            throw NotificationsRepositoryError.userNotificationsFetchFailed(
+                message: "Failed to fetch notifications for userId \(userId): \(error.localizedDescription)"
+            )
         }
     }
 
     /// Marks a specific notification as read.
     ///
-    /// This method marks a notification as read by sending the update request to the data source.
-    ///
-    /// - Parameter notificationId: The ID of the notification to mark as read.
-    /// - Returns: A boolean indicating whether the operation was successful (`true` if successful, `false` otherwise).
-    /// - Throws: An error if the operation fails to mark the notification as read.
+    /// - Parameters:
+    ///   - notificationId: The ID of the notification to be marked as read.
+    /// - Returns: A boolean indicating whether the operation was successful.
+    /// - Throws: `NotificationsRepositoryError.markAsReadFailed` if the operation fails.
     func markNotificationAsRead(notificationId: String) async throws -> Bool {
         do {
             // Call the data source to mark the notification as read
@@ -70,11 +127,10 @@ internal class NotificationsRepositoryImpl: NotificationsRepository {
     
     /// Deletes a specific notification.
     ///
-    /// This method deletes a notification by sending a delete request to the data source.
-    ///
-    /// - Parameter notificationId: The ID of the notification to be deleted.
-    /// - Returns: A boolean indicating whether the operation was successful (`true` if successful, `false` otherwise).
-    /// - Throws: An error if the operation fails to delete the notification.
+    /// - Parameters:
+    ///   - notificationId: The ID of the notification to be deleted.
+    /// - Returns: A boolean indicating whether the operation was successful.
+    /// - Throws: `NotificationsRepositoryError.deleteNotificationFailed` if the operation fails.
     func deleteNotification(notificationId: String) async throws -> Bool {
         do {
             // Call the data source to delete the notification
