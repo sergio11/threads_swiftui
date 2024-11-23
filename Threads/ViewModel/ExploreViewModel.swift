@@ -52,39 +52,25 @@ class ExploreViewModel: BaseUserViewModel {
     }
     
     private func fetchSuggestions() {
-        executeAsyncTask({
-            return try await self.getSuggestionsUseCase.execute()
-        }) { [weak self] (result: Result<[UserBO], Error>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let users):
-                self.onFetchDataCompleted(users: users)
-            case .failure:
-                self.onFetchDataFailed()
-            }
-        }
+        fetchUsers(using: self.getSuggestionsUseCase.execute)
+    }
+
+    private func searchUsers() {
+        fetchUsers(using: { try await self.searchUsersUseCase.execute(params: SearchUsersParams(term: self.searchText)) })
     }
     
-    private func searchUsers() {
+    private func fetchUsers(using fetchTask: @escaping () async throws -> [UserBO]) {
         executeAsyncTask({
-            return try await self.searchUsersUseCase.execute(params: SearchUsersParams(term: self.searchText))
+            return try await fetchTask()
         }) { [weak self] (result: Result<[UserBO], Error>) in
             guard let self = self else { return }
-            switch result {
-            case .success(let users):
+            if case .success(let users) = result {
                 self.onFetchDataCompleted(users: users)
-            case .failure:
-                self.onFetchDataFailed()
             }
         }
     }
     
     private func onFetchDataCompleted(users: [UserBO]) {
-        self.isLoading = false
         self.users = users
-    }
-
-    private func onFetchDataFailed() {
-        self.isLoading = false
     }
 }

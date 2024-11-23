@@ -32,11 +32,8 @@ class EditProfileViewModel: BaseUserViewModel {
             return try await self.updateUserUseCase.execute(params: UpdateUserParams(fullname: self.authUserFullName, bio: self.bio, link: self.link, selectedImage: self.uiImageData, isPrivateProfile: self.isPrivateProfile))
         }) { [weak self] (result: Result<UserBO, Error>) in
             guard let self = self else { return }
-            switch result {
-            case .success(let user):
+            if case .success(let user) = result {
                 self.onUserUpdated(user: user)
-            case .failure:
-                self.onUpdateUserFailed()
             }
         }
     }
@@ -58,12 +55,7 @@ class EditProfileViewModel: BaseUserViewModel {
     }
     
     private func onUserUpdated(user: UserBO) {
-        self.isLoading = false
         self.onCurrentUserLoaded(user: user)
         self.userProfileUpdated = true
-    }
-    
-    private func onUpdateUserFailed() {
-        self.isLoading = false
     }
 }

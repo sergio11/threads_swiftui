@@ -23,21 +23,13 @@ class SignInViewModel: BaseViewModel {
             return try await self.signInUseCase.execute(params: SignInParams(email: self.email, password: self.password))
         }) { [weak self] (result: Result<UserBO, Error>) in
             guard let self = self else { return }
-            switch result {
-            case .success(_):
+            if case .success(_) = result {
                 self.onSignInSuccess()
-            case .failure:
-                self.onSignInFailed()
             }
         }
     }
     
     private func onSignInSuccess() {
-        self.isLoading = false
         self.appEventBus.publish(event: .loggedIn)
-    }
-
-    private func onSignInFailed() {
-        self.isLoading = false
     }
 }
