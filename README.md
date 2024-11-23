@@ -44,6 +44,9 @@ In addition, users have the ability to **personalize their profile**, adding a p
 
 - **Clean Architecture**: The app follows **Clean Code** principles and uses **SwiftUI** for creating modern, maintainable, and scalable user interfaces. 🛠️📐
 
+
+<img src="doc/screenshots/picture_18.png" />
+
 ## 🏗️ Architecture
 
 **Threads SwiftUI** follows a modern **MVVM (Model-View-ViewModel)** pattern combined with **Clean Architecture** principles to provide a scalable, maintainable, and testable application structure. This approach ensures separation of concerns, clear data flow, and easy extensibility as the project grows.
