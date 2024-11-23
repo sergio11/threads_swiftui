@@ -14,6 +14,16 @@ This app is powered by **SwiftUI**, Apple's declarative framework for building m
   <img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black" />
 </p>
 
+<p align="center">
+  <img width="250px" src="doc/previewed/image1.jpeg" />
+  <img width="250px" src="doc/previewed/image2.jpeg" />
+  <img width="250px" src="doc/previewed/image3.jpeg" />
+  <img width="250px" src="doc/previewed/image4.jpeg" />
+  <img width="250px" src="doc/previewed/image5.jpeg" />
+</p>
+
+Slides are built using the  template from [Previewed](https://previewed.app/template/AFC0B4CB). I extend my gratitude to them for their remarkable work and contribution.
+
 ## 📚 Project Description
 
 **Threads SwiftUI** is a dynamic iOS application developed with **SwiftUI** and powered by **Firebase** to provide users with a seamless platform to share their thoughts, connect with others, and explore new ideas. Built for **iOS 17**, this app allows users to create, comment, like, and share **Threads**—short posts or thoughts on various topics. 🚀
@@ -124,7 +134,10 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" src="doc/screenshots/picture_15.png" />
 
 <img width="260px" align="left" src="doc/screenshots/picture_16.png" />
-<img width="260px" src="doc/screenshots/picture_17.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_17.png" />
+<img width="260px" src="doc/screenshots/picture_19.png" />
+
+<img width="260px" src="doc/screenshots/picture_20.png" />
 
 ## Contributing 🤝
 
@@ -144,7 +157,9 @@ ThreadsSwiftUI is inspired by the functionality and design of Threads from Meta.
 
 We express our deep appreciation to [Freepik](https://www.freepik.es/) for generously providing the resources used in this project.
 
- ## Visitors Count
+Template mockup from https://previewed.app/template/AFC0B4CB
+
+## Visitors Count
 
 
 ## Please Share & Star the repository to keep me motivated.
@@ -152,4 +167,4 @@ We express our deep appreciation to [Freepik](https://www.freepik.es/) for gener
    <img src = "https://img.shields.io/github/stars/sergio11/threads_swiftui" />
 </a>
 
-Template mockup from https://previewed.app/template/AFC0B4CB
+
