@@ -121,6 +121,10 @@ extension Container {
     var searchUsersUseCase: Factory<SearchUsersUseCase> {
         self { SearchUsersUseCase(userRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
     }
+    
+    var fetchUserConnectionsUseCase: Factory<FetchUserConnectionsUseCase> {
+        self { FetchUserConnectionsUseCase(userProfileRepository: self.userProfileRepository(), authRepository: self.authenticationRepository()) }
+    }
 }
 
 extension Container {

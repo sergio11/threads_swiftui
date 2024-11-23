@@ -36,17 +36,21 @@ struct ProfileHeaderView: View {
                 
                 HStack(spacing: 16) {
                     // Followers
-                    if let followers = user?.followers {
-                        Text("\(followers.count) Followers")
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                    if let followers = user?.followers, let userId = user?.id {
+                        NavigationLink(destination: ConnectionsView(userId: userId, connectionType: .followers)) {
+                            Text("\(followers.count) Followers")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
                     }
                     
                     // Following
-                    if let following = user?.following {
-                        Text("\(following.count) Following")
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                    if let following = user?.following, let userId = user?.id {
+                        NavigationLink(destination: ConnectionsView(userId: userId, connectionType: .following)) {
+                            Text("\(following.count) Following")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
                     }
                 }
                 

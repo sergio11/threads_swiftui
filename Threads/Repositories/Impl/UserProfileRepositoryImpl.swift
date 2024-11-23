@@ -186,5 +186,45 @@ internal class UserProfileRepositoryImpl: UserProfileRepository {
             throw UserProfileRepositoryError.searchUsersFailed(message: error.localizedDescription)
         }
     }
+
+    /// Retrieves the list of users that the user is following.
+    /// - Parameter userId: The ID of the user.
+    /// - Returns: An array of `UserBO` objects representing users that the user is following.
+    /// - Throws: An error if the retrieval fails.
+    func getFollowing(userId: String) async throws -> [UserBO] {
+        do {
+            let user = try await userDataSource.getUserById(userId: userId)
+            return !user.following.isEmpty ? try await getUsersList(userId: userId, userIds: user.following): []
+        } catch {
+            throw UserProfileRepositoryError.followingFailed(message: error.localizedDescription)
+        }
+    }
+
+    /// Retrieves the list of users who are following the user.
+    /// - Parameter userId: The ID of the user.
+    /// - Returns: An array of `UserBO` objects representing users who are following the user.
+    /// - Throws: An error if the retrieval fails.
+    func getFollowers(userId: String) async throws -> [UserBO] {
+        do {
+            let user = try await userDataSource.getUserById(userId: userId)
+            return !user.followers.isEmpty ? try await getUsersList(userId: userId, userIds: user.followers): []
+        } catch {
+            throw UserProfileRepositoryError.followersFailed(message: error.localizedDescription)
+        }
+    }
+    
+    /// Retrieves the list of users (following or followers) for a given user.
+    /// - Parameters:
+    ///   - userId: The ID of the user.
+    ///   - userIds: An array of user IDs (either following or followers).
+    /// - Returns: An array of `UserBO` objects representing the users.
+    /// - Throws: A generic error if the retrieval fails.
+    private func getUsersList(userId: String, userIds: [String]) async throws -> [UserBO] {
+        guard let authUserId = try await authenticationRepository.getCurrentUserId() else {
+            throw UserProfileRepositoryError.generic(message: "Auth user id not found")
+        }
+        let result = try await userDataSource.getUserByIdList(userIds: userIds)
+        return result.map { userMapper.map(UserDataMapper(userDTO: $0, authUserId: authUserId)) }
+    }
 }
 
