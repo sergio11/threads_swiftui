@@ -19,28 +19,33 @@ class ActivityViewModel: BaseViewModel {
     
     @Published var notifications: [NotificationBO] = []
     
-    
     func fetchData() {
         executeAsyncTask({
             return try await self.fetchNotificationsUseCase.execute()
         }) { [weak self] (result: Result<[NotificationBO], Error>) in
             guard let self = self else { return }
-            switch result {
-            case .success(let notifications):
+            if case .success(let notifications) = result {
                 self.onFetchNotificationsCompleted(notifications: notifications)
-            case .failure(let error):
-                self.onFetchNotificationsFailed(error: error)
             }
         }
     }
     
-    
-    private func onFetchNotificationsCompleted(notifications: [NotificationBO]) {
-        self.isLoading = false
-        self.notifications = notifications
+    func deleteNotification(id: String) {
+        executeAsyncTask({
+            return try await self.deleteNotificationUseCase.execute(params: DeleteNotificationParams(notificationId: id))
+        }) { [weak self] (result: Result<Bool, Error>) in
+            guard let self = self else { return }
+            if case .success(_) = result {
+                self.onDeleteNotificationCompleted(notificationId: id)
+            }
+        }
     }
     
-    private func onFetchNotificationsFailed(error: Error) {
-
+    private func onDeleteNotificationCompleted(notificationId: String) {
+        self.notifications = self.notifications.filter { $0.id != notificationId }
+    }
+ 
+    private func onFetchNotificationsCompleted(notifications: [NotificationBO]) {
+        self.notifications = notifications
     }
 }
