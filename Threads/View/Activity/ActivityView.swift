@@ -19,6 +19,7 @@ struct ActivityView: View {
                     viewModel.deleteNotification(id: $0)
                 }
             )
+            .padding(.top)
             .refreshable {
                 viewModel.fetchData()
             }
@@ -38,7 +39,6 @@ struct ActivityView: View {
                 viewModel.fetchData()
             }
             .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
-            .padding(.top)
         }
     }
 }
