@@ -100,6 +100,9 @@
 		3D976B582CF1D81B008AE29A /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D976B572CF1D81B008AE29A /* ActivityViewModel.swift */; };
 		3D976B5A2CF1DB7B008AE29A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D976B592CF1DB7B008AE29A /* NotificationCell.swift */; };
 		3D976B5D2CF1FAE5008AE29A /* SwipeActions in Frameworks */ = {isa = PBXBuildFile; productRef = 3D976B5C2CF1FAE5008AE29A /* SwipeActions */; };
+		3D976B5F2CF20B28008AE29A /* FetchUserConnectionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D976B5E2CF20B28008AE29A /* FetchUserConnectionsUseCase.swift */; };
+		3D976B622CF20BA1008AE29A /* ConnectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D976B612CF20BA1008AE29A /* ConnectionsView.swift */; };
+		3D976B642CF20BAF008AE29A /* ConnectionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D976B632CF20BAF008AE29A /* ConnectionsViewModel.swift */; };
 		3D9CE4952CF10D670033D094 /* SearchUsersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4942CF10D670033D094 /* SearchUsersUseCase.swift */; };
 		3D9CE4972CF11ABF0033D094 /* NotificationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4962CF11ABF0033D094 /* NotificationsDataSource.swift */; };
 		3D9CE4992CF11AE70033D094 /* NotificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4982CF11AE70033D094 /* NotificationDTO.swift */; };
@@ -207,6 +210,9 @@
 		3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserBO.swift; sourceTree = "<group>"; };
 		3D976B572CF1D81B008AE29A /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
 		3D976B592CF1DB7B008AE29A /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		3D976B5E2CF20B28008AE29A /* FetchUserConnectionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserConnectionsUseCase.swift; sourceTree = "<group>"; };
+		3D976B612CF20BA1008AE29A /* ConnectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsView.swift; sourceTree = "<group>"; };
+		3D976B632CF20BAF008AE29A /* ConnectionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsViewModel.swift; sourceTree = "<group>"; };
 		3D9CE4942CF10D670033D094 /* SearchUsersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersUseCase.swift; sourceTree = "<group>"; };
 		3D9CE4962CF11ABF0033D094 /* NotificationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDataSource.swift; sourceTree = "<group>"; };
 		3D9CE4982CF11AE70033D094 /* NotificationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDTO.swift; sourceTree = "<group>"; };
@@ -463,6 +469,7 @@
 				3D9CE4942CF10D670033D094 /* SearchUsersUseCase.swift */,
 				3D9CE4A42CF11FFF0033D094 /* FetchNotificationsUseCase.swift */,
 				3D9CE4A62CF120130033D094 /* DeleteNotificationUseCase.swift */,
+				3D976B5E2CF20B28008AE29A /* FetchUserConnectionsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -470,6 +477,7 @@
 		3D7F54CF2CDD59A500D1CF50 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D976B602CF20B92008AE29A /* Connections */,
 				3D976B562CF1D521008AE29A /* Activity */,
 				3D83F66C2CEE6331000C30AC /* ForgotPassword */,
 				3D8BFBC72CED16D6000A386F /* EditProfile */,
@@ -518,6 +526,7 @@
 				3D151F902CEBD0FA009FD4A0 /* ProfileViewModel.swift */,
 				3D83F66F2CEE6366000C30AC /* ForgotPasswordViewModel.swift */,
 				3D976B572CF1D81B008AE29A /* ActivityViewModel.swift */,
+				3D976B632CF20BAF008AE29A /* ConnectionsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -552,6 +561,14 @@
 				3D3BF4052C497D340050BB92 /* ActivityView.swift */,
 			);
 			path = Activity;
+			sourceTree = "<group>";
+		};
+		3D976B602CF20B92008AE29A /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				3D976B612CF20BA1008AE29A /* ConnectionsView.swift */,
+			);
+			path = Connections;
 			sourceTree = "<group>";
 		};
 		3DF5D4C22C46FA3E00103F4B = {
@@ -716,12 +733,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D976B5F2CF20B28008AE29A /* FetchUserConnectionsUseCase.swift in Sources */,
 				3D65724C2CDE8CF50064A206 /* FirebaseAuthenticationDataSourceImpl.swift in Sources */,
 				3D60DCEF2CDF86AA009BCE1A /* DeveloperCreditView.swift in Sources */,
 				3D6572892CDEAA5C0064A206 /* FetchThreadsUseCase.swift in Sources */,
 				3D65727F2CDEA5F50064A206 /* ThreadsRepository.swift in Sources */,
 				3D70E00D2CDF68E8009EE223 /* SignInViewModel.swift in Sources */,
 				3D9CE4A72CF120130033D094 /* DeleteNotificationUseCase.swift in Sources */,
+				3D976B642CF20BAF008AE29A /* ConnectionsViewModel.swift in Sources */,
 				3D151F912CEBD0FA009FD4A0 /* ProfileViewModel.swift in Sources */,
 				3D312D502C5C0E54008F0B8D /* ThreadBO.swift in Sources */,
 				3D9CE4952CF10D670033D094 /* SearchUsersUseCase.swift in Sources */,
@@ -811,6 +830,7 @@
 				3D65726C2CDE94490064A206 /* GetSuggestionsUseCase.swift in Sources */,
 				3D65728B2CDEAB3E0064A206 /* FetchOwnThreadsUseCase.swift in Sources */,
 				3D6572422CDE87E70064A206 /* UpdateUserDTO+Dictionary.swift in Sources */,
+				3D976B622CF20BA1008AE29A /* ConnectionsView.swift in Sources */,
 				3D3BF3F12C4979BF0050BB92 /* ThreadsTextFieldModifier.swift in Sources */,
 				3DF5D4CF2C46FA3E00103F4B /* ThreadsApp.swift in Sources */,
 				3D3BF3FC2C497CFD0050BB92 /* ExploreView.swift in Sources */,

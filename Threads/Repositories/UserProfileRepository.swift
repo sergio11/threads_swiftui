@@ -34,6 +34,12 @@ enum UserProfileRepositoryError: Error {
     /// Error when searching for users fails.
     case searchUsersFailed(message: String)
     
+    /// Error when retrieving the list of users the user is following.
+    case followingFailed(message: String)
+        
+    /// Error when retrieving the list of users who are following the user.
+    case followersFailed(message: String)
+    
     /// Error when there is a failure in user-related operations that doesn't fit other categories.
     case generic(message: String)
 }
@@ -88,4 +94,16 @@ protocol UserProfileRepository {
     /// - Returns: An array of `UserBO` objects that match the search criteria.
     /// - Throws: An error if the search operation fails.
     func searchUsers(searchTerm: String) async throws -> [UserBO]
+    
+    /// Retrieves the list of users that the user is following.
+    /// - Parameter userId: The ID of the user.
+    /// - Returns: An array of `UserBO` objects representing users that the user is following.
+    /// - Throws: An error if the retrieval fails.
+    func getFollowing(userId: String) async throws -> [UserBO]
+
+    /// Retrieves the list of users who are following the user.
+    /// - Parameter userId: The ID of the  user.
+    /// - Returns: An array of `UserBO` objects representing users who are following the user.
+    /// - Throws: An error if the retrieval fails.
+    func getFollowers(userId: String) async throws -> [UserBO]
 }
