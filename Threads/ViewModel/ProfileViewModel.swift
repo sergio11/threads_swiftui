@@ -53,7 +53,6 @@ class ProfileViewModel: BaseUserViewModel {
     }
     
     private func onSignOutCompleted() {
-        self.isLoading = false
         self.appEventBus.publish(event: .loggedOut)
     }
     

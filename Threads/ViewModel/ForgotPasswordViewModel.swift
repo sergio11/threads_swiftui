@@ -22,21 +22,13 @@ class ForgotPasswordViewModel: BaseViewModel {
             return try await self.forgotPasswordUseCase.execute(params: ForgotPasswordParams(email: self.email))
         }) { [weak self] (result: Result<Bool, Error>) in
             guard let self = self else { return }
-            switch result {
-            case .success(_):
+            if case .success(_) = result {
                 self.onSendResetLinkCompleted()
-            case .failure:
-                self.onSendResetLinkFailed()
             }
         }
     }
     
     private func onSendResetLinkCompleted() {
-        self.isLoading = false
         self.resetLinkSent = true
-    }
-    
-    private func onSendResetLinkFailed() {
-        self.isLoading = false
     }
 }

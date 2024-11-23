@@ -22,21 +22,13 @@ class CreateThreadViewModel: BaseUserViewModel {
             return try await self.createThreadUseCase.execute(params: CreateThreadParams(caption: self.caption))
         }) { [weak self] (result: Result<ThreadBO, Error>) in
             guard let self = self else { return }
-            switch result {
-            case .success(_):
+            if case .success(_) = result {
                 self.onCreateThreadCompleted()
-            case .failure:
-                self.onCreateThreadFailed()
             }
         }
     }
     
     private func onCreateThreadCompleted() {
-        self.isLoading = false
         self.threadUploaded = true
-    }
-
-    private func onCreateThreadFailed() {
-        self.isLoading = false
     }
 }

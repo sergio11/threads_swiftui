@@ -28,22 +28,14 @@ class UserContentListViewModel: BaseThreadsActionsViewModel {
                 return try await self.fetchThreadsByUserUseCase.execute(params: FetchThreadsByUserParams(userId: userId))
             }) { [weak self] (result: Result<[ThreadBO], Error>) in
                 guard let self = self else { return }
-                switch result {
-                case .success(let threads):
+                if case .success(let threads) = result {
                     self.onFetchThreadsByUserCompleted(threads: threads)
-                case .failure:
-                    self.onFetchThreadsByUserFailed()
                 }
             }
         }
     }
     
     private func onFetchThreadsByUserCompleted(threads: [ThreadBO]) {
-        self.isLoading = false
         self.threads = threads
-    }
-    
-    private func onFetchThreadsByUserFailed() {
-        self.isLoading = false
     }
 }
