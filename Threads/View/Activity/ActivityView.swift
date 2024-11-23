@@ -14,12 +14,15 @@ struct ActivityView: View {
     var body: some View {
         NavigationStack {
             ActivityViewContent(
-                notifications: viewModel.notifications
+                notifications: viewModel.notifications,
+                onDeleteNotification: {
+                    viewModel.deleteNotification(id: $0)
+                }
             )
             .refreshable {
                 viewModel.fetchData()
             }
-            .navigationTitle("Threads")
+            .navigationTitle("Activity")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -42,6 +45,7 @@ struct ActivityView: View {
 private struct ActivityViewContent: View {
     
     var notifications: [NotificationBO]
+    var onDeleteNotification: (String) -> Void
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -50,7 +54,15 @@ private struct ActivityViewContent: View {
                     NotificationCell(notification: notification, onProfileImageTapped: {
                         AnyView(ProfileView(user: notification.byUser))
                     })
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            onDeleteNotification(notification.id)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
                 }
+                
             }
         }
     }
