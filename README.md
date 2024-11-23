@@ -124,7 +124,10 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 <img width="260px" src="doc/screenshots/picture_15.png" />
 
 <img width="260px" align="left" src="doc/screenshots/picture_16.png" />
-<img width="260px" src="doc/screenshots/picture_17.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_17.png" />
+<img width="260px" src="doc/screenshots/picture_19.png" />
+
+<img width="260px" src="doc/screenshots/picture_20.png" />
 
 ## Contributing 🤝
 
