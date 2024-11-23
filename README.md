@@ -1,6 +1,16 @@
 # 🧵 Threads SwiftUI
 
+<img width="300px" align="left" src="./doc/main_logo.png" />
+
 Welcome to **Threads SwiftUI**, an engaging application designed for iOS 17 to share thoughts and comment on hot and trending topics! Developed using SwiftUI and following Clean Code architecture, this app ensures a seamless and intuitive user experience.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white" />
+  <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white" />
+  <img src="https://img.shields.io/badge/Xcode-007ACC?style=for-the-badge&logo=Xcode&logoColor=white" />
+  <img src="https://img.shields.io/badge/Apple%20laptop-333333?style=for-the-badge&logo=apple&logoColor=white" />
+  <img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black" />
+</p>
 
 ## 📱 Purpose and Description
 
@@ -29,10 +39,12 @@ Threads SwiftUI is built using the **Clean Code** architecture, ensuring maintai
 - **Firestore**: For real-time database and data synchronization.
 - **Firebase Storage**: For storing user-generated content.
 
-## 📸 Screenshots
+## App Screenshots
 
-![Screenshot1](link-to-screenshot1)
-![Screenshot2](link-to-screenshot2)
+Here are some screenshots from our app to give you a glimpse of its design and functionality.
+
+<img width="260px" align="left" src="doc/screenshots/picture_1.png" />
+</br>
 
 ## 📦 Installation
 
