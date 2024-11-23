@@ -6,6 +6,8 @@ Welcome to **Threads SwiftUI** – an intuitive and feature-rich application bui
 
 This app is powered by **SwiftUI**, Apple's declarative framework for building modern user interfaces, and follows **Clean Code** principles to ensure scalability, maintainability, and high performance. Whether you’re looking to stay updated with the latest trends, share your opinion, or interact with other users, **Threads SwiftUI** is crafted to provide a smooth and enjoyable experience. ✨📱
 
+I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff5778) YouTube channel for providing such valuable resources. I used one of the channel’s videos as a key learning tool and starting point for developing my Threads app in SwiftUI. The tutorial was incredibly helpful in understanding UI development, and it gave me a solid foundation to build upon. Since then, I’ve made significant modifications to the app with my own architecture approach and added new features. Your content has been a huge inspiration and has played a key role in my progress. Thanks again for all the help!
+
 <p align="center">
   <img src="https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white" />
   <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white" />
@@ -156,6 +158,9 @@ ThreadsSwiftUI is available under the MIT License. See the [LICENSE](LICENSE) fi
 ThreadsSwiftUI is inspired by the functionality and design of Threads from Meta.
 
 We express our deep appreciation to [Freepik](https://www.freepik.es/) for generously providing the resources used in this project.
+
+I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff5778) YouTube channel for providing such valuable resources. I used one of the channel’s videos as a key learning tool and starting point for developing my Threads app in SwiftUI. The tutorial was incredibly helpful in understanding UI development, and it gave me a solid foundation to build upon. Since then, I’ve made significant modifications to the app with my own architecture approach and added new features. Your content has been a huge inspiration and has played a key role in my progress. Thanks again for all the help!
+
 
 Template mockup from https://previewed.app/template/AFC0B4CB
 
