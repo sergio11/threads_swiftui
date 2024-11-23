@@ -36,13 +36,15 @@ struct ProfileView: View {
                 EditProfileView()
             })
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        viewModel.showSignOutAlert.toggle()
-                    } label: {
-                        Image(systemName: "rectangle.portrait.and.arrow.right")
-                            .foregroundColor(.black)
-                            .imageScale(.small)
+                if viewModel.isAuthUser {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            viewModel.showSignOutAlert.toggle()
+                        } label: {
+                            Image(systemName: "rectangle.portrait.and.arrow.right")
+                                .foregroundColor(.black)
+                                .imageScale(.small)
+                        }
                     }
                 }
             }
