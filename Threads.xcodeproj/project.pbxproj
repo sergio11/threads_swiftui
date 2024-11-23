@@ -99,6 +99,7 @@
 		3D8BFBCB2CED1AF3000A386F /* UpdateUserBO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8BFBCA2CED1AF3000A386F /* UpdateUserBO.swift */; };
 		3D976B582CF1D81B008AE29A /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D976B572CF1D81B008AE29A /* ActivityViewModel.swift */; };
 		3D976B5A2CF1DB7B008AE29A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D976B592CF1DB7B008AE29A /* NotificationCell.swift */; };
+		3D976B5D2CF1FAE5008AE29A /* SwipeActions in Frameworks */ = {isa = PBXBuildFile; productRef = 3D976B5C2CF1FAE5008AE29A /* SwipeActions */; };
 		3D9CE4952CF10D670033D094 /* SearchUsersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4942CF10D670033D094 /* SearchUsersUseCase.swift */; };
 		3D9CE4972CF11ABF0033D094 /* NotificationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4962CF11ABF0033D094 /* NotificationsDataSource.swift */; };
 		3D9CE4992CF11AE70033D094 /* NotificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE4982CF11AE70033D094 /* NotificationDTO.swift */; };
@@ -235,6 +236,7 @@
 				3D6512A62C4AD63100EC40EE /* FirebaseAuth in Frameworks */,
 				3D6512AC2C4AD63100EC40EE /* FirebaseStorage in Frameworks */,
 				3D6512A82C4AD63100EC40EE /* FirebaseFirestore in Frameworks */,
+				3D976B5D2CF1FAE5008AE29A /* SwipeActions in Frameworks */,
 				3D7F54D42CDD5A7600D1CF50 /* Factory in Frameworks */,
 				3D6512AA2C4AD63100EC40EE /* FirebaseFirestoreSwift in Frameworks */,
 				3D885E0A2C4D017700A3BE3A /* Kingfisher in Frameworks */,
@@ -650,6 +652,7 @@
 				3D6512AB2C4AD63100EC40EE /* FirebaseStorage */,
 				3D885E092C4D017700A3BE3A /* Kingfisher */,
 				3D7F54D32CDD5A7600D1CF50 /* Factory */,
+				3D976B5C2CF1FAE5008AE29A /* SwipeActions */,
 			);
 			productName = Threads;
 			productReference = 3DF5D4CB2C46FA3E00103F4B /* Threads.app */;
@@ -683,6 +686,7 @@
 				3D6512A42C4AD63100EC40EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				3D885E082C4D017700A3BE3A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3D7F54D22CDD5A7600D1CF50 /* XCRemoteSwiftPackageReference "Factory" */,
+				3D976B5B2CF1FAE5008AE29A /* XCRemoteSwiftPackageReference "SwipeActions" */,
 			);
 			productRefGroup = 3DF5D4CC2C46FA3E00103F4B /* Products */;
 			projectDirPath = "";
@@ -1042,6 +1046,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		3D976B5B2CF1FAE5008AE29A /* XCRemoteSwiftPackageReference "SwipeActions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/c-villain/SwipeActions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1074,6 +1086,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3D885E082C4D017700A3BE3A /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		3D976B5C2CF1FAE5008AE29A /* SwipeActions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D976B5B2CF1FAE5008AE29A /* XCRemoteSwiftPackageReference "SwipeActions" */;
+			productName = SwipeActions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

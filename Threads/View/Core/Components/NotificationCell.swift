@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import SwipeActions
 
 struct NotificationCell: View {
     
     let notification: NotificationBO
     var onProfileImageTapped: (() -> AnyView)?
+    var onDeleteNotification: (() -> Void)?
     
     var body: some View {
         HStack(spacing: 16) {
-            NotificationTypeIcon(type: notification.type)
             
             if let destination = onProfileImageTapped {
                 NavigationLink(destination: destination()) {
@@ -27,9 +28,32 @@ struct NotificationCell: View {
             NotificationDetails(notification: notification)
             
             Spacer()
+            
+            VStack {
+                // Notification Type Icon
+                NotificationTypeIcon(type: notification.type)
+                    .frame(width: 20, height: 20)
+                    .padding([.top, .trailing], 8)
+                
+                Spacer()
+            }
         }
-        .padding(.horizontal, 4)
+        .padding(.horizontal)
+        .padding(.vertical, 8)
         .background(Color.white)
+        .addSwipeAction(edge: .trailing) {
+            Button {
+                onDeleteNotification?()
+            } label: {
+                Image(systemName: "trash")
+                    .foregroundColor(.white)
+                    .imageScale(.large)
+            }
+            .frame(width: 120, height: 100, alignment: .center)
+            .contentShape(Rectangle())
+            .background(Color.red)
+        }
+        
     }
 }
 
@@ -38,7 +62,7 @@ private struct NotificationDetails: View {
     let notification: NotificationBO
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 6) {
             // Notification Title
             Text(notification.title)
                 .font(.headline)
@@ -47,17 +71,16 @@ private struct NotificationDetails: View {
             
             // Notification Message
             Text(notification.message)
-                .font(.subheadline)
+                .font(.footnote)
                 .foregroundColor(.secondary)
                 .lineLimit(2)
             
             // Timestamp
-            Text(notification.timestamp.formatted(date: .abbreviated, time: .shortened))
+            Text(notification.timestamp.timeAgoDisplay())
                 .font(.caption)
                 .foregroundColor(.gray)
         }
     }
-    
 }
 
 /// A helper view to display a user's profile image.
@@ -67,8 +90,8 @@ private struct ProfileImageView: View {
     
     var body: some View {
         CircularProfileImageView(profileImageUrl: profileImageUrl, size: .medium)
-            .frame(width: 50, height: 50)
-            .shadow(radius: 1)
+            .frame(width: 48, height: 48)
+            .shadow(radius: 2)
     }
 }
 
@@ -81,9 +104,8 @@ private struct NotificationTypeIcon: View {
         Image(systemName: iconName)
             .resizable()
             .scaledToFit()
-            .frame(width: 24, height: 24)
+            .frame(width: 20, height: 20)
             .foregroundColor(.blue)
-            .padding(6)
             .background(Circle().fill(Color.blue.opacity(0.1)))
     }
     
@@ -97,8 +119,6 @@ private struct NotificationTypeIcon: View {
             return "text.bubble.fill"
         case .repost:
             return "arrow.2.squarepath"
-        default:
-            return "at"
         }
     }
 }

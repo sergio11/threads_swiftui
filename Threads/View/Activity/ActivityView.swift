@@ -38,6 +38,7 @@ struct ActivityView: View {
                 viewModel.fetchData()
             }
             .modifier(LoadingAndErrorOverlayModifier(isLoading: $viewModel.isLoading, errorMessage: $viewModel.errorMessage))
+            .padding(.top)
         }
     }
 }
@@ -53,14 +54,9 @@ private struct ActivityViewContent: View {
                 ForEach(notifications) { notification in
                     NotificationCell(notification: notification, onProfileImageTapped: {
                         AnyView(ProfileView(user: notification.byUser))
+                    }, onDeleteNotification: {
+                        onDeleteNotification(notification.id)
                     })
-                    .swipeActions {
-                        Button(role: .destructive) {
-                            onDeleteNotification(notification.id)
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
-                    }
                 }
             }
         }
