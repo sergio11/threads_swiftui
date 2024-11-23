@@ -44,22 +44,57 @@ In addition, users have the ability to **personalize their profile**, adding a p
 
 - **Clean Architecture**: The app follows **Clean Code** principles and uses **SwiftUI** for creating modern, maintainable, and scalable user interfaces. 🛠️📐
 
+## 🏗️ Architecture
 
+**Threads SwiftUI** follows a modern **MVVM (Model-View-ViewModel)** pattern combined with **Clean Architecture** principles to provide a scalable, maintainable, and testable application structure. This approach ensures separation of concerns, clear data flow, and easy extensibility as the project grows.
 
-## 🛠️ Architecture
+### MVVM + Clean Architecture
+- **Model**: Represents the core data structures of the application (e.g., `Notification`, `User`).
+- **View**: The SwiftUI views that display the UI components, like `NotificationCell`, `ActivityView`, and `ProfileView`.
+- **ViewModel**: Contains the logic for transforming the raw data into something that the View can display. The ViewModel communicates with use cases and interacts with use cases to fetch data.
+  
+**Clean Architecture** divides the application into **independent layers**:
 
-Threads SwiftUI is built using the **Clean Code** architecture, ensuring maintainable and scalable code. Here’s a brief overview of the architecture components:
+1. **Use Case Layer**: Contains the application-specific business logic, including the actions users can perform, such as creating a thread, fetching notifications, etc. Each use case is represented by a class that handles a specific feature (e.g., `CreateThreadUseCase`, `FetchNotificationsUseCase`).
+   
+2. **Repository Layer**: Abstracts the data-fetching logic, providing a unified API for interacting with different data sources. It retrieves and manipulates data through various repositories (e.g., `NotificationsRepository`, `UserRepository`). This layer interacts with external services like Firebase and abstracts Firebase interactions behind a clean interface.
 
-- **Use Cases**: Encapsulate the business logic and define the actions the app can perform.
-- **Repositories**: Provide a clean API for data access and manipulation.
-- **Data Sources**: Manage data from various sources such as remote APIs (Firebase) and local storage.
+3. **DataSource Layer**: Deals directly with the external data sources (e.g., Firebase, network APIs) and returns the raw data to be passed to the repository layer. This layer abstracts the direct communication with Firebase, ensuring that the repository only interacts with the data layer and does not need to know about its implementation details.
 
-## 🔧 Technologies
+### SwiftUI + Combine
+**SwiftUI** is used for building declarative user interfaces, offering a reactive, dynamic, and flexible UI that updates as the data changes. The **Combine** framework is used for reactive programming, allowing us to bind data to views, enabling real-time updates to the user interface. This combination of **SwiftUI** and **Combine** ensures the app reacts to changes in data seamlessly, particularly for features like notifications, likes, and user actions.
 
-- **SwiftUI**: For building the user interface.
-- **Firebase Authentication**: For secure user authentication.
-- **Firestore**: For real-time database and data synchronization.
-- **Firebase Storage**: For storing user-generated content.
+### Inversion of Control (IoC) Container with Factory
+The application utilizes an **IoC (Inversion of Control) container** with a **Factory** design pattern to manage dependency injection. This allows for better separation of concerns and ensures that the dependencies (such as repositories, use cases, etc.) are injected into the classes that require them. It simplifies unit testing and enhances modularity by making the app more flexible and extensible.
+
+### Firebase Abstraction
+To ensure the app remains testable and maintainable, Firebase interactions (e.g., authentication and Firestore) are abstracted through repository and data source layers. Instead of directly using Firebase SDKs throughout the app, all Firebase-related calls are routed through specific **data sources** like `UserDataSource` and `NotificationsDataSource`. This abstraction allows easy switching or mocking of Firebase for testing and future scalability.
+
+## ⚙️ Technologies Used
+
+**Threads SwiftUI** utilizes various modern technologies and libraries to provide a rich, interactive, and high-performance user experience. Below is a list of key technologies and frameworks used in the app:
+
+### Firebase
+- **Firestore**: A real-time NoSQL database that stores all user data, threads, notifications, likes, and comments. Firestore allows for real-time data synchronization across devices, enabling seamless user interactions.
+- **Firebase Authentication**: Handles secure user sign-in and registration with multiple authentication providers (e.g., email/password, Google, Apple). Firebase Authentication ensures user data is protected and supports scalable authentication methods.
+
+### SwiftUI
+- **SwiftUI**: Used for building the entire UI of the app. Its declarative syntax and native integration with iOS allow for easy development and maintenance of UI components.
+  
+### Combine
+- **Combine**: The reactive framework that integrates with SwiftUI to manage state changes. Combine enables binding data to views and handling asynchronous events, like network calls and real-time updates.
+
+### IoC Container & Factory Pattern
+- **IoC Container**: The app leverages an IoC container to manage dependencies and handle the injection of services like repositories, use cases, and data sources, making the architecture more modular and testable.
+- **Factory Pattern**: The Factory pattern is used in combination with the IoC container to create instances of required objects and services, providing better separation of concerns and flexibility.
+
+### UI Libraries & Tools
+- **Kingfisher**: A powerful image downloading and caching library for Swift. Kingfisher is used for handling profile images and other images in the app, ensuring they are efficiently cached and loaded asynchronously.
+  
+- **SwipeActions**: A native SwiftUI feature that enables swipe actions on rows, allowing users to delete or perform actions like marking notifications as read. The swipe actions are enhanced to provide a clean and intuitive UX.
+
+### Other Frameworks
+- **UIKit**: While **SwiftUI** is the primary UI framework, **UIKit** is also used for certain UI elements (e.g., custom image views, gesture recognizers) where SwiftUI lacks support.
 
 ## App Screenshots
 
