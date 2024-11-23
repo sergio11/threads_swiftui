@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 // Firestore implementation of `ThreadsDataSource`.
-struct FirestoreThreadsDataSourceImpl: ThreadsDataSource {
+internal class FirestoreThreadsDataSourceImpl: ThreadsDataSource {
     
     private let threadsCollection = "threads"
     private let db = Firestore.firestore()

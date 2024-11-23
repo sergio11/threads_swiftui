@@ -24,18 +24,8 @@ struct UserCell: View {
             } else {
                 ProfileImageView(profileImageUrl: user.profileImageUrl)
             }
-            // User Info (Username, Fullname)
-            VStack(alignment: .leading, spacing: 4) {
-                Text(user.username)
-                    .font(.headline) // Larger font for username
-                    .foregroundColor(.primary)
-                    .lineLimit(1)
-                
-                Text(user.fullname)
-                    .font(.subheadline) // Smaller font for fullname
-                    .foregroundColor(.secondary)
-                    .lineLimit(1)
-            }
+            
+            UserInfoDetailsView(user: user)
             
             Spacer()
             
@@ -60,6 +50,26 @@ struct UserCell: View {
         }
         .padding(.horizontal, 4)
         .background(Color.white)
+    }
+}
+
+private struct UserInfoDetailsView: View {
+    
+    let user: UserBO
+    
+    var body: some View {
+        // User Info (Username, Fullname)
+        VStack(alignment: .leading, spacing: 4) {
+            Text(user.username)
+                .font(.headline)
+                .foregroundColor(.primary)
+                .lineLimit(1)
+            
+            Text(user.fullname)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .lineLimit(1)
+        }
     }
 }
 

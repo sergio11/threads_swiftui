@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 // Firestore implementation of `NotificationsDataSource`.
-struct FirestoreNotificationsDataSourceImpl: NotificationsDataSource {
+internal class FirestoreNotificationsDataSourceImpl: NotificationsDataSource {
     
     private let notificationsCollection = "threads_notifications"
     private let db = Firestore.firestore()
