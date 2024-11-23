@@ -44,7 +44,21 @@ Threads SwiftUI is built using the **Clean Code** architecture, ensuring maintai
 Here are some screenshots from our app to give you a glimpse of its design and functionality.
 
 <img width="260px" align="left" src="doc/screenshots/picture_1.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_2.png" />
+<img width="260px" src="doc/screenshots/picture_3.png" />
 </br>
+
+<img width="260px" align="left" src="doc/screenshots/picture_4.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_5.png" />
+<img width="260px" src="doc/screenshots/picture_6.png" />
+</br>
+
+<img width="260px" align="left" src="doc/screenshots/picture_7.png" />
+<img width="260px" align="left" src="doc/screenshots/picture_8.png" />
+<img width="260px" src="doc/screenshots/picture_9.png" />
+</br>
+
+<img width="260px" src="doc/screenshots/picture_10.png" />
 
 ## 📦 Installation
 
