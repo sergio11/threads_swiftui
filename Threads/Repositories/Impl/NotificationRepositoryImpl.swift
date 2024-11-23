@@ -66,21 +66,21 @@ internal class NotificationsRepositoryImpl: NotificationsRepository {
             for notificationDTO in notificationsDTO {
                 do {
                     // Fetch the user who generated the notification, or use the cache if available
-                    let ownerUserDTO: UserDTO
+                    let userDTO: UserDTO
                     if let cachedOwnerUser = userCache[notificationDTO.byUserId] {
-                        ownerUserDTO = cachedOwnerUser
+                        userDTO = cachedOwnerUser
                     } else {
-                        ownerUserDTO = try await userDataSource.getUserById(userId: notificationDTO.byUserId)
-                        userCache[notificationDTO.byUserId] = ownerUserDTO
+                        userDTO = try await userDataSource.getUserById(userId: notificationDTO.byUserId)
+                        userCache[notificationDTO.byUserId] = userDTO
                     }
                     
                     // Fetch the user who owns the notification, or use the cache if available
-                    let userDTO: UserDTO
+                    let ownerUserDTO: UserDTO
                     if let cachedUser = userCache[notificationDTO.ownerUserId] {
-                        userDTO = cachedUser
+                        ownerUserDTO = cachedUser
                     } else {
-                        userDTO = try await userDataSource.getUserById(userId: notificationDTO.ownerUserId)
-                        userCache[notificationDTO.ownerUserId] = userDTO
+                        ownerUserDTO = try await userDataSource.getUserById(userId: notificationDTO.ownerUserId)
+                        userCache[notificationDTO.ownerUserId] = ownerUserDTO
                     }
                     
                     // Map the notification and append to the result list
@@ -98,7 +98,6 @@ internal class NotificationsRepositoryImpl: NotificationsRepository {
                     print("Error fetching user for notification \(notificationDTO.id): \(error.localizedDescription)")
                 }
             }
-            
             return notificationsBO
         } catch {
             print(error.localizedDescription)

@@ -22,7 +22,7 @@ internal class FirestoreNotificationsDataSourceImpl: NotificationsDataSource {
         do {
             let snapshot = try await db
                 .collection(notificationsCollection)
-                .whereField("userId", isEqualTo: uid)
+                .whereField("ownerUserId", isEqualTo: uid)
                 .getDocuments()
             
             let notifications = snapshot.documents.compactMap { document in
