@@ -42,12 +42,10 @@ class MainViewModel: BaseViewModel {
     }
 
     private func onNotActiveSessionFound() {
-        self.isLoading = false
         self.hasSession = false
     }
 
     private func onActiveSessionFound() {
-        self.isLoading = false
         self.hasSession = true
     }
     

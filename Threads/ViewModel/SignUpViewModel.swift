@@ -32,21 +32,13 @@ class SignUpViewModel: BaseViewModel {
             ))
         }) { [weak self] (result: Result<UserBO, Error>) in
             guard let self = self else { return }
-            switch result {
-            case .success(_):
+            if case .success(_) = result {
                 self.onSignUpSuccess()
-            case .failure:
-                self.onSignUpFailed()
             }
         }
     }
     
     private func onSignUpSuccess() {
-        self.isLoading = false
         self.appEventBus.publish(event: .loggedIn)
-    }
-
-    private func onSignUpFailed() {
-        self.isLoading = false
     }
 }

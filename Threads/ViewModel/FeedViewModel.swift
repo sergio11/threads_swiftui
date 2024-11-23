@@ -19,21 +19,13 @@ class FeedViewModel: BaseThreadsActionsViewModel {
             return try await self.fetchThreadsUseCase.execute()
         }) { [weak self] (result: Result<[ThreadBO], Error>) in
             guard let self = self else { return }
-            switch result {
-            case .success(let threads):
+            if case .success(let threads) = result {
                 self.onFetchThreadsCompleted(threads: threads)
-            case .failure:
-                self.onFetchThreadsFailed()
             }
         }
     }
     
     private func onFetchThreadsCompleted(threads: [ThreadBO]) {
-        self.isLoading = false
         self.threads = threads
-    }
-
-    private func onFetchThreadsFailed() {
-        self.isLoading = false
     }
 }
