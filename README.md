@@ -6,7 +6,7 @@ Welcome to **Threads SwiftUI** – an intuitive and feature-rich application bui
 
 This app is powered by **SwiftUI**, Apple's declarative framework for building modern user interfaces, and follows **Clean Code** principles to ensure scalability, maintainability, and high performance. Whether you’re looking to stay updated with the latest trends, share your opinion, or interact with other users, **Threads SwiftUI** is crafted to provide a smooth and enjoyable experience. ✨📱
 
-I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff5778) YouTube channel for providing such valuable resources. I used one of the channel’s videos as a key learning tool and starting point for developing my Threads app in SwiftUI. The tutorial was incredibly helpful in understanding UI development, and it gave me a solid foundation to build upon. Since then, I’ve made significant modifications to the app with my own architecture approach and added new features. Your content has been a huge inspiration and has played a key role in my progress. Thanks again for all the help!
+I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff) YouTube channel for providing such valuable resources. Specifically, I followed the **[SwiftUI Threads Clone | iOS 17 | async/await | Firebase | 2023](https://www.youtube.com/watch?v=MfwdchNNW78&t=1142s)** tutorial, which served as a key learning tool and starting point for developing my **Threads** app in SwiftUI. This free tutorial was incredibly helpful in understanding UI development, and it provided a solid foundation for building the app. Since then, I’ve made significant adjustments to the architecture and incorporated new features, all with the goal of improving my skills as an iOS developer. The content from **AppStuff** has been a huge source of inspiration, and it played a crucial role in shaping my progress throughout this project. Thank you again for all the help and guidance!
 
 This app, includes images and resources designed by [Freepik](https://www.freepik.com). We would like to acknowledge and thank Freepik for their incredible design assets. The images used in the app are provided with attribution, as required by Freepik's licensing terms. For more information on Freepik's resources, please visit [www.freepik.com](https://www.freepik.com).
 
@@ -27,6 +27,14 @@ This app, includes images and resources designed by [Freepik](https://www.freepi
 </p>
 
 Slides are built using the  template from [Previewed](https://previewed.app/template/AFC0B4CB). I extend my gratitude to them for their remarkable work and contribution.
+
+## ⚠️ Disclaimer
+
+This project, **Threads SwiftUI**, has been developed **for educational purposes only**. The main goal is to explore and learn how to build **modern iOS applications** using **SwiftUI** and related technologies.
+
+**Threads SwiftUI does not provide real social media services, account management, or real-time interactions**. Instead, it serves as a **demonstration project** to showcase how to create a social media-like experience using **SwiftUI** and other modern iOS development practices. The features and functionality are implemented to simulate real-world social media apps, such as posting and commenting, but they are not connected to any live data or external services.
+
+Additionally, the name **"Threads SwiftUI"** was generated during a **brainstorming session with AI**, and any resemblance to existing social media platforms or services is purely **coincidental**.
 
 ## 📚 Project Description
 
@@ -143,6 +151,14 @@ Here are some screenshots from our app to give you a glimpse of its design and f
 
 <img width="260px" src="doc/screenshots/picture_20.png" />
 
+## ⚠️ Disclaimer
+
+This project, **Threads SwiftUI**, has been developed **for educational purposes only**. The main goal is to explore and learn how to build **modern iOS applications** using **SwiftUI** and related technologies.
+
+**Threads SwiftUI does not provide real social media services, account management, or real-time interactions**. Instead, it serves as a **demonstration project** to showcase how to create a social media-like experience using **SwiftUI** and other modern iOS development practices. The features and functionality are implemented to simulate real-world social media apps, such as posting and commenting, but they are not connected to any live data or external services.
+
+Additionally, the name **"Threads SwiftUI"** was generated during a **brainstorming session with AI**, and any resemblance to existing social media platforms or services is purely **coincidental**.
+
 ## Contributing 🤝
 
 Contributions are welcome! If you'd like to contribute to ThreadsSwiftUI, please fork the repository and create a pull request with your changes.
@@ -153,8 +169,7 @@ ThreadsSwiftUI is inspired by the functionality and design of Threads from Meta.
 
 We express our deep appreciation to [Freepik](https://www.freepik.es/) for generously providing the resources used in this project.
 
-I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff5778) YouTube channel for providing such valuable resources. I used one of the channel’s videos as a key learning tool and starting point for developing my Threads app in SwiftUI. The tutorial was incredibly helpful in understanding UI development, and it gave me a solid foundation to build upon. Since then, I’ve made significant modifications to the app with my own architecture approach and added new features. Your content has been a huge inspiration and has played a key role in my progress. Thanks again for all the help!
-
+I would like to express my sincere gratitude to the [AppStuff](https://www.youtube.com/@appstuff) YouTube channel for providing such valuable resources. Specifically, I followed the **[SwiftUI Threads Clone | iOS 17 | async/await | Firebase | 2023](https://www.youtube.com/watch?v=MfwdchNNW78&t=1142s)** tutorial, which served as a key learning tool and starting point for developing my **Threads** app in SwiftUI. This free tutorial was incredibly helpful in understanding UI development, and it provided a solid foundation for building the app. Since then, I’ve made significant adjustments to the architecture and incorporated new features, all with the goal of improving my skills as an iOS developer. The content from **AppStuff** has been a huge source of inspiration, and it played a crucial role in shaping my progress throughout this project. Thank you again for all the help and guidance!
 
 Template mockup from https://previewed.app/template/AFC0B4CB
 
