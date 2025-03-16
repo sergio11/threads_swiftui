@@ -1,6 +1,6 @@
 # 🧵 Threads SwiftUI - Where Ideas Connect
 
-<img width="300px" align="left" src="./doc/main_logo.png" />
+<img width="300px" align="left" src="./doc/threads_swiftui_logo.webp" />
 
 Welcome to **Threads SwiftUI** – an intuitive and feature-rich application built for **iOS 17**, designed to provide a seamless platform for users to **share thoughts**, **engage in meaningful conversations**, and comment on **trending topics** across the globe. 🚀💬
 
@@ -34,7 +34,7 @@ This project, **Threads SwiftUI**, has been developed **for educational purposes
 
 **Threads SwiftUI does not provide real social media services, account management, or real-time interactions**. Instead, it serves as a **demonstration project** to showcase how to create a social media-like experience using **SwiftUI** and other modern iOS development practices. The features and functionality are implemented to simulate real-world social media apps, such as posting and commenting, but they are not connected to any live data or external services.
 
-Additionally, the name **"Threads SwiftUI"** was generated during a **brainstorming session with AI**, and any resemblance to existing social media platforms or services is purely **coincidental**.
+Additionally, the name **"Threads SwiftUI"** and its **logo** were generated during a **brainstorming session with AI (ChatGPT)**, and any resemblance to existing social media platforms or services is purely coincidental.
 
 ## 📚 Project Description
 
